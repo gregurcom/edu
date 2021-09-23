@@ -2,6 +2,8 @@
 
 Mentor is a platform where anyone can share their knowledge
 
+![GitHub Logo](public/images/home.png)
+
 ## Install application
 1. Clone app ``git clone https://github.com/gregurcom/mentor.git``
 2. Install all dependence
