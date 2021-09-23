@@ -4,26 +4,25 @@
     <div class="container">
         <div class="row">
             <div class="col-md-4 offset-md-4">
-                <form action="{{ route('auth.authenticate') }}" method="POST">
+                <form action="{{ route('course.edit', $course->id) }}" method="POST">
                     @csrf
 
-                    <input type="email" name="email" class="form-control" placeholder="Email">
-                    @error('email')
+                    <input type="text" name="title" class="form-control" value="{{ $course->title }}">
+                    @error('title')
                         <div class="alert alert-danger mt-1">
                             {{ $message }}
                         </div>
                     @enderror
 
-                    <input type="password" name="password" class="form-control mt-2" placeholder="Password">
-                    @error('password')
+                    <textarea name="description" class="form-control mt-2" rows="5">{{ $course->description }}</textarea>
+                    @error('description')
                         <div class="alert alert-danger mt-1">
                             {{ $message }}
                         </div>
                     @enderror
 
-                    <a href="{{ route('auth.registration') }}">Registration</a>
                     <div class="text-center mt-3">
-                        <button class="btn btn-outline-dark w-25" type="submit">Submit</button>
+                        <button class="btn btn-outline-dark w-25" type="submit">Create</button>
                     </div>
                 </form>
 
@@ -36,3 +35,4 @@
         </div>
     </div>
 @endsection
+

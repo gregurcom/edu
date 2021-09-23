@@ -28,8 +28,8 @@
                             {{ $message }}
                         </div>
                     @enderror
-                    <a href="{{ route('auth.login') }}">Login</a>
 
+                    <a href="{{ route('auth.login') }}">Login</a>
                     <div class="text-center mt-3">
                         <button class="btn btn-outline-dark w-25" type="submit">Submit</button>
                     </div>

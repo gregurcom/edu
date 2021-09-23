@@ -33,3 +33,8 @@ Route::get('dashboard', [DashboardController::class, 'show'])->name('dashboard')
 
 Route::get('course/create', [CourseController::class, 'createForm'])->name('course.creation');
 Route::post('course/create', [CourseController::class, 'create'])->name('course.create');
+
+Route::get('course/edit/{course}', [CourseController::class, 'editForm'])->name('course.edit-form');
+Route::post('course/edit/{course}', [CourseController::class, 'edit'])->name('course.edit');
+
+Route::delete('course/delete/{course}', [CourseController::class, 'delete'])->name('course.delete');

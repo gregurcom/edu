@@ -18,7 +18,15 @@
                     <div class="container">
                         <a href="{{ route('home') }}" class="text-decoration-none text-light h5">Mentor</a>
                         @auth
-                            <a href="{{ route('auth.logout') }}" class="text-decoration-none text-light h5">Logout</a>
+                            <div class="dropdown">
+                                <span class="dropdown-toggle nav-link text-white h5" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                    {{ auth()->user()->name }}
+                                </span>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                    <li><a class="dropdown-item" href="{{ route('dashboard') }}">Dashboard</a></li>
+                                    <li><a class="dropdown-item" href="{{ route('auth.logout') }}">Logout</a></li>
+                                </ul>
+                            </div>
                         @else
                             <a href="{{ route('auth.login') }}" class="text-decoration-none text-light h5">Login</a>
                         @endauth
