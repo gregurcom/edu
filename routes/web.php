@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\AccessController;
 use App\Http\Controllers\Auth\RegistrationController;
+use App\Http\Controllers\CourseController;
 use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
 
@@ -29,3 +30,6 @@ Route::name('auth.')->group(function () {
 });
 
 Route::get('dashboard', [DashboardController::class, 'show'])->name('dashboard');
+
+Route::get('course/create', [CourseController::class, 'createForm'])->name('course.creation');
+Route::post('course/create', [CourseController::class, 'create'])->name('course.create');
