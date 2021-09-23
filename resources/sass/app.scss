@@ -1,2 +1,13 @@
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+
+// Icons
+@import '~material-design-icons/iconfont/material-icons.css';
+
+.material-icons {
+    font-size: 50px;
+}
+
+.course-button {
+    width: 150px;
+}
