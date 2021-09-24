@@ -11,7 +11,7 @@
                     language
                 </span>
                 <div class="px-5">
-                    <a href="#" class="course-button btn btn-outline-dark rounded-pill py-3 px-3 fw-bold">Courses</a>
+                    <a href="{{ route('course-list') }}" class="course-button btn btn-outline-dark rounded-pill py-3 px-3 fw-bold">Courses</a>
                 </div>
                 <span class="material-icons">
                     sentiment_satisfied

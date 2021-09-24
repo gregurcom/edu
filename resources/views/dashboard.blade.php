@@ -15,7 +15,7 @@
             <div class="mt-5">
                 @foreach($courses as $course)
                     <div class="mt-3">
-                        <h3><a href="#" class="text-decoration-none text-dark">{{ $course->title }}</a></h3>
+                        <h3><a href="{{ route('course.show', $course->id) }}" class="text-decoration-none text-dark">{{ $course->title }}</a></h3>
                         <p>{{ $course->description }}</p>
                         <div class="d-flex">
                             <a href="{{ route('course.edit-form', $course->id) }}" class="btn btn-outline-primary">Edit</a>
