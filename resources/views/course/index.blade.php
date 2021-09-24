@@ -13,10 +13,13 @@
             </div>
         @endif
 
+        <div class="h2 text-center">
+            {{ $course->title }}
+        </div>
         @foreach ($course->lessons as $lesson)
             <div class="mt-5">
                 <div class="mt-3">
-                    <h3><a href="{{ route('lesson.show', $lesson->id) }}" class="text-decoration-none text-dark">{{ $lesson->title }}</a></h3>
+                    <h4><a href="{{ route('lesson.show', $lesson->id) }}" class="text-decoration-none text-dark">{{ $lesson->title }}</a></h4>
                     <div class="d-flex">
                         @can('view', $course)
                             <a href="{{ route('lesson.edit-form', $lesson->id) }}" class="btn btn-outline-primary">Edit</a>

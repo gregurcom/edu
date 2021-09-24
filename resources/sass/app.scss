@@ -4,6 +4,8 @@
 // Icons
 @import '~material-design-icons/iconfont/material-icons.css';
 
+@import "~font-awesome/scss/font-awesome.scss";
+
 .material-icons {
     font-size: 50px;
 }
@@ -14,4 +16,8 @@
 
 .dropdown {
     cursor: pointer;
+}
+
+.fa-star {
+    font-size: 25px;
 }
