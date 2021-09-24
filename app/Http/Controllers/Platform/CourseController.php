@@ -28,7 +28,9 @@ class CourseController extends Controller
 
     public function createForm(): View
     {
-        return view('course.creation');
+        $categories = Category::get();
+
+        return view('course.creation', compact('categories'));
     }
 
     public function create(CourseRequest $request): RedirectResponse

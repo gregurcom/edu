@@ -13,6 +13,7 @@ class CourseRequest extends FormRequest
         return [
             'title' => 'required|string|max:255',
             'description' => 'required|min:6',
+            'category_id' => 'required',
         ];
     }
 }

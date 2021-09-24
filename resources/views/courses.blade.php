@@ -15,7 +15,10 @@
                     <div class="mt-3">
                         <div class="d-inline-block">
                             <ul>
-                                <li><h3><a href="{{ route('course.show', $course->id) }}" class="text-decoration-none text-dark">{{ $course->title }}</a></h3></li>
+                                <li>
+                                    <a href="{{ route('course.show', $course->id) }}" class="text-decoration-none text-dark h3">{{ $course->title }}</a>
+                                    <span class="h4 px-2">({{ $course->author->name }})</span>
+                                </li>
                             </ul>
                         </div>
                         <div class="pull-right d-flex align-items-center">
