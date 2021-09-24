@@ -6,6 +6,7 @@ namespace App\Http\Controllers\Platform;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CourseRequest;
+use App\Models\Category;
 use App\Models\Course;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
@@ -15,9 +16,9 @@ class CourseController extends Controller
 {
     public function list(): View
     {
-        $courses = Course::paginate(10);
+        $categories = Category::paginate(10);
 
-        return view('courses', compact('courses'));
+        return view('courses', compact('categories'));
     }
 
     public function show(Course $course): View

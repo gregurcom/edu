@@ -16,7 +16,7 @@
         <div class="h2 text-center">
             {{ $course->title }}
         </div>
-        @foreach ($course->lessons as $lesson)
+        @forelse ($course->lessons as $lesson)
             <div class="mt-5">
                 <div class="mt-3">
                     <h4><a href="{{ route('lesson.show', $lesson->id) }}" class="text-decoration-none text-dark">{{ $lesson->title }}</a></h4>
@@ -33,6 +33,10 @@
                     </div>
                 </div>
             </div>
-        @endforeach
+        @empty
+            <div class="alert alert-info text-center">
+                You don't have any lessons created for this course yet.
+            </div>
+        @endforelse
     </div>
 @endsection
