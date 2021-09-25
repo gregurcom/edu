@@ -10,6 +10,7 @@ use App\Models\Category;
 use App\Models\Course;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class CourseController extends Controller
@@ -19,6 +20,13 @@ class CourseController extends Controller
         $categories = Category::paginate(10);
 
         return view('courses', compact('categories'));
+    }
+
+    public function search(Request $request): View
+    {
+        $courses = Course::where('title', 'like', '%' . $request->q . '%')->paginate(10);
+
+        return view('course.search', compact('courses'));
     }
 
     public function show(Course $course): View

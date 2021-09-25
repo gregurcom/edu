@@ -7,14 +7,19 @@
                 {{ session('status') }}
             </div>
         @endif
-        <div class="input-group justify-content-end">
-            <div class="form-outline">
-                <input type="search" id="form1" class="form-control" placeholder="Search course...">
+
+        <form action="{{ route('course.search') }}" method="GET">
+            <div class="row g-1 justify-content-end">
+                <div class="col-auto">
+                    <input type="search" name="q" class="form-control" placeholder="Search course...">
+                </div>
+                <div class="col-auto">
+                    <button type="submit" class="btn btn-outline-dark">
+                        <i class="fa fa-search"></i>
+                    </button>
+                </div>
             </div>
-            <button type="button" class="btn btn-outline-dark">
-                <i class="fa fa-search"></i>
-            </button>
-        </div>
+        </form>
         @foreach ($categories as $category)
             <h2 class="mt-5">{{ $category->name }}</h2>
             @foreach ($category->courses as $course)

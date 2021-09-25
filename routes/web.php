@@ -24,6 +24,7 @@ Route::get('home', fn() => view('home'))->name('home');
 Route::get('courses', [CourseController::class, 'list'])->name('course-list');
 Route::get('course/view/{course}', [CourseController::class, 'show'])->name('course.show');
 Route::get('lesson/view/{lesson}', [LessonController::class, 'show'])->name('lesson.show');
+Route::get('course/search', [CourseController::class, 'search'])->name('course.search');
 
 Route::name('auth.')->group(function () {
     Route::get('login', [AccessController::class, 'login'])->name('login');
