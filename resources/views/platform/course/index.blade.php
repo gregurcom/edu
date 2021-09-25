@@ -14,7 +14,14 @@
         @endif
 
         <div class="text-center">
-            <h2>{{ $course->title }}</h2>
+            <h2>
+                {{ $course->title }}
+                @if (Auth::user()->isFollowed($course->id))
+                    <a href="{{ route('platform.course.unfollow', $course->id) }}" class="btn btn-outline-info">Unfollow</a>
+                @else
+                    <a href="{{ route('platform.course.follow', $course->id) }}" class="btn btn-outline-info">Follow</a>
+                @endif
+            </h2>
             (<span class="h5 mt-1">{{ $course->users()->count() ?: 0 }} students</span>)
         </div>
         @forelse ($course->lessons as $lesson)

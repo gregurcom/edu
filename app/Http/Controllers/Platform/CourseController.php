@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\CourseRequest;
 use App\Models\Category;
 use App\Models\Course;
+use App\Models\CourseUser;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -45,7 +46,7 @@ class CourseController extends Controller
     {
         Course::create(array_merge(['user_id' => Auth::id()], $request->validated()));
 
-        return redirect()->route('dashboard')->with('status', 'You successfully create a course');
+        return redirect()->route('dashboard')->with('status', 'You have successfully created a course');
     }
 
     public function editForm(Course $course): View
@@ -60,7 +61,7 @@ class CourseController extends Controller
         $this->authorize('edit', $course);
         $course->update($request->validated());
 
-        return redirect()->route('dashboard')->with('status', 'You successfully edit a course');
+        return redirect()->route('dashboard')->with('status', 'You have successfully edited a course');
     }
 
     public function delete(Course $course): RedirectResponse
@@ -69,5 +70,22 @@ class CourseController extends Controller
         $course->delete();
 
         return back()->with('status', 'You successfully delete course');
+    }
+
+    public function follow(Course $course): RedirectResponse
+    {
+        CourseUser::create([
+            'user_id' => Auth::id(),
+            'course_id' => $course->id,
+        ]);
+
+        return back()->with('status', 'You have successfully followed this course');
+    }
+
+    public function unfollow(Course $course): RedirectResponse
+    {
+        CourseUser::where('user_id', Auth::id())->where('course_id', $course->id)->delete();
+
+        return back()->with('status', 'You have successfully unfollowed this course');
     }
 }

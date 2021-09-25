@@ -39,6 +39,8 @@ Route::name('platform.')->group(function () {
     Route::get('courses', [CourseController::class, 'list'])->name('course-list');
     Route::get('course/view/{course}', [CourseController::class, 'show'])->name('course.show');
     Route::get('course/search', [CourseController::class, 'search'])->name('course.search');
+    Route::get('course/follow/{course}', [CourseController::class, 'follow'])->name('course.follow');
+    Route::get('course/unfollow/{course}', [CourseController::class, 'unfollow'])->name('course.unfollow');
 
     Route::get('lesson/view/{lesson}', [LessonController::class, 'show'])->name('lesson.show');
 
