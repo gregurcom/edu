@@ -12,8 +12,12 @@ class DashboardController extends Controller
 {
     public function show(): View
     {
+        if (Auth::user()->isSystemAdmin()) {
+            return view('system.dashboard');
+        }
+
         $courses = Auth::user()->courses;
 
-        return view('dashboard', compact('courses'));
+        return view('platform.dashboard', compact('courses'));
     }
 }

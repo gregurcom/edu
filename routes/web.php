@@ -7,6 +7,7 @@ use App\Http\Controllers\Auth\RegistrationController;
 use App\Http\Controllers\Platform\CourseController;
 use App\Http\Controllers\Platform\DashboardController;
 use App\Http\Controllers\Platform\LessonController;
+use App\Http\Controllers\System\CategoryController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,11 +21,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('home', fn() => view('home'))->name('home');
-Route::get('courses', [CourseController::class, 'list'])->name('course-list');
-Route::get('course/view/{course}', [CourseController::class, 'show'])->name('course.show');
-Route::get('lesson/view/{lesson}', [LessonController::class, 'show'])->name('lesson.show');
-Route::get('course/search', [CourseController::class, 'search'])->name('course.search');
+Route::get('dashboard', [DashboardController::class, 'show'])->name('dashboard')->middleware('auth');
 
 Route::name('auth.')->group(function () {
     Route::get('login', [AccessController::class, 'login'])->name('login');
@@ -36,22 +33,37 @@ Route::name('auth.')->group(function () {
     Route::get('logout', [AccessController::class, 'logout'])->name('logout');
 });
 
-Route::middleware('auth')->group(function () {
-    Route::get('dashboard', [DashboardController::class, 'show'])->name('dashboard');
+Route::name('platform.')->group(function () {
+    Route::get('home', fn() => view('platform.home'))->name('home');
 
-    Route::get('course/create', [CourseController::class, 'createForm'])->name('course.creation');
-    Route::post('course/create', [CourseController::class, 'create'])->name('course.create');
+    Route::get('courses', [CourseController::class, 'list'])->name('course-list');
+    Route::get('course/view/{course}', [CourseController::class, 'show'])->name('course.show');
+    Route::get('course/search', [CourseController::class, 'search'])->name('course.search');
 
-    Route::get('course/edit/{course}', [CourseController::class, 'editForm'])->name('course.edit-form');
-    Route::post('course/edit/{course}', [CourseController::class, 'edit'])->name('course.edit');
+    Route::get('lesson/view/{lesson}', [LessonController::class, 'show'])->name('lesson.show');
 
-    Route::delete('course/delete/{course}', [CourseController::class, 'delete'])->name('course.delete');
+    Route::middleware('auth')->group(function () {
+        Route::get('course/create', [CourseController::class, 'createForm'])->name('course.creation');
+        Route::post('course/create', [CourseController::class, 'create'])->name('course.create');
 
-    Route::get('{course}/lesson/create', [LessonController::class, 'createForm'])->name('lesson.creation');
-    Route::post('{course}/lesson/create', [LessonController::class, 'create'])->name('lesson.create');
+        Route::get('course/edit/{course}', [CourseController::class, 'editForm'])->name('course.edit-form');
+        Route::post('course/edit/{course}', [CourseController::class, 'edit'])->name('course.edit');
 
-    Route::get('lesson/edit/{lesson}', [LessonController::class, 'editForm'])->name('lesson.edit-form');
-    Route::post('lesson/edit/{lesson}', [LessonController::class, 'edit'])->name('lesson.edit');
+        Route::delete('course/delete/{course}', [CourseController::class, 'delete'])->name('course.delete');
 
-    Route::delete('lesson/delete/{lesson}', [LessonController::class, 'delete'])->name('lesson.delete');
+        Route::get('{course}/lesson/create', [LessonController::class, 'createForm'])->name('lesson.creation');
+        Route::post('{course}/lesson/create', [LessonController::class, 'create'])->name('lesson.create');
+
+        Route::get('lesson/edit/{lesson}', [LessonController::class, 'editForm'])->name('lesson.edit-form');
+        Route::post('lesson/edit/{lesson}', [LessonController::class, 'edit'])->name('lesson.edit');
+
+        Route::delete('lesson/delete/{lesson}', [LessonController::class, 'delete'])->name('lesson.delete');
+    });
+});
+
+Route::name('system.')->group(function () {
+    Route::middleware(['auth', 'app.system-admin'])->group(function () {
+        Route::get('category/create', [CategoryController::class, 'createForm'])->name('category.creation');
+        Route::post('category/create', [CategoryController::class, 'create'])->name('category.create');
+    });
 });

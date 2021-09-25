@@ -17,12 +17,12 @@ class LessonController extends Controller
 {
     public function show(Lesson $lesson): View
     {
-        return view('course.lesson.index', compact('lesson'));
+        return view('platform.course.lesson.index', compact('lesson'));
     }
 
     public function createForm(Course $course): View
     {
-        return view('course.lesson.creation', compact('course'));
+        return view('platform.course.lesson.creation', compact('course'));
     }
 
     public function create(LessonRequest $lessonRequest, FileRequest $fileRequest, Course $course): RedirectResponse
@@ -36,7 +36,6 @@ class LessonController extends Controller
         if ($fileRequest->hasFile('files')) {
             foreach ($fileRequest->file('files') as $file) {
                 $name = $file->getClientOriginalName();
-                $fileName = $name;
 
                 File::create([
                     'name' => $name,
@@ -46,14 +45,14 @@ class LessonController extends Controller
             }
         }
 
-        return redirect()->route('course.show', $course->id)->with('status', 'You have successfully create lesson');
+        return redirect()->route('platform.course.show', $course->id)->with('status', 'You have successfully create lesson');
     }
 
     public function editForm(Lesson $lesson): View
     {
         $this->authorize('view', $lesson);
 
-        return view('course.lesson.edit', compact('lesson'));
+        return view('platform.course.lesson.edit', compact('lesson'));
     }
 
     public function edit(Lesson $lesson, LessonRequest $request): RedirectResponse
@@ -61,7 +60,7 @@ class LessonController extends Controller
         $this->authorize('edit', $lesson);
         $lesson->update($request->validated());
 
-        return redirect()->route('course.show', $lesson->course)->with('status', 'You have successfully edit lesson');
+        return redirect()->route('platform.course.show', $lesson->course)->with('status', 'You have successfully edit lesson');
     }
 
     public function delete(Lesson $lesson): RedirectResponse

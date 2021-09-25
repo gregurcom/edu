@@ -70,4 +70,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Course::class);
     }
+
+    public function isSystemAdmin(): bool
+    {
+        return $this->role == self::SYSTEM_ADMIN_ROLE;
+    }
 }

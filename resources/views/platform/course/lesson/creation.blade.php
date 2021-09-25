@@ -4,7 +4,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-4 offset-md-4">
-                <form action="{{ route('lesson.create', $course->id) }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('platform.lesson.create', $course->id) }}" method="POST" enctype="multipart/form-data">
                     @csrf
 
                     <input type="text" name="title" class="form-control" placeholder="Title">

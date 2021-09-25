@@ -19,26 +19,26 @@ class CourseController extends Controller
     {
         $categories = Category::paginate(10);
 
-        return view('courses', compact('categories'));
+        return view('platform.courses', compact('categories'));
     }
 
     public function search(Request $request): View
     {
         $courses = Course::where('title', 'like', '%' . $request->q . '%')->paginate(10);
 
-        return view('course.search', compact('courses'));
+        return view('platform.course.search', compact('courses'));
     }
 
     public function show(Course $course): View
     {
-        return view('course.index', compact('course'));
+        return view('platform.course.index', compact('course'));
     }
 
     public function createForm(): View
     {
         $categories = Category::get();
 
-        return view('course.creation', compact('categories'));
+        return view('platform.course.creation', compact('categories'));
     }
 
     public function create(CourseRequest $request): RedirectResponse
@@ -52,7 +52,7 @@ class CourseController extends Controller
     {
         $this->authorize('view', $course);
 
-        return view('course.edit', compact('course'));
+        return view('platform.course.edit', compact('course'));
     }
 
     public function edit(Course $course, CourseRequest $request): RedirectResponse

@@ -8,7 +8,7 @@
             </div>
         @endif
 
-        <form action="{{ route('course.search') }}" method="GET">
+        <form action="{{ route('platform.course.search') }}" method="GET">
             <div class="row g-1 justify-content-end">
                 <div class="col-auto">
                     <input type="search" name="q" class="form-control" placeholder="Search course...">
@@ -22,14 +22,14 @@
         </form>
         @foreach ($categories as $category)
             <h2 class="mt-5">{{ $category->name }}</h2>
-            @foreach ($category->courses as $course)
+            @forelse ($category->courses as $course)
                 <div class="mt-4">
                     <div class="mt-3">
                         <div class="row">
                             <div class="col-md-6">
                                 <ul>
                                     <li>
-                                        <a href="{{ route('course.show', $course->id) }}" class="text-decoration-none text-dark h3">{{ $course->title }}</a>
+                                        <a href="{{ route('platform.course.show', $course->id) }}" class="text-decoration-none text-dark h3">{{ $course->title }}</a>
                                         <span class="h4 px-2">({{ $course->author->name }})</span>
                                     </li>
                                 </ul>
@@ -47,7 +47,11 @@
                         </div>
                     </div>
                 </div>
-            @endforeach
+            @empty
+                <div class="alert alert-info">
+                    This course does not contain lessons yet
+                </div>
+            @endforelse
         @endforeach
     </div>
 @endsection

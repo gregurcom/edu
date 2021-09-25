@@ -4,18 +4,19 @@
     <div class="container">
         <div class="row">
             <div class="col-md-4 offset-md-4">
-                <form action="{{ route('course.edit', $course->id) }}" method="POST">
+                <div>
+                    Existing categories:
+                    <ul>
+                        @foreach ($categories as $category)
+                            <li>{{ $category->name }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+                <form action="{{ route('system.category.create') }}" method="POST">
                     @csrf
 
-                    <input type="text" name="title" class="form-control" value="{{ $course->title }}">
-                    @error('title')
-                        <div class="alert alert-danger mt-1">
-                            {{ $message }}
-                        </div>
-                    @enderror
-
-                    <textarea name="description" class="form-control mt-2" rows="5">{{ $course->description }}</textarea>
-                    @error('description')
+                    <input type="text" name="category" class="form-control" placeholder="Category">
+                    @error('category')
                         <div class="alert alert-danger mt-1">
                             {{ $message }}
                         </div>
