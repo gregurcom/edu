@@ -7,13 +7,12 @@ namespace App\Http\Controllers\Platform;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\FileRequest;
 use App\Http\Requests\LessonRequest;
-use App\Mail\SendLesson;
+use App\Jobs\SendLessonEmailJob;
 use App\Models\Course;
 use App\Models\File;
 use App\Models\Lesson;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Support\Facades\Mail;
 
 class LessonController extends Controller
 {
@@ -48,7 +47,7 @@ class LessonController extends Controller
         }
         // send emails to subscribers with a link to lesson
         foreach ($course->users as $user) {
-            Mail::to($user->email)->send(new SendLesson($lesson, $course->title));
+            dispatch(new SendLessonEmailJob($user->email, $lesson, $course->title));
         }
 
         return redirect()->route('platform.course.show', $course->id)->with('status', 'You have successfully create lesson');
