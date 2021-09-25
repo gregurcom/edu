@@ -23,6 +23,13 @@ class CourseController extends Controller
         return view('platform.courses', compact('categories'));
     }
 
+    public function followed(): View
+    {
+        $courses = Auth::user()->subscriptions;
+
+        return view('platform.courses-followed', compact('courses'));
+    }
+
     public function search(Request $request): View
     {
         $courses = Course::where('title', 'like', '%' . $request->q . '%')->paginate(10);

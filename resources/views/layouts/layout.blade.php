@@ -19,6 +19,7 @@
                         <a href="{{ route('platform.home') }}" class="text-decoration-none text-light h5">Mentor</a>
                         <div class="d-inline-flex align-items-center">
                             <a href="{{ route('platform.course-list') }}" class="text-decoration-none text-light h5 px-3">Courses</a>
+                            <a href="{{ route('platform.course-followed') }}" class="text-decoration-none text-light h5 px-3">Followed</a>
                             @auth
                                 <div class="dropdown">
                                     <span class="dropdown-toggle nav-link text-white h5" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
