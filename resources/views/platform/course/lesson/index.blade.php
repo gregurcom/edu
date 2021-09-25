@@ -11,8 +11,11 @@
         <div class="mt-5">
             <div class="mt-3 text-center">
                 <h3><a href="#" class="text-decoration-none text-dark">{{ $lesson->title }}</a></h3>
+                <span class="text-secondary">{{ $lesson->created_at->day }} {{ $lesson->created_at->monthName }}, {{ $readDuration }}</span>
             </div>
-            <p>{{ $lesson->information }}</p>
+            <div class="mt-5">
+                <p>{{ $lesson->information }}</p>
+            </div>
         </div>
     </div>
 @endsection

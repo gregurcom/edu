@@ -13,12 +13,21 @@ use App\Models\File;
 use App\Models\Lesson;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Str;
 
 class LessonController extends Controller
 {
     public function show(Lesson $lesson): View
     {
-        return view('platform.course.lesson.index', compact('lesson'));
+        Str::macro('readDuration', function(...$text) {
+            $totalWords = str_word_count(implode(" ", $text));
+            $minutesToRead = round($totalWords / 200);
+
+            return (int) max(1, $minutesToRead);
+        });
+        $readDuration = Str::readDuration($lesson->information) . ' min read';
+
+        return view('platform.course.lesson.index', compact(['lesson', 'readDuration']));
     }
 
     public function createForm(Course $course): View
