@@ -16,11 +16,13 @@
         <div class="text-center">
             <h2>
                 {{ $course->title }}
-                @if (Auth::user()->isFollowed($course->id))
-                    <a href="{{ route('platform.course.unfollow', $course->id) }}" class="btn btn-outline-info">Unfollow</a>
-                @else
-                    <a href="{{ route('platform.course.follow', $course->id) }}" class="btn btn-outline-info">Follow</a>
-                @endif
+                @auth
+                    @if (Auth::user()->isFollowed($course->id))
+                        <a href="{{ route('platform.course.unfollow', $course->id) }}" class="btn btn-outline-info">Unfollow</a>
+                    @else
+                        <a href="{{ route('platform.course.follow', $course->id) }}" class="btn btn-outline-info">Follow</a>
+                    @endif
+                @endauth
             </h2>
             (<span class="h5 mt-1">{{ $course->users()->count() ?: 0 }} students</span>)
         </div>

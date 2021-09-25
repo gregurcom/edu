@@ -34,7 +34,7 @@ Route::name('auth.')->group(function () {
 });
 
 Route::name('platform.')->group(function () {
-    Route::get('home', fn() => view('platform.home'))->name('home');
+    Route::get('/', fn() => view('platform.home'))->name('home');
 
     Route::get('courses', [CourseController::class, 'list'])->name('course-list');
     Route::get('courses/followed', [CourseController::class, 'followed'])->name('course-followed');
