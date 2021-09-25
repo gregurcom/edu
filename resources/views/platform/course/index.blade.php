@@ -13,8 +13,9 @@
             </div>
         @endif
 
-        <div class="h2 text-center">
-            {{ $course->title }}
+        <div class="text-center">
+            <h2>{{ $course->title }}</h2>
+            (<span class="h5 mt-1">{{ $course->users()->count() ?: 0 }} students</span>)
         </div>
         @forelse ($course->lessons as $lesson)
             <div class="mt-5">

@@ -44,7 +44,6 @@
                                         </span>
                                     @endif
                                 </div>
-                                <span class="h5 mt-1">{{ $course->users()->count() ?: 0 }} students</span>
                             </div>
                         </div>
                     </div>
