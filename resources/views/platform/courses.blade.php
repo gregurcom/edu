@@ -49,7 +49,7 @@
                 </div>
             @empty
                 <div class="alert alert-info">
-                    This course does not contain lessons yet
+                    This category does not contain courses yet
                 </div>
             @endforelse
         @endforeach
