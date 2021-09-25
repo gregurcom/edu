@@ -36,11 +36,13 @@
                             </div>
                             <div class="col-md-6 d-flex">
                                 <div class="px-3">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
+                                    @if ($course->rates->count('id') > 0)
+                                        <span>
+                                            @for ($i = 1; $i <= 5; $i++)
+                                                <i class="star fa fa-star{{ round($course->averageRate()) >= $i ? '' : '-o' }}"></i>
+                                            @endfor
+                                        </span>
+                                    @endif
                                 </div>
                                 <span class="h5 mt-1">12 students</span>
                             </div>

@@ -49,4 +49,14 @@ class Course extends Model
     {
         return $this->belongsTo(Category::class);
     }
+
+    public function rates(): HasMany
+    {
+        return $this->hasMany(Rate::class);
+    }
+
+    public function averageRate()
+    {
+        return $this->rates->sum('rate') / $this->rates->count('id');
+    }
 }

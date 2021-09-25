@@ -17,10 +17,17 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $users = User::factory()->count(3)->create();
+        User::factory()->count(3)->create();
 
-        Course::factory()->count(3)->hasLessons(10)->forCategory()->create(['user_id' => 1]);
-        Course::factory()->count(3)->hasLessons(10)->forCategory()->create(['user_id' => 2]);
-        Course::factory()->count(3)->hasLessons(10)->forCategory()->create(['user_id' => 3]);
+        Course::factory()->count(3)->hasLessons(10)->hasRates(4, ['user_id' => $this->getRandomUserId()])->forCategory()->create(['user_id' => $this->getRandomUserId()]);
+        Course::factory()->count(3)->hasLessons(10)->hasRates(4, ['user_id' => $this->getRandomUserId()])->forCategory()->create(['user_id' => $this->getRandomUserId()]);
+        Course::factory()->count(3)->hasLessons(10)->hasRates(4, ['user_id' => $this->getRandomUserId()])->forCategory()->create(['user_id' => $this->getRandomUserId()]);
+    }
+
+    private function getRandomUserId()
+    {
+        $user = User::inRandomOrder()->first();
+
+        return $user->id;
     }
 }

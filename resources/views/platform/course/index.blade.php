@@ -35,7 +35,7 @@
             </div>
         @empty
             <div class="alert alert-info text-center">
-                You don't have any lessons created for this course yet.
+                This course does not contain lessons yet
             </div>
         @endforelse
     </div>
