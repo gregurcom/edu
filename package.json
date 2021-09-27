@@ -19,9 +19,11 @@
         "sass-loader": "^12.1.0"
     },
     "dependencies": {
-        "font-awesome": "^4.7.0",
         "@popperjs/core": "^2.10.1",
         "bootstrap": "^5.1.1",
+        "datatables.net": "^1.11.3",
+        "datatables.net-dt": "^1.11.3",
+        "font-awesome": "^4.7.0",
         "material-design-icons": "^3.0.1"
     }
 }

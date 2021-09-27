@@ -2,13 +2,13 @@
 
 @section('content')
     <div class="container wrapper flex-grow-1 mt-3">
-        <a href="{{ route('system.category.creation') }}" class="btn btn-outline-dark">Create category</a>
+        <a href="{{ route('system.category.creation') }}" class="btn btn-outline-dark mb-3">Create category</a>
         @if (session('status'))
             <div class="alert alert-info mt-2 text-center">
                 {{ session('status') }}
             </div>
         @endif
-        <table class="table table-bordered mt-3">
+        <table class="table table-bordered mt-3" id="control-table">
             <thead>
                 <tr class="text-center">
                     <th scope="col">#</th>
