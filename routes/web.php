@@ -68,5 +68,10 @@ Route::name('system.')->group(function () {
     Route::middleware(['auth', 'app.system-admin'])->group(function () {
         Route::get('category/create', [CategoryController::class, 'createForm'])->name('category.creation');
         Route::post('category/create', [CategoryController::class, 'create'])->name('category.create');
+
+        Route::get('category/edit/{category}', [CategoryController::class, 'editForm'])->name('category.edit-form');
+        Route::post('category/edit/{category}', [CategoryController::class, 'edit'])->name('category.edit');
+
+        Route::delete('category/delete/{category}', [CategoryController::class, 'delete'])->name('category.delete');
     });
 });

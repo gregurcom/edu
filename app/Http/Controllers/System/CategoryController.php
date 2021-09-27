@@ -9,7 +9,6 @@ use App\Http\Requests\CategoryRequest;
 use App\Models\Category;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
@@ -29,5 +28,24 @@ class CategoryController extends Controller
         ]);
 
         return redirect()->route('dashboard')->with('status', 'You have successfully created a category');
+    }
+
+    public function editForm(Category $category): View
+    {
+        return view('system.category-edit', compact('category'));
+    }
+
+    public function edit(Category $category, CategoryRequest $request): RedirectResponse
+    {
+        $category->update($request->validated());
+
+        return redirect()->route('dashboard')->with('status', 'You have successfully edited category');
+    }
+
+    public function delete(Category $category): RedirectResponse
+    {
+        $category->delete();
+
+        return redirect()->route('dashboard')->with('status', 'You have successfully deleted category');
     }
 }
