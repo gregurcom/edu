@@ -68,7 +68,7 @@ class CourseController extends Controller
         $this->authorize('edit', $course);
         $course->update($request->validated());
 
-        return redirect()->route('dashboard')->with('status', 'You have successfully edited a course');
+        return redirect()->route('dashboard')->with('status', 'You have successfully edited course');
     }
 
     public function delete(Course $course): RedirectResponse
@@ -76,7 +76,7 @@ class CourseController extends Controller
         $this->authorize('delete', $course);
         $course->delete();
 
-        return back()->with('status', 'You successfully delete course');
+        return back()->with('status', 'You have successfully deleted course');
     }
 
     public function follow(Course $course): RedirectResponse
@@ -86,7 +86,8 @@ class CourseController extends Controller
             'course_id' => $course->id,
         ]);
 
-        return back()->with('status', 'You have successfully followed this course');
+        return back()
+            ->with('status', 'You have successfully followed this course.Now you will receive a notification about the new release of the lesson to your mail');
     }
 
     public function unfollow(Course $course): RedirectResponse

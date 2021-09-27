@@ -59,7 +59,7 @@ class LessonController extends Controller
             dispatch(new SendLessonEmailJob($user->email, $lesson, $course->title));
         }
 
-        return redirect()->route('platform.course.show', $course->id)->with('status', 'You have successfully create lesson');
+        return redirect()->route('platform.course.show', $course->id)->with('status', 'You have successfully created a lesson.');
     }
 
     public function editForm(Lesson $lesson): View
@@ -74,7 +74,7 @@ class LessonController extends Controller
         $this->authorize('edit', $lesson);
         $lesson->update($request->validated());
 
-        return redirect()->route('platform.course.show', $lesson->course)->with('status', 'You have successfully edit lesson');
+        return redirect()->route('platform.course.show', $lesson->course)->with('status', 'You have successfully edited lesson');
     }
 
     public function delete(Lesson $lesson): RedirectResponse
@@ -82,6 +82,6 @@ class LessonController extends Controller
         $this->authorize('delete', $lesson);
         $lesson->delete();
 
-        return back()->with('status', 'You have successfully delete lesson');
+        return back()->with('status', 'You have successfully deleted lesson');
     }
 }
