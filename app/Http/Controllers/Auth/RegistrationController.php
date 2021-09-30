@@ -31,6 +31,6 @@ class RegistrationController extends Controller
 
         Auth::login($user);
 
-        return redirect()->route('dashboard')->with('status', 'You have successfully register on platform');
+        return redirect()->route('dashboard')->with('status', 'You have successfully registered on platform');
     }
 }

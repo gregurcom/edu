@@ -30,7 +30,7 @@
                                 <ul>
                                     <li>
                                         <a href="{{ route('platform.course.show', $course->id) }}" class="text-decoration-none text-dark h3">{{ $course->title }}</a>
-                                        <span class="h4 px-2">({{ $course->author->name }})</span>
+                                        <span class="h4 px-2">(<a href="#" class="text-dark">{{ $course->author->name }}</a>)</span>
                                     </li>
                                 </ul>
                             </div>
