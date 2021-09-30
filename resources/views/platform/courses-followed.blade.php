@@ -13,12 +13,8 @@
                 <div class="mt-3">
                     <div class="row">
                         <div class="col-md-6">
-                            <ul>
-                                <li>
-                                    <a href="{{ route('platform.course.show', $course->id) }}" class="text-decoration-none text-dark h3">{{ $course->title }}</a>
-                                    <span class="h4 px-2">({{ $course->author->name }})</span>
-                                </li>
-                            </ul>
+                            <a href="{{ route('platform.course.show', $course->id) }}" class="text-decoration-none text-dark h3">{{ $course->title }}</a>
+                            <span class="h4 px-2">({{ $course->author->name }})</span>
                         </div>
                         <div class="col-md-6 d-flex">
                             <div class="px-3">

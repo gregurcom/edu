@@ -16,12 +16,7 @@ class RateFactory extends Factory
      */
     protected $model = Rate::class;
 
-    /**
-     * Define the model's default state.
-     *
-     * @return array
-     */
-    public function definition()
+    public function definition(): array
     {
         return [
             'rate' => $this->faker->numberBetween(1, 5),

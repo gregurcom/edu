@@ -82,7 +82,7 @@ class User extends Authenticatable
         return $this->belongsToMany(Course::class);
     }
 
-    public function isFollowed($courseId): bool|null
+    public function isFollowed(int $courseId): bool|null
     {
         foreach ($this->subscriptions as $subscription) {
             if ($subscription->id == $courseId) {

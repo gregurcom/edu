@@ -7,6 +7,7 @@ use App\Http\Controllers\Auth\RegistrationController;
 use App\Http\Controllers\Platform\CourseController;
 use App\Http\Controllers\Platform\DashboardController;
 use App\Http\Controllers\Platform\LessonController;
+use App\Http\Controllers\Platform\RateController;
 use App\Http\Controllers\System\CategoryController;
 use Illuminate\Support\Facades\Route;
 
@@ -48,6 +49,8 @@ Route::name('platform.')->group(function () {
     Route::middleware('auth')->group(function () {
         Route::get('course/create', [CourseController::class, 'createForm'])->name('course.creation');
         Route::post('course/create', [CourseController::class, 'create'])->name('course.create');
+
+        Route::get('course/rate/{course}', [RateController::class, 'rate'])->name('course.rate');
 
         Route::get('course/edit/{course}', [CourseController::class, 'editForm'])->name('course.edit-form');
         Route::post('course/edit/{course}', [CourseController::class, 'edit'])->name('course.edit');

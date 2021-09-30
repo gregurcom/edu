@@ -16,16 +16,11 @@ class LessonFactory extends Factory
      */
     protected $model = Lesson::class;
 
-    /**
-     * Define the model's default state.
-     *
-     * @return array
-     */
-    public function definition()
+    public function definition(): array
     {
         return [
             'title' => $this->faker->jobTitle,
-            'information' => $this->faker->paragraphs(rand(10, 100), true),
+            'information' => $this->faker->paragraphs(rand(10, 300), true),
         ];
     }
 }
