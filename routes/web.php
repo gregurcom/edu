@@ -9,6 +9,7 @@ use App\Http\Controllers\Platform\DashboardController;
 use App\Http\Controllers\Platform\LessonController;
 use App\Http\Controllers\Platform\RateController;
 use App\Http\Controllers\System\CategoryController;
+use App\Http\Controllers\System\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -28,8 +29,10 @@ Route::name('auth.')->group(function () {
     Route::get('login', [AccessController::class, 'login'])->name('login');
     Route::post('login', [AccessController::class, 'authenticate'])->name('authenticate');
 
-    Route::get('registration', [RegistrationController::class, 'registration'])->name('registration');
-    Route::post('registration', [RegistrationController::class, 'save'])->name('registration.save');
+    Route::middleware('app.verify-user-token')->group(function () {
+        Route::get('registration', [RegistrationController::class, 'registration'])->name('registration');
+        Route::post('registration', [RegistrationController::class, 'save'])->name('registration.save');
+    });
 
     Route::get('logout', [AccessController::class, 'logout'])->name('logout');
 });
@@ -76,5 +79,8 @@ Route::name('system.')->group(function () {
         Route::post('category/edit/{category}', [CategoryController::class, 'edit'])->name('category.edit');
 
         Route::delete('category/delete/{category}', [CategoryController::class, 'delete'])->name('category.delete');
+
+        Route::get('user/create', [UserController::class, 'createForm'])->name('user.creation');
+        Route::post('user/create', [UserController::class, 'create'])->name('user.create');
     });
 });
