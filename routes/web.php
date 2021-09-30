@@ -8,6 +8,7 @@ use App\Http\Controllers\Platform\CourseController;
 use App\Http\Controllers\Platform\DashboardController;
 use App\Http\Controllers\Platform\LessonController;
 use App\Http\Controllers\Platform\RateController;
+use App\Http\Controllers\Platform\SubscriptionController;
 use App\Http\Controllers\System\CategoryController;
 use App\Http\Controllers\System\UserController;
 use Illuminate\Support\Facades\Route;
@@ -42,13 +43,11 @@ Route::name('platform.')->group(function () {
 
     Route::get('courses', [CourseController::class, 'list'])->name('course-list');
     Route::get('courses/{course}', [CourseController::class, 'show'])->name('course.show');
+    Route::get('search', [CourseController::class, 'search'])->name('course.search');
 
-    Route::get('courses/followed', [CourseController::class, 'followed'])->name('course-followed');
-
-    Route::get('courses/search', [CourseController::class, 'search'])->name('course.search');
-
-    Route::get('courses/follow/{course}', [CourseController::class, 'follow'])->name('course.follow');
-    Route::get('courses/unfollow/{course}', [CourseController::class, 'unfollow'])->name('course.unfollow');
+    Route::get('subscriptions', [SubscriptionController::class, 'show'])->name('course.subscriptions');
+    Route::get('courses/subscribe/{course}', [SubscriptionController::class, 'create'])->name('course.subscribe');
+    Route::get('courses/unsubscribe/{course}', [SubscriptionController::class, 'delete'])->name('course.unsubscribe');
 
     Route::get('lessons/{lesson}', [LessonController::class, 'show'])->name('lesson.show');
 
@@ -62,7 +61,6 @@ Route::name('platform.')->group(function () {
         Route::post('courses/edit/{course}', [CourseController::class, 'edit'])->name('course.edit');
 
         Route::delete('courses/delete/{course}', [CourseController::class, 'delete'])->name('course.delete');
-
 
         Route::get('lessons/create/{course}', [LessonController::class, 'createForm'])->name('lesson.creation');
         Route::post('lessons/create/{course}', [LessonController::class, 'create'])->name('lesson.create');

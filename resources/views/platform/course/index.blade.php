@@ -18,9 +18,9 @@
                 <span class="mt-1">({{ $course->users()->count() ?: 0 }} students)</span>
                 @auth
                     @if (Auth::user()->isFollowed($course->id))
-                        <a href="{{ route('platform.course.unfollow', $course->id) }}" class="btn btn-outline-info">Unfollow</a>
+                        <a href="{{ route('platform.course.unsubscribe', $course->id) }}" class="btn btn-outline-info">Unsubscribe</a>
                     @else
-                        <a href="{{ route('platform.course.follow', $course->id) }}" class="btn btn-outline-info">Follow</a>
+                        <a href="{{ route('platform.course.subscribe', $course->id) }}" class="btn btn-outline-info">Subscribe</a>
                     @endif
                 @endauth
             </h2>

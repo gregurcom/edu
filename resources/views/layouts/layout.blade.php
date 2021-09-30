@@ -20,7 +20,7 @@
                         <div class="d-inline-flex align-items-center">
                             <a href="{{ route('platform.course-list') }}" class="text-decoration-none text-light h5 px-3">Courses</a>
                             @auth
-                                <a href="{{ route('platform.course-followed') }}" class="text-decoration-none text-light h5 px-3">Followed</a>
+                                <a href="{{ route('platform.course.subscriptions') }}" class="text-decoration-none text-light h5 px-3">Subscriptions</a>
                                 <div class="dropdown">
                                     <span class="dropdown-toggle nav-link text-white h5" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                                         {{ auth()->user()->name }}
