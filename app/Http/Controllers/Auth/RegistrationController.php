@@ -21,16 +21,16 @@ class RegistrationController extends Controller
 
     public function save(RegistrationRequest $request): RedirectResponse
     {
-        $user = User::where('registration_token', $request->token)->firstOrFail();
-        $user->update([
+        $user = User::create([
             'name' => $request->name,
+            'email' => $request->email,
             'password' => Hash::make($request->password),
             'role' => User::USER_ROLE,
-            'registration_token' => null,
         ]);
 
         Auth::login($user);
+        Auth::user()->sendEmailVerificationNotification();
 
-        return redirect()->route('dashboard')->with('status', 'You have successfully registered on platform');
+        return redirect()->route('dashboard')->with('status', 'Verification link sent to your email!');
     }
 }

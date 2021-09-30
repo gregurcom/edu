@@ -3,7 +3,6 @@
 @section('content')
     <div class="container wrapper flex-grow-1 mt-3">
         <a href="{{ route('system.category.creation') }}" class="btn btn-outline-dark mb-3">Create category</a>
-        <a href="{{ route('system.user.creation') }}" class="btn btn-outline-dark mb-3">Create user</a>
         @if (session('status'))
             <div class="alert alert-info mt-2 text-center">
                 {{ session('status') }}
