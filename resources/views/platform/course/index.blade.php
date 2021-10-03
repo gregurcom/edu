@@ -4,7 +4,7 @@
     <div class="container wrapper flex-grow-1 mt-5 mb-5">
         @can('view', $course)
             <div>
-                <a href="{{ route('platform.lessons.create', $course->id) }}" class="btn btn-outline-dark">Create lesson</a>
+                <a href="{{ route('platform.lessons.create', ['course_id' => $course->id]) }}" class="btn btn-outline-dark">Create lesson</a>
             </div>
         @endcan
         @if (session('status'))
@@ -59,7 +59,7 @@
                     <div class="d-flex">
                         @can('view', $course)
                             <a href="{{ route('platform.lessons.edit', $lesson->id) }}" class="btn btn-outline-primary">Edit</a>
-                            <form action="{{ route('platform.lessons.delete', $lesson->id) }}" method="POST" class="px-2">
+                            <form action="{{ route('platform.lessons.destroy', $lesson->id) }}" method="POST" class="px-2">
                                 @csrf
                                 @method('DELETE')
 
@@ -70,7 +70,7 @@
                 </div>
             </div>
         @empty
-            <div class="alert alert-info text-center">
+            <div class="alert alert-info text-center mt-2">
                 This course does not contain lessons yet
             </div>
         @endforelse

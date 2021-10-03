@@ -13,22 +13,23 @@ use App\Models\File;
 use App\Models\Lesson;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
 class LessonController extends Controller
 {
-    public function create(Course $course): View
+    public function create(Request $request): View
     {
+        $course = Course::findOrFail($request->course_id);
+
         return view('platform.course.lesson.create', compact('course'));
     }
 
-    public function store(LessonRequest $lessonRequest, FileRequest $fileRequest, Course $course): RedirectResponse
+    public function store(LessonRequest $lessonRequest, FileRequest $fileRequest): RedirectResponse
     {
-        $lesson = Lesson::create([
-            'title' => $lessonRequest->title,
-            'information' => $lessonRequest->information,
-            'course_id' => $course->id,
-        ]);
+        $course = Course::findOrFail($lessonRequest->course_id);
+
+        $lesson = Lesson::create($lessonRequest->validated());
 
         if ($fileRequest->hasFile('files')) {
             foreach ($fileRequest->file('files') as $file) {
@@ -46,7 +47,7 @@ class LessonController extends Controller
             dispatch(new SendLessonEmailJob($user->email, $lesson, $course->title));
         }
 
-        return redirect()->route('platform.course.show', $course->id)->with('status', 'You have successfully created a lesson.');
+        return redirect()->route('platform.courses.show', $course->id)->with('status', 'You have successfully created a lesson.');
     }
 
     public function show(Lesson $lesson): View
@@ -74,7 +75,7 @@ class LessonController extends Controller
         $this->authorize('update', $lesson);
         $lesson->update($request->validated());
 
-        return redirect()->route('platform.course.show', $lesson->course)->with('status', 'You have successfully edited lesson');
+        return redirect()->route('platform.courses.show', $lesson->course)->with('status', 'You have successfully edited lesson');
     }
 
     public function destroy(Lesson $lesson): RedirectResponse

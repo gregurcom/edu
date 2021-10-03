@@ -13,6 +13,7 @@ class LessonRequest extends FormRequest
         return [
             'title' => 'required',
             'information' => 'required',
+            'course_id' => 'integer',
         ];
     }
 }

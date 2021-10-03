@@ -7,6 +7,7 @@
                 <form action="{{ route('platform.lessons.store', $course->id) }}" method="POST" enctype="multipart/form-data">
                     @csrf
 
+                    <input type="hidden" value="{{ $course->id }}" name="course_id">
                     <input type="text" name="title" class="form-control" placeholder="Title">
                     @error('title')
                         <div class="alert alert-danger mt-1">
