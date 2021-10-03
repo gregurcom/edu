@@ -17,25 +17,12 @@ use Illuminate\Support\Str;
 
 class LessonController extends Controller
 {
-    public function show(Lesson $lesson): View
+    public function create(Course $course): View
     {
-        Str::macro('readDuration', function(...$text) {
-            $totalWords = str_word_count(implode(" ", $text));
-            $minutesToRead = round($totalWords / 200);
-
-            return (int) max(1, $minutesToRead);
-        });
-        $readDuration = Str::readDuration($lesson->information) . ' min read';
-
-        return view('platform.course.lesson.index', compact(['lesson', 'readDuration']));
+        return view('platform.course.lesson.create', compact('course'));
     }
 
-    public function createForm(Course $course): View
-    {
-        return view('platform.course.lesson.creation', compact('course'));
-    }
-
-    public function create(LessonRequest $lessonRequest, FileRequest $fileRequest, Course $course): RedirectResponse
+    public function store(LessonRequest $lessonRequest, FileRequest $fileRequest, Course $course): RedirectResponse
     {
         $lesson = Lesson::create([
             'title' => $lessonRequest->title,
@@ -62,24 +49,37 @@ class LessonController extends Controller
         return redirect()->route('platform.course.show', $course->id)->with('status', 'You have successfully created a lesson.');
     }
 
-    public function editForm(Lesson $lesson): View
+    public function show(Lesson $lesson): View
+    {
+        Str::macro('readDuration', function(...$text) {
+            $totalWords = str_word_count(implode(" ", $text));
+            $minutesToRead = round($totalWords / 200);
+
+            return (int) max(1, $minutesToRead);
+        });
+        $readDuration = Str::readDuration($lesson->information) . ' min read';
+
+        return view('platform.course.lesson.index', compact(['lesson', 'readDuration']));
+    }
+
+    public function edit(Lesson $lesson): View
     {
         $this->authorize('view', $lesson);
 
         return view('platform.course.lesson.edit', compact('lesson'));
     }
 
-    public function edit(Lesson $lesson, LessonRequest $request): RedirectResponse
+    public function update(Lesson $lesson, LessonRequest $request): RedirectResponse
     {
-        $this->authorize('edit', $lesson);
+        $this->authorize('update', $lesson);
         $lesson->update($request->validated());
 
         return redirect()->route('platform.course.show', $lesson->course)->with('status', 'You have successfully edited lesson');
     }
 
-    public function delete(Lesson $lesson): RedirectResponse
+    public function destroy(Lesson $lesson): RedirectResponse
     {
-        $this->authorize('delete', $lesson);
+        $this->authorize('destroy', $lesson);
         $lesson->delete();
 
         return back()->with('status', 'You have successfully deleted lesson');

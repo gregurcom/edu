@@ -12,7 +12,7 @@
                         @endforeach
                     </ul>
                 </div>
-                <form action="{{ route('system.category.create') }}" method="POST">
+                <form action="{{ route('system.categories.store') }}" method="POST">
                     @csrf
 
                     <input type="text" name="name" class="form-control" placeholder="Category">

@@ -24,6 +24,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/', fn() => view('home'))->name('home');
 Route::get('dashboard', [DashboardController::class, 'show'])->name('dashboard')->middleware('auth');
 
 Route::name('auth.')->group(function () {
@@ -37,49 +38,21 @@ Route::name('auth.')->group(function () {
 });
 
 Route::name('platform.')->group(function () {
-    Route::get('/', fn() => view('platform.home'))->name('home');
+    Route::resource('courses', CourseController::class);
+    Route::resource('lessons', LessonController::class)->except('index');
 
-    Route::get('courses', [CourseController::class, 'list'])->name('course-list');
-    Route::get('courses/{course}', [CourseController::class, 'show'])->name('course.show');
     Route::get('search', [CourseController::class, 'search'])->name('course.search');
-    Route::get('lessons/{lesson}', [LessonController::class, 'show'])->name('lesson.show');
-
-    Route::middleware('verified')->group(function () {
-        Route::get('subscriptions', [SubscriptionController::class, 'show'])->name('course.subscriptions');
-        Route::get('courses/subscribe/{course}', [SubscriptionController::class, 'create'])->name('course.subscribe');
-        Route::get('courses/unsubscribe/{course}', [SubscriptionController::class, 'delete'])->name('course.unsubscribe');
-    });
 
     Route::middleware(['auth', 'verified'])->group(function () {
-        Route::get('courses/create', [CourseController::class, 'createForm'])->name('course.creation');
-        Route::post('courses/create', [CourseController::class, 'create'])->name('course.create');
+        Route::resource('subscriptions', SubscriptionController::class)->only(['index', 'store', 'destroy']);
 
         Route::get('courses/rate/{course}', [RateController::class, 'rate'])->name('course.rate');
-
-        Route::get('courses/edit/{course}', [CourseController::class, 'editForm'])->name('course.edit-form');
-        Route::post('courses/edit/{course}', [CourseController::class, 'edit'])->name('course.edit');
-
-        Route::delete('courses/delete/{course}', [CourseController::class, 'delete'])->name('course.delete');
-
-        Route::get('lessons/create/{course}', [LessonController::class, 'createForm'])->name('lesson.creation');
-        Route::post('lessons/create/{course}', [LessonController::class, 'create'])->name('lesson.create');
-
-        Route::get('lessons/edit/{lesson}', [LessonController::class, 'editForm'])->name('lesson.edit-form');
-        Route::post('lessons/edit/{lesson}', [LessonController::class, 'edit'])->name('lesson.edit');
-
-        Route::delete('lessons/delete/{lesson}', [LessonController::class, 'delete'])->name('lesson.delete');
     });
 });
 
 Route::name('system.')->group(function () {
     Route::middleware(['auth', 'app.system-admin'])->group(function () {
-        Route::get('categories/create', [CategoryController::class, 'createForm'])->name('category.creation');
-        Route::post('categories/create', [CategoryController::class, 'create'])->name('category.create');
-
-        Route::get('categories/edit/{category}', [CategoryController::class, 'editForm'])->name('category.edit-form');
-        Route::post('categories/edit/{category}', [CategoryController::class, 'edit'])->name('category.edit');
-
-        Route::delete('categories/delete/{category}', [CategoryController::class, 'delete'])->name('category.delete');
+        Route::resource('categories', CategoryController::class)->except(['index', 'show']);
     });
 });
 

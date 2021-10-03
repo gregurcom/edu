@@ -17,12 +17,12 @@ class LessonPolicy
         return $user->id === $lesson->course->user_id;
     }
 
-    public function edit(User $user, Lesson $lesson): bool
+    public function update(User $user, Lesson $lesson): bool
     {
         return $user->id === $lesson->course->user_id;
     }
 
-    public function delete(User $user, Lesson $lesson): bool
+    public function destroy(User $user, Lesson $lesson): bool
     {
         return $user->id === $lesson->course->user_id;
     }

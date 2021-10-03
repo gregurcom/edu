@@ -16,11 +16,11 @@
             <header class="mb-auto bg-dark">
                 <nav class="navbar">
                     <div class="container">
-                        <a href="{{ route('platform.home') }}" class="text-decoration-none text-light h5">Mentor</a>
+                        <a href="{{ route('home') }}" class="text-decoration-none text-light h5">Mentor</a>
                         <div class="d-inline-flex align-items-center">
-                            <a href="{{ route('platform.course-list') }}" class="text-decoration-none text-light h5 px-3">Courses</a>
+                            <a href="{{ route('platform.courses.index') }}" class="text-decoration-none text-light h5 px-3">Courses</a>
                             @auth
-                                <a href="{{ route('platform.course.subscriptions') }}" class="text-decoration-none text-light h5 px-3">Subscriptions</a>
+                                <a href="{{ route('platform.subscriptions.index') }}" class="text-decoration-none text-light h5 px-3">Subscriptions</a>
                                 <div class="dropdown">
                                     <span class="dropdown-toggle nav-link text-white h5" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                                         {{ auth()->user()->name }}

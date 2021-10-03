@@ -12,14 +12,14 @@ use Illuminate\Http\RedirectResponse;
 
 class CategoryController extends Controller
 {
-    public function createForm(): View
+    public function create(): View
     {
         $categories = Category::get();
 
-        return view('system.category-creation', compact('categories'));
+        return view('system.category.create', compact('categories'));
     }
 
-    public function create(CategoryRequest $request): RedirectResponse
+    public function store(CategoryRequest $request): RedirectResponse
     {
         $slug = str_replace(' ', '', $request->category);
         Category::create([
@@ -30,19 +30,19 @@ class CategoryController extends Controller
         return redirect()->route('dashboard')->with('status', 'You have successfully created a category');
     }
 
-    public function editForm(Category $category): View
+    public function edit(Category $category): View
     {
-        return view('system.category-edit', compact('category'));
+        return view('system.category.edit', compact('category'));
     }
 
-    public function edit(Category $category, CategoryRequest $request): RedirectResponse
+    public function update(Category $category, CategoryRequest $request): RedirectResponse
     {
         $category->update($request->validated());
 
         return redirect()->route('dashboard')->with('status', 'You have successfully edited category');
     }
 
-    public function delete(Category $category): RedirectResponse
+    public function destroy(Category $category): RedirectResponse
     {
         $category->delete();
 

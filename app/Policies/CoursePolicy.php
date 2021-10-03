@@ -17,12 +17,12 @@ class CoursePolicy
         return $user->id === $course->user_id;
     }
 
-    public function edit(User $user, Course $course): bool
+    public function update(User $user, Course $course): bool
     {
         return $user->id === $course->user_id;
     }
 
-    public function delete(User $user, Course $course): bool
+    public function destroy(User $user, Course $course): bool
     {
         return $user->id === $course->user_id;
     }

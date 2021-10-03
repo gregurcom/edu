@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container wrapper flex-grow-1 mt-3">
-        <a href="{{ route('system.category.creation') }}" class="btn btn-outline-dark mb-3">Create category</a>
+        <a href="{{ route('system.categories.create') }}" class="btn btn-outline-dark mb-3">Create category</a>
         @if (session('status'))
             <div class="alert alert-info mt-2 text-center">
                 {{ session('status') }}
@@ -26,8 +26,8 @@
                         <td>{{ $category->courses->count() }}</td>
                         <td>{{ $category->created_at }}</td>
                         <td>
-                            <a href="{{ route('system.category.edit-form', $category->id) }}" class="btn btn-outline-primary w-75">Edit</a>
-                            <form action="{{ route('system.category.delete', $category->id) }}" method="POST" class="mt-2">
+                            <a href="{{ route('system.categories.edit', $category->id) }}" class="btn btn-outline-primary w-75">Edit</a>
+                            <form action="{{ route('system.categories.destroy', $category->id) }}" method="POST" class="mt-2">
                                 @csrf
                                 @method('DELETE')
 

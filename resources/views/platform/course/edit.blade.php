@@ -4,8 +4,9 @@
     <div class="container">
         <div class="row">
             <div class="col-md-4 offset-md-4">
-                <form action="{{ route('platform.course.edit', $course->id) }}" method="POST">
+                <form action="{{ route('platform.courses.update', $course->id) }}" method="POST">
                     @csrf
+                    @method('PUT')
 
                     <input type="text" name="title" class="form-control" value="{{ $course->title }}">
                     @error('title')
@@ -22,7 +23,7 @@
                     @enderror
 
                     <div class="text-center mt-3">
-                        <button class="btn btn-outline-dark w-25" type="submit">Create</button>
+                        <button class="btn btn-outline-dark w-25" type="submit">Update</button>
                     </div>
                 </form>
 

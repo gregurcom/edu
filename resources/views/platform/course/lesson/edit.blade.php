@@ -4,8 +4,9 @@
     <div class="container">
         <div class="row">
             <div class="col-md-4 offset-md-4">
-                <form action="{{ route('platform.lesson.edit', $lesson->id) }}" method="POST">
+                <form action="{{ route('platform.lessons.update', $lesson->id) }}" method="POST">
                     @csrf
+                    @method('PUT')
 
                     <input type="text" name="title" class="form-control" value="{{ $lesson->title }}">
                     @error('title')

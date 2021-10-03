@@ -4,8 +4,9 @@
     <div class="container">
         <div class="row">
             <div class="col-md-4 offset-md-4">
-                <form action="{{ route('system.category.edit', $category->id) }}" method="POST">
+                <form action="{{ route('system.categories.update', $category->id) }}" method="POST">
                     @csrf
+                    @method('PUT')
 
                     <input type="text" name="name" class="form-control" placeholder="Category">
                     @error('name')

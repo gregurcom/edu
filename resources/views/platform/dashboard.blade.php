@@ -3,7 +3,7 @@
 @section('content')
     <div class="container wrapper flex-grow-1 mt-3">
         <div>
-            <a href="{{ route('platform.course.creation') }}" class="btn btn-outline-dark">Create course</a>
+            <a href="{{ route('platform.courses.create') }}" class="btn btn-outline-dark">Create course</a>
         </div>
         @if (session('status'))
             <div class="alert alert-success mt-2 text-center">
@@ -15,11 +15,11 @@
             <div class="mt-5">
                 @foreach($courses as $course)
                     <div class="mt-3">
-                        <h3><a href="{{ route('platform.course.show', $course->id) }}" class="text-decoration-none text-dark">{{ $course->title }}</a></h3>
+                        <h3><a href="{{ route('platform.courses.show', $course->id) }}" class="text-decoration-none text-dark">{{ $course->title }}</a></h3>
                         <p>{{ $course->description }}</p>
                         <div class="d-flex">
-                            <a href="{{ route('platform.course.edit-form', $course->id) }}" class="btn btn-outline-primary">Edit</a>
-                            <form action="{{ route('platform.course.delete', $course->id) }}" method="POST" class="px-2">
+                            <a href="{{ route('platform.courses.edit', $course->id) }}" class="btn btn-outline-primary">Edit</a>
+                            <form action="{{ route('platform.courses.destroy', $course->id) }}" method="POST" class="px-2">
                                 @csrf
                                 @method('DELETE')
 
