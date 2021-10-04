@@ -7,6 +7,7 @@ use App\Http\Controllers\Auth\EmailVerificationController;
 use App\Http\Controllers\Auth\RegistrationController;
 use App\Http\Controllers\Platform\CourseController;
 use App\Http\Controllers\Platform\DashboardController;
+use App\Http\Controllers\Platform\FileController;
 use App\Http\Controllers\Platform\LessonController;
 use App\Http\Controllers\Platform\RateController;
 use App\Http\Controllers\Platform\SubscriptionController;
@@ -40,6 +41,8 @@ Route::name('auth.')->group(function () {
 Route::name('platform.')->group(function () {
     Route::resource('courses', CourseController::class);
     Route::resource('lessons', LessonController::class)->except('index');
+
+    Route::get('file/{file}/download', [FileController::class, 'download'])->name('file.download');
 
     Route::get('search', [CourseController::class, 'search'])->name('course.search');
 

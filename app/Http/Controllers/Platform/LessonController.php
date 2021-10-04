@@ -14,6 +14,7 @@ use App\Models\Lesson;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class LessonController extends Controller
@@ -34,12 +35,13 @@ class LessonController extends Controller
         if ($fileRequest->hasFile('files')) {
             foreach ($fileRequest->file('files') as $file) {
                 $name = $file->getClientOriginalName();
-
                 File::create([
                     'name' => $name,
                     'path' => $file->path(),
                     'lesson_id' => $lesson->id,
                 ]);
+
+                Storage::put($file->path(), $file->getContent(), 'private');
             }
         }
         // send emails to subscribers with a link to lesson

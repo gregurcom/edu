@@ -8,6 +8,13 @@
             </div>
         @endif
 
+        <div class="mt-3">
+            <h4>Attached files</h4>
+            @foreach ($lesson->files as $file)
+                <a href="{{ route('platform.file.download', $file) }}" class="btn btn-outline-info mt-2">{{ $file->name }}</a>
+            @endforeach
+        </div>
+
         <div class="mt-5">
             <div class="mt-3 text-center">
                 <h3><a href="#" class="text-decoration-none text-dark">{{ $lesson->title }}</a></h3>
