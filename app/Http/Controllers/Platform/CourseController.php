@@ -50,7 +50,7 @@ class CourseController extends Controller
     public function update(Course $course, CourseRequest $request): RedirectResponse
     {
         $this->authorize('update', $course);
-        $course->update($request->all());
+        $course->update($request->validated());
 
         return redirect()->route('dashboard')->with('status', 'You have successfully edited course');
     }

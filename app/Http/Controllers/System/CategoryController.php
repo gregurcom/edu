@@ -21,7 +21,7 @@ class CategoryController extends Controller
 
     public function store(CategoryRequest $request): RedirectResponse
     {
-        $slug = str_replace(' ', '', $request->category);
+        $slug = str_replace(' ', '-', $request->category);
         Category::create([
             'name' => $request->category,
             'slug' => $slug,

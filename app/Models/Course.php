@@ -37,6 +37,10 @@ class Course extends Model
 
     protected $guarded = [];
 
+    protected $casts = [
+        'created_at' => 'datetime:Y-m-d H:i:s',
+    ];
+
     public function author(): BelongsTo
     {
         return $this->belongsTo(User::class, 'user_id');
@@ -62,9 +66,13 @@ class Course extends Model
         return $this->hasMany(Rate::class);
     }
 
-    public function averageRate(): float
+    public function averageRate(): float|null
     {
-        return $this->rates->sum('rate') / $this->rates->count('id');
+        if ($this->rates->count('id') > 0) {
+            return $this->rates->sum('rate') / $this->rates->count('id');
+        }
+
+        return null;
     }
 
     public function isRate(): Model|null
