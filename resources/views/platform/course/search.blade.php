@@ -27,7 +27,7 @@
                         <div class="col-md-6">
                             <ul>
                                 <li>
-                                    <a href="{{ route('platform.course.show', $course->id) }}" class="text-decoration-none text-dark h3">{{ $course->title }}</a>
+                                    <a href="{{ route('platform.courses.show', $course->id) }}" class="text-decoration-none text-dark h3">{{ $course->title }}</a>
                                     <span class="h4 px-2">({{ $course->author->name }})</span>
                                 </li>
                             </ul>

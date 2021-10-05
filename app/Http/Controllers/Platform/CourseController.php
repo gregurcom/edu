@@ -10,6 +10,7 @@ use App\Models\Category;
 use App\Models\Course;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class CourseController extends Controller
@@ -61,5 +62,14 @@ class CourseController extends Controller
         $course->delete();
 
         return back()->with('status', 'You have successfully deleted course');
+    }
+
+    public function search(Request $request): View
+    {
+        $courses = Course::where('title', 'like', '%' . $request->q . '%')
+            ->orWhere('description', 'like', '%' . $request->q . '%')
+            ->get();
+
+        return view('platform.course.search', compact('courses'));
     }
 }

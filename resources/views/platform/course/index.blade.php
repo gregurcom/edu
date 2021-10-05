@@ -7,6 +7,7 @@
                 <a href="{{ route('platform.lessons.create', ['course_id' => $course->id]) }}" class="btn btn-outline-dark">Create lesson</a>
             </div>
         @endcan
+
         @if (session('status'))
             <div class="alert alert-success mt-2 text-center">
                 {{ session('status') }}
@@ -80,15 +81,17 @@
                     </div>
                 @endforelse
             </div>
-            <div class="col-md-6 mt-5 d-flex justify-content-center">
-                <div>
-                    <h2>About this course:</h2>
-                    <p>{{ $lesson->course->description }}</p>
-                    <h4>Author: <span class="text-muted">{{ $lesson->course->author->name }}</span></h4>
-                    <h4>Lesson subscribers: <span class="text-muted">({{ $course->users()->count() ?: 0 }} students)</span></h4>
-                    <h4>Average rating: <span class="text-muted">{{ round($lesson->course->averageRate()) }}</span></h4>
+            @if ($course->lessons->isNotEmpty())
+                <div class="col-md-6 mt-5 d-flex justify-content-center">
+                    <div>
+                        <h2>About this course:</h2>
+                        <p>{{ $lesson->course->description }}</p>
+                        <h4>Author: <span class="text-muted">{{ $lesson->course->author->name }}</span></h4>
+                        <h4>Lesson subscribers: <span class="text-muted">({{ $course->users()->count() ?: 0 }} students)</span></h4>
+                        <h4>Average rating: <span class="text-muted">{{ round($lesson->course->averageRate()) }}</span></h4>
+                    </div>
                 </div>
-            </div>
+            @endif
         </div>
     </div>
 @endsection
