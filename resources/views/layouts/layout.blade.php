@@ -7,8 +7,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
     <script src="{{ asset('js/app.js') }}"></script>
+    <link rel="shortcut icon" href="{{ asset('images/favicon.ico') }}" type="image/x-icon">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <title>Mentor</title>
+    <title>@yield('title', 'Mentor')</title>
 </head>
 <body class="h-100">
     <div class="d-flex w-100 h-100 flex-column">

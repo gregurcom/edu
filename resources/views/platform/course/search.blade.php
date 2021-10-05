@@ -1,5 +1,7 @@
 @extends('layouts.layout')
 
+@section('title', 'Mentor - search')
+
 @section('content')
     <div class="container wrapper flex-grow-1 mt-5 mb-5">
         @if (session('status'))

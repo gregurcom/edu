@@ -1,10 +1,12 @@
 @extends('layouts.layout')
 
+@section('title', 'Mentor - lesson create')
+
 @section('content')
     <div class="container">
         <div class="row">
             <div class="col-md-4 offset-md-4">
-                <form action="{{ route('platform.lessons.store', $course->id) }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('platform.lessons.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
 
                     <input type="hidden" value="{{ $course->id }}" name="course_id">

@@ -1,5 +1,7 @@
 @extends('layouts.layout')
 
+@section('title', 'Mentor - verify email')
+
 @section('content')
     <div class="content">
         <div class="text-center">

@@ -1,5 +1,7 @@
 @extends('layouts.layout')
 
+@section('title', 'Mentor - category create')
+
 @section('content')
     <div class="container">
         <div class="row">

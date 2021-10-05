@@ -1,5 +1,7 @@
 @extends('layouts.layout')
 
+@section('title', 'Mentor - dashboard')
+
 @section('content')
     <div class="container wrapper flex-grow-1 mt-3">
         <div>

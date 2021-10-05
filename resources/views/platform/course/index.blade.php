@@ -1,10 +1,12 @@
 @extends('layouts.layout')
 
+@section('title', $course->title . ' - course')
+
 @section('content')
     <div class="container wrapper flex-grow-1 mt-5 mb-5">
         @can('view', $course)
             <div>
-                <a href="{{ route('platform.lessons.create', ['course_id' => $course->id]) }}" class="btn btn-outline-dark">Create lesson</a>
+                <a href="{{ route('platform.lessons.create') }}" class="btn btn-outline-dark">Create lesson</a>
             </div>
         @endcan
 

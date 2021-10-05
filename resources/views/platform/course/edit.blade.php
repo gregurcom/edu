@@ -1,5 +1,7 @@
 @extends('layouts.layout')
 
+@section('title', $course->title . ' - edit')
+
 @section('content')
     <div class="container">
         <div class="row">

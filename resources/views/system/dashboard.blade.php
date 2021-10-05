@@ -1,5 +1,7 @@
 @extends('layouts.layout')
 
+@section('title', 'Mentor - dashboard')
+
 @section('content')
     <div class="container wrapper flex-grow-1 mt-3">
         <a href="{{ route('system.categories.create') }}" class="btn btn-outline-dark mb-3">Create category</a>
