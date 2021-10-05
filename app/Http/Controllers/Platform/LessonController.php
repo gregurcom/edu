@@ -7,15 +7,12 @@ namespace App\Http\Controllers\Platform;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\FileRequest;
 use App\Http\Requests\LessonRequest;
-use App\Jobs\SendLessonEmailJob;
 use App\Models\Course;
-use App\Models\File;
 use App\Models\Lesson;
+use App\Services\LessonService;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Str;
 
 class LessonController extends Controller
 {
@@ -26,39 +23,22 @@ class LessonController extends Controller
         return view('platform.course.lesson.create', compact('course'));
     }
 
-    public function store(LessonRequest $lessonRequest, FileRequest $fileRequest): RedirectResponse
+    public function store(LessonRequest $lessonRequest, FileRequest $fileRequest, LessonService $lessonService): RedirectResponse
     {
         $lesson = Lesson::create($lessonRequest->validated());
 
         if ($fileRequest->hasFile('files')) {
-            foreach ($fileRequest->file('files') as $file) {
-                $name = $file->getClientOriginalName();
-                File::create([
-                    'name' => $name,
-                    'path' => $file->path(),
-                    'lesson_id' => $lesson->id,
-                ]);
-
-                Storage::put($file->path(), $file->getContent(), 'private');
-            }
+            $lessonService->storeAttachedFiles($lesson, $fileRequest);
         }
         // send emails to subscribers with a link to lesson
-        foreach ($lesson->course->users as $user) {
-            dispatch(new SendLessonEmailJob($user->email, $lesson, $lesson->course->title));
-        }
+        $lessonService->sendReleaseNotification($lesson);
 
         return redirect()->route('platform.courses.show', $lesson->course->id)->with('status', 'You have successfully created a lesson.');
     }
 
-    public function show(Lesson $lesson): View
+    public function show(Lesson $lesson, LessonService $lessonService): View
     {
-        Str::macro('readDuration', function(...$text) {
-            $totalWords = str_word_count(implode(" ", $text));
-            $minutesToRead = round($totalWords / 200);
-
-            return (int) max(1, $minutesToRead);
-        });
-        $readDuration = Str::readDuration($lesson->information) . ' min read';
+        $readDuration = $lessonService->getReadDuration($lesson);
 
         return view('platform.course.lesson.index', compact(['lesson', 'readDuration']));
     }

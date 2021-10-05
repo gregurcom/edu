@@ -14,7 +14,7 @@ class SendLesson extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public function __construct(public Lesson $lesson, public string $course) {}
+    public function __construct(public Lesson $lesson, public string $courseTitle) {}
 
     public function build(): self
     {

@@ -18,11 +18,11 @@ class SendLessonEmailJob implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    public function __construct(public string $userEmail, public Lesson $lesson, public string $course) {}
+    public function __construct(public string $userEmail, public Lesson $lesson, public string $courseTitle) {}
 
     public function handle(): void
     {
-        $email = new SendLesson($this->lesson, $this->course);
+        $email = new SendLesson($this->lesson, $this->courseTitle);
         Mail::to($this->userEmail)->send($email);
     }
 }
