@@ -13,10 +13,12 @@
             </div>
         @endif
         <div class="text-center">
+            <div class="d-flex justify-content-center mb-3 align-items-center">
             <h2>
                 {{ $course->title }}
-                <span class="mt-1">({{ $course->users()->count() ?: 0 }} students)</span>
-                @auth
+            </h2>
+            @auth
+                <div class="px-3">
                     @if (Auth::user()->isFollowed($course->id))
                         <form action="{{ route('platform.subscriptions.destroy', $course->id) }}" method="POST">
                             @csrf
@@ -33,8 +35,10 @@
                             <button type="submit" class="btn btn-outline-info">Subscribe</button>
                         </form>
                     @endif
-                @endauth
-            </h2>
+                </div>
+            @endauth
+
+            </div>
             <form action="{{ route('platform.course.rate', $course->id) }}" method="GET">
                 @if ($course->isRate())
                     @for ($i = 1; $i <= 5; $i++)
@@ -51,28 +55,40 @@
                 @endif
             </form>
         </div>
-        @forelse ($course->lessons as $lesson)
-            <div class="mt-5">
-                <div class="mt-3">
-                    <h4><a href="{{ route('platform.lessons.show', $lesson->id) }}" class="text-decoration-none text-dark">{{ $lesson->title }}</a></h4>
 
-                    <div class="d-flex">
-                        @can('view', $course)
-                            <a href="{{ route('platform.lessons.edit', $lesson->id) }}" class="btn btn-outline-primary">Edit</a>
-                            <form action="{{ route('platform.lessons.destroy', $lesson->id) }}" method="POST" class="px-2">
-                                @csrf
-                                @method('DELETE')
+        <div class="row">
+            <div class="col-md-6">
+                <h2 class="mt-5 mb-4">Lessons:</h2>
+                @forelse ($course->lessons as $lesson)
+                    <div class="mt-3">
+                        <h4><a href="{{ route('platform.lessons.show', $lesson->id) }}" class="text-decoration-none text-dark">{{ $lesson->title }}</a></h4>
+                        <div class="d-flex">
+                            @can('view', $course)
+                                <a href="{{ route('platform.lessons.edit', $lesson->id) }}" class="btn btn-outline-primary">Edit</a>
+                                <form action="{{ route('platform.lessons.destroy', $lesson->id) }}" method="POST" class="px-2">
+                                    @csrf
+                                    @method('DELETE')
 
-                                <button type="submit" class="btn btn-outline-danger">Delete</button>
-                            </form>
-                        @endcan
+                                    <button type="submit" class="btn btn-outline-danger">Delete</button>
+                                </form>
+                            @endcan
+                        </div>
                     </div>
+                @empty
+                    <div class="alert alert-info text-center mt-2">
+                        This course does not contain lessons yet
+                    </div>
+                @endforelse
+            </div>
+            <div class="col-md-6 mt-5 d-flex justify-content-center">
+                <div>
+                    <h2>About this course:</h2>
+                    <p>{{ $lesson->course->description }}</p>
+                    <h4>Author: <span class="text-muted">{{ $lesson->course->author->name }}</span></h4>
+                    <h4>Lesson subscribers: <span class="text-muted">({{ $course->users()->count() ?: 0 }} students)</span></h4>
+                    <h4>Average rating: <span class="text-muted">{{ round($lesson->course->averageRate()) }}</span></h4>
                 </div>
             </div>
-        @empty
-            <div class="alert alert-info text-center mt-2">
-                This course does not contain lessons yet
-            </div>
-        @endforelse
+        </div>
     </div>
 @endsection
