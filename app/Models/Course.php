@@ -75,8 +75,8 @@ class Course extends Model
         return null;
     }
 
-    public function isRate(): Model|null
+    public function isRateByUser(): int|null
     {
-        return $this->rates()->where('course_id', $this->id)->where('user_id', Auth::id())->first();
+        return $this->rates()->where('user_id', Auth::id())->first()->rate ?? null;
     }
 }

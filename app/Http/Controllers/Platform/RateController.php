@@ -15,8 +15,13 @@ class RateController extends Controller
 {
     public function rate(Course $course, Request $request): RedirectResponse
     {
-        $rated = $course->rates()->where('user_id', Auth::id())->where('course_id', $course->id)->where('rate', $request->rate)->first();
-        if (!$rated) {
+        $sameRating = $course->rates()
+            ->where('user_id', Auth::id())
+            ->where('course_id', $course->id)
+            ->where('rate', $request->rate)
+            ->first();
+
+        if (!$sameRating) {
             Rate::updateOrCreate(
                 [
                     'user_id' => Auth::id(),
@@ -29,7 +34,7 @@ class RateController extends Controller
             return back();
         }
 
-        $rated->delete();
+        $sameRating->delete();
 
         return back();
     }

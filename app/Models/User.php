@@ -70,23 +70,24 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(Course::class);
     }
 
-    public function isSystemAdmin(): bool
-    {
-        return $this->role == self::SYSTEM_ADMIN_ROLE;
-    }
-
     public function subscriptions(): BelongsToMany
     {
         return $this->belongsToMany(Course::class);
     }
 
-    public function isFollowed(int $courseId): bool|null
+    public function isSystemAdmin(): bool
+    {
+        return $this->role == self::SYSTEM_ADMIN_ROLE;
+    }
+
+    public function isSubscribed(int $courseId): bool
     {
         foreach ($this->subscriptions as $subscription) {
             if ($subscription->id == $courseId) {
                 return true;
             }
         }
-        return null;
+
+        return false;
     }
 }

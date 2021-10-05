@@ -15,9 +15,10 @@
 
         @if ($courses->isNotEmpty())
             <div class="mt-5">
+                <h2 class="mb-5">Your courses:</h2>
                 @foreach($courses as $course)
                     <div class="mt-3">
-                        <h3><a href="{{ route('platform.courses.show', $course->id) }}" class="text-decoration-none text-dark">{{ $course->title }}</a></h3>
+                        <h4><a href="{{ route('platform.courses.show', $course->id) }}" class="text-decoration-none text-dark">{{ $course->title }}</a></h4>
                         <p>{{ $course->description }}</p>
                         <div class="d-flex">
                             <a href="{{ route('platform.courses.edit', $course->id) }}" class="btn btn-outline-primary">Edit</a>

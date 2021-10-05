@@ -21,15 +21,13 @@ class LessonController extends Controller
 {
     public function create(Request $request): View
     {
-        $course = Course::findOrFail($request->course_id);
+        $course = Course::findOrFail($request->course);
 
         return view('platform.course.lesson.create', compact('course'));
     }
 
     public function store(LessonRequest $lessonRequest, FileRequest $fileRequest): RedirectResponse
     {
-        $course = Course::findOrFail($lessonRequest->course_id);
-
         $lesson = Lesson::create($lessonRequest->validated());
 
         if ($fileRequest->hasFile('files')) {
@@ -45,11 +43,11 @@ class LessonController extends Controller
             }
         }
         // send emails to subscribers with a link to lesson
-        foreach ($course->users as $user) {
-            dispatch(new SendLessonEmailJob($user->email, $lesson, $course->title));
+        foreach ($lesson->course->users as $user) {
+            dispatch(new SendLessonEmailJob($user->email, $lesson, $lesson->course->title));
         }
 
-        return redirect()->route('platform.courses.show', $course->id)->with('status', 'You have successfully created a lesson.');
+        return redirect()->route('platform.courses.show', $lesson->course->id)->with('status', 'You have successfully created a lesson.');
     }
 
     public function show(Lesson $lesson): View
