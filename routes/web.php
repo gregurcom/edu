@@ -36,17 +36,21 @@ Route::name('auth.')->group(function () {
     Route::post('registration', [RegistrationController::class, 'save'])->name('registration.save');
 
     Route::get('logout', [AccessController::class, 'logout'])->name('logout');
+
+    Route::get('verify-email', [EmailVerificationController::class, 'show'])->name('verification.notice');
+    Route::get('verify-email/request', [EmailVerificationController::class, 'request'])->name('verification.request');
+    Route::get('verify-email/{id}/{hash}', [EmailVerificationController::class, 'verify'])->middleware('signed')->name('verification.verify');
 });
 
 Route::name('platform.')->group(function () {
     Route::resource('courses', CourseController::class);
     Route::resource('lessons', LessonController::class)->except('index');
 
-    Route::get('file/{file}/download', [FileController::class, 'download'])->name('file.download');
-
     Route::get('search', [CourseController::class, 'search'])->name('course.search');
 
     Route::middleware(['auth', 'verified'])->group(function () {
+        Route::get('file/{file}/download', [FileController::class, 'download'])->name('file.download');
+
         Route::resource('subscriptions', SubscriptionController::class)->only(['index', 'store', 'destroy']);
 
         Route::get('courses/rate/{course}', [RateController::class, 'rate'])->name('course.rate');
@@ -54,13 +58,7 @@ Route::name('platform.')->group(function () {
 });
 
 Route::name('system.')->group(function () {
-    Route::middleware(['auth', 'app.system-admin'])->group(function () {
+    Route::middleware(['auth', 'app.system-admin', 'verified'])->group(function () {
         Route::resource('categories', CategoryController::class)->except(['index', 'show']);
     });
-});
-
-Route::middleware('auth')->group(function () {
-    Route::get('verify-email', [EmailVerificationController::class, 'show'])->name('verification.notice');
-    Route::get('verify-email/request', [EmailVerificationController::class, 'request'])->name('verification.request');
-    Route::get('verify-email/{id}/{hash}', [EmailVerificationController::class, 'verify'])->middleware('signed')->name('verification.verify');
 });
