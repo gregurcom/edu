@@ -16,30 +16,26 @@
             </div>
         @endif
         <div class="text-center">
-            <div class="d-flex justify-content-center mb-3 align-items-center mt-3">
-                <h2>{{ $course->title }}</h2>
-                @auth
-                    <div class="px-3">
-                        @if (Auth::user()->isSubscribed($course->id))
-                            <form action="{{ route('platform.subscriptions.destroy', $course->id) }}" method="POST">
-                                @csrf
-                                @method('DELETE')
+            <h2>{{ $course->title }}</h2>
+            @auth
+                @if (Auth::user()->isSubscribed($course->id))
+                    <form action="{{ route('platform.subscriptions.destroy', $course->id) }}" method="POST">
+                        @csrf
+                        @method('DELETE')
 
-                                <input type="hidden" value="{{ $course->id }}" name="course_id">
-                                <button type="submit" class="btn btn-outline-info">Unsubscribe</button>
-                            </form>
-                        @else
-                            <form action="{{ route('platform.subscriptions.store', $course->id) }}" method="POST">
-                                @csrf
+                        <input type="hidden" value="{{ $course->id }}" name="course_id">
+                        <button type="submit" class="btn btn-outline-info">Unsubscribe</button>
+                    </form>
+                @else
+                    <form action="{{ route('platform.subscriptions.store', $course->id) }}" method="POST">
+                        @csrf
 
-                                <input type="hidden" value="{{ $course->id }}" name="course_id">
-                                <button type="submit" class="btn btn-outline-info">Subscribe</button>
-                            </form>
-                        @endif
-                    </div>
-                @endauth
-            </div>
-            <form action="{{ route('platform.course.rate', $course->id) }}" method="GET">
+                        <input type="hidden" value="{{ $course->id }}" name="course_id">
+                        <button type="submit" class="btn btn-outline-info">Subscribe</button>
+                    </form>
+                @endif
+            @endauth
+            <form action="{{ route('platform.course.rate', $course->id) }}" method="GET" class="mt-3">
                 @for ($i = 1; $i <= 5; $i++)
                     <label for="{{ $i }}">
                         <input name="rate" type="submit" value="{{ $i }}" id="{{ 'rate' . $i }}" class="rate btn btn-outline-dark {{ $course->isRateByUser() == $i ? 'bg-dark text-light' : ' ' }}">
@@ -50,7 +46,7 @@
 
         <div class="row">
             <div class="col-md-6">
-                <h2 class="mt-5 mb-4">Lessons:</h2>
+                <h2 class="mt-5 mb-4">Lessons: ({{ $course->lessons->count() }})</h2>
                 @forelse ($course->lessons as $lesson)
                     <div class="mt-4">
                         <h4><a href="{{ route('platform.lessons.show', $lesson->id) }}" class="text-decoration-none text-dark">{{ $lesson->title }}</a></h4>
