@@ -13,7 +13,7 @@ use Illuminate\Support\Str;
 
 class LessonService
 {
-    public function sendReleaseNotification(Lesson $lesson): void
+    public function sendLessonCreateNotification(Lesson $lesson): void
     {
         foreach ($lesson->course->users as $user) {
             dispatch(new SendLessonEmailJob($user->email, $lesson, $lesson->course->title));

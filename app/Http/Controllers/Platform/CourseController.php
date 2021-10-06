@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\CourseRequest;
 use App\Models\Category;
 use App\Models\Course;
+use App\Services\CourseService;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -17,7 +18,7 @@ class CourseController extends Controller
 {
     public function index(): View
     {
-        $categories = Category::paginate(10);
+        $categories = Category::with('courses')->paginate(10);
 
         return view('platform.courses', compact('categories'));
     }
@@ -64,11 +65,9 @@ class CourseController extends Controller
         return back()->with('status', 'You have successfully deleted course');
     }
 
-    public function search(Request $request): View
+    public function search(Request $request, CourseService $courseService): View
     {
-        $courses = Course::where('title', 'like', '%' . $request->q . '%')
-            ->orWhere('description', 'like', '%' . $request->q . '%')
-            ->get();
+        $courses = $courseService->searchCourse($request);
 
         return view('platform.course.search', compact('courses'));
     }

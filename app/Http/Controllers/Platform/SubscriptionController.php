@@ -15,7 +15,7 @@ class SubscriptionController extends Controller
 {
     public function index(): View
     {
-        $courses = Auth::user()->subscriptions;
+        $courses = Auth::user()->subscriptions()->with('rates', 'author')->get();
 
         return view('platform.subscriptions', compact('courses'));
     }

@@ -24,7 +24,7 @@
         </form>
         @foreach ($categories as $category)
             <h2 class="mt-5">{{ $category->name }}</h2>
-            @forelse ($category->courses as $course)
+            @forelse ($category->courses()->with('rates', 'author')->get() as $course)
                 <div class="mt-4">
                     <div class="mt-3">
                         <div class="row">

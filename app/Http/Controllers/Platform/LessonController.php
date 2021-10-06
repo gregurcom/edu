@@ -31,7 +31,7 @@ class LessonController extends Controller
             $lessonService->storeAttachedFiles($lesson, $fileRequest);
         }
         // send emails to subscribers with a link to lesson
-        $lessonService->sendReleaseNotification($lesson);
+        $lessonService->sendLessonCreateNotification($lesson);
 
         return redirect()->route('platform.courses.show', $lesson->course->id)->with('status', 'You have successfully created a lesson.');
     }
