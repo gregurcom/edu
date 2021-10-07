@@ -8,13 +8,13 @@
             <a href="{{ route('platform.courses.create') }}" class="btn btn-outline-dark">Create course</a>
         </div>
         @if (session('status'))
-            <div class="alert alert-success mt-2 text-center">
+            <div class="alert alert-info mt-2 text-center">
                 {{ session('status') }}
             </div>
         @endif
 
         @if ($courses->isNotEmpty())
-            <div class="mt-5">
+            <div class="mt-5 mb-5">
                 <h2 class="mb-5">Your courses:</h2>
                 @foreach($courses as $course)
                     <div class="mt-3">

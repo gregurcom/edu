@@ -5,7 +5,7 @@
 @section('content')
     <div class="container wrapper flex-grow-1 mt-5 mb-5">
         @if (session('status'))
-            <div class="alert alert-success mt-2 text-center">
+            <div class="alert alert-info mt-2 text-center">
                 {{ session('status') }}
             </div>
         @endif
@@ -28,15 +28,15 @@
                 <div class="mt-4">
                     <div class="mt-3">
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-8">
                                 <ul>
                                     <li>
                                         <a href="{{ route('platform.courses.show', $course->id) }}" class="text-decoration-none text-dark h3">{{ $course->title }}</a>
-                                        <span class="h4 px-2">(<a href="#" class="text-dark">{{ $course->author->name }}</a>)</span>
+                                        <span class="h4 px-2">(<a href="#" class="text-muted text-decoration-none">{{ $course->author->name }}</a>)</span>
                                     </li>
                                 </ul>
                             </div>
-                            <div class="col-md-6 d-flex">
+                            <div class="col-md-4 d-flex">
                                 <div class="px-3">
                                     @if ($course->rates->count('id') > 0)
                                         <span>

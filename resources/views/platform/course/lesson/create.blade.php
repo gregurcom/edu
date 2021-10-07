@@ -24,6 +24,11 @@
                         </div>
                     @enderror
 
+                    <select class="form-control mt-2" name="status">
+                        <option value="1">Important (send emails to subscribers)</option>
+                        <option value="0">Not important</option>
+                    </select>
+
                     <input type="file" name="files[]" class="mt-2" multiple>
                     @error('files')
                         <div class="alert alert-danger mt-1">

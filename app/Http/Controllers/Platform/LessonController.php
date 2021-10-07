@@ -30,8 +30,10 @@ class LessonController extends Controller
         if ($fileRequest->hasFile('files')) {
             $lessonService->storeAttachedFiles($lesson, $fileRequest);
         }
-        // send emails to subscribers with a link to lesson
-        $lessonService->sendLessonCreateNotification($lesson);
+        if ($lessonRequest->status == 1) {
+            // send emails to subscribers with a link to lesson
+            $lessonService->sendLessonCreateNotification($lesson);
+        }
 
         return redirect()->route('platform.courses.show', $lesson->course->id)->with('status', 'You have successfully created a lesson.');
     }

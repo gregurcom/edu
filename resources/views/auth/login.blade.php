@@ -23,7 +23,7 @@
                         </div>
                     @enderror
 
-                    <a href="{{ route('auth.registration') }}">Registration</a>
+                    <a href="{{ route('auth.registration') }}" class="text-dark">Registration</a>
                     <div class="text-center mt-3">
                         <button class="btn btn-outline-dark w-25" type="submit">Login</button>
                     </div>

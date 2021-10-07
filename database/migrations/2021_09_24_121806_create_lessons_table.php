@@ -20,6 +20,7 @@ class CreateLessonsTable extends Migration
             $table->string('title');
             $table->text('information');
             $table->foreignId('course_id');
+            $table->integer('status')->nullable();
             $table->timestamps();
         });
     }
