@@ -13,7 +13,7 @@
         <form action="{{ route('platform.course.search') }}" method="GET">
             <div class="row g-1 justify-content-end">
                 <div class="col-auto">
-                    <input type="search" name="q" class="form-control" placeholder="Search course...">
+                    <input type="search" name="q" class="form-control border-dark" placeholder="Search course...">
                 </div>
                 <div class="col-auto">
                     <button type="submit" class="btn btn-outline-dark">
