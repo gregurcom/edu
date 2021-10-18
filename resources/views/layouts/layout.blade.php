@@ -24,7 +24,7 @@
                         <div class="align-content-center">
                             <a href="{{ route('home') }}" class="text-decoration-none text-light h5">Mentor</a>
                         </div>
-                        <button class="navbar-toggler" id="navbar-button" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <button class="navbar-toggler text-pink" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                             <i class="fas fa-list"></i>
                         </button>
                         <div class="collapse navbar-collapse align-content-center" id="navbarNav">
