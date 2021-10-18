@@ -58,9 +58,3 @@ Route::name('system.')->group(function () {
         Route::resource('categories', CategoryController::class)->except(['index', 'show']);
     });
 });
-
-Route::middleware('auth')->group(function () {
-    Route::get('verify-email', [EmailVerificationController::class, 'show'])->name('verification.notice');
-    Route::get('verify-email/request', [EmailVerificationController::class, 'request'])->name('verification.request');
-    Route::get('verify-email/{id}/{hash}', [EmailVerificationController::class, 'verify'])->middleware('signed')->name('verification.verify');
-});

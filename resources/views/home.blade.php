@@ -4,7 +4,7 @@
     <main class="px-3">
         <div class="row d-flex align-items-center">
             <div class="col-md-8">
-                <div class="text-center info">
+                <div class="text-center info mt-5 mb-5">
                     <h1 class="mb-3">Mentor</h1>
                     <p class="h4">Mentor is a platform where anyone can share their knowledge</p>
                     <p class="h4">Become a student or a mentor chose your favorite category</p>
