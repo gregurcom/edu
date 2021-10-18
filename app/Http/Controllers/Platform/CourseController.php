@@ -45,8 +45,9 @@ class CourseController extends Controller
     public function edit(Course $course): View
     {
         $this->authorize('view', $course);
+        $categories = Category::get();
 
-        return view('platform.course.edit', compact('course'));
+        return view('platform.course.edit', compact(['course', 'categories']));
     }
 
     public function update(Course $course, CourseRequest $request): RedirectResponse
