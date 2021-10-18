@@ -10,7 +10,7 @@
                     @csrf
                     @method('PUT')
 
-                    <input type="text" name="name" class="form-control" placeholder="Category">
+                    <input type="text" name="name" class="form-control" value="{{ $category->name }}">
                     @error('name')
                         <div class="alert alert-danger mt-1">
                             {{ $message }}
