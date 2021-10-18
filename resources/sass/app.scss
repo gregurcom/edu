@@ -28,6 +28,19 @@ footer, nav {
     height: 60px;
 }
 
-body {
+body, .search-input {
     background-color: pink;
+}
+
+.alert-window {
+    border: solid 1px black;
+    background-color: pink;
+}
+
+.alert-text {
+    padding: 16px;
+}
+
+#navbar-button {
+    color: pink;
 }

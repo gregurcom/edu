@@ -5,15 +5,15 @@
 @section('content')
     <div class="container wrapper flex-grow-1 mt-5 mb-5">
         @if (session('status'))
-            <div class="alert alert-info mt-2 text-center">
-                {{ session('status') }}
+            <div class="alert-window mt-2 text-center">
+                <div class="alert-text">{{ session('status') }}</div>
             </div>
         @endif
 
         <form action="{{ route('platform.course.search') }}" method="GET">
             <div class="row g-1 justify-content-end">
                 <div class="col-auto">
-                    <input type="search" name="q" class="form-control border-dark" placeholder="Search course...">
+                    <input type="search" name="q" class="form-control border-dark search-input" placeholder="Search course...">
                 </div>
                 <div class="col-auto">
                     <button type="submit" class="btn btn-outline-dark">
@@ -32,7 +32,7 @@
                                 <ul>
                                     <li>
                                         <a href="{{ route('platform.courses.show', $course->id) }}" class="text-decoration-none text-dark h3">{{ $course->title }}</a>
-                                        <span class="h4 px-2">(<a href="#" class="text-muted text-decoration-none">{{ $course->author->name }}</a>)</span>
+                                        <span class="h4 px-2">(<a href="#" class="text-decoration-none text-dark">{{ $course->author->name }}</a>)</span>
                                     </li>
                                 </ul>
                             </div>
@@ -51,8 +51,8 @@
                     </div>
                 </div>
             @empty
-                <div class="alert alert-info">
-                    This category does not contain courses yet
+                <div class="alert-window">
+                    <div class="alert-text">This category does not contain courses yet</div>
                 </div>
             @endforelse
         @endforeach

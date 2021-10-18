@@ -5,8 +5,8 @@
 @section('content')
     <div class="container wrapper flex-grow-1 mt-5 mb-5">
         @if (session('status'))
-            <div class="alert alert-info mt-2 text-center">
-                {{ session('status') }}
+            <div class="alert-window mt-2 text-center">
+                <div class="alert-text">{{ session('status') }}</div>
             </div>
         @endif
 
@@ -49,8 +49,8 @@
                 </div>
             </div>
         @empty
-            <div class="alert alert-danger mt-2 text-center">
-                No results were found for your search
+            <div class="alert-window mt-2 text-center">
+                <div class="alert-text">No results were found for your search</div>
             </div>
         @endforelse
     </div>

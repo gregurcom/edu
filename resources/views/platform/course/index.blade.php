@@ -11,8 +11,8 @@
         @endcan
 
         @if (session('status'))
-            <div class="alert alert-info mt-2 text-center">
-                {{ session('status') }}
+            <div class="alert-window mt-2 text-center">
+                <div class="alert-text">{{ session('status') }}</div>
             </div>
         @endif
         <div class="text-center">
@@ -26,14 +26,14 @@
                                 @method('DELETE')
 
                                 <input type="hidden" value="{{ $course->id }}" name="course_id">
-                                <button type="submit" class="btn btn-outline-info">Unsubscribe</button>
+                                <button type="submit" class="btn btn-outline-dark">Unsubscribe</button>
                             </form>
                         @else
                             <form action="{{ route('platform.subscriptions.store', $course->id) }}" method="POST">
                                 @csrf
 
                                 <input type="hidden" value="{{ $course->id }}" name="course_id">
-                                <button type="submit" class="btn btn-outline-info">Subscribe</button>
+                                <button type="submit" class="btn btn-outline-dark">Subscribe</button>
                             </form>
                         @endif
                     </div>
@@ -67,8 +67,8 @@
                         </div>
                     </div>
                 @empty
-                    <div class="alert alert-info text-center mt-2">
-                        This course does not contain lessons yet
+                    <div class="alert-window text-center mt-2">
+                        <div class="alert-text">This course does not contain lessons yet</div>
                     </div>
                 @endforelse
             </div>
@@ -76,9 +76,9 @@
                 <div>
                     <h2>About this course:</h2>
                     <p>{{ $course->description }}</p>
-                    <h4>Author: <span class="text-muted">{{ $course->author->name }}</span></h4>
-                    <h4>Lesson subscribers: <span class="text-muted">({{ $course->users()->count() ?: 0 }} students)</span></h4>
-                    <h4>Average rating: <span class="text-muted">{{ round($course->averageRate()) }}</span></h4>
+                    <h4>Author: {{ $course->author->name }}</h4>
+                    <h4>Lesson subscribers: ({{ $course->users()->count() ?: 0 }} students)</h4>
+                    <h4>Average rating: {{ round($course->averageRate()) }}</h4>
                 </div>
             </div>
         </div>
