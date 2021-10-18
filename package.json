@@ -24,6 +24,9 @@
         "datatables.net": "^1.11.3",
         "datatables.net-dt": "^1.11.3",
         "font-awesome": "^4.7.0",
-        "material-design-icons": "^3.0.1"
+        "latest": "^0.2.0",
+        "material-design-icons": "^3.0.1",
+        "n": "^7.5.0",
+        "stable": "^0.1.8"
     }
 }
