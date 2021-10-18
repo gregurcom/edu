@@ -17,8 +17,8 @@
                 <form action="{{ route('system.categories.store') }}" method="POST">
                     @csrf
 
-                    <input type="text" name="category" class="form-control" placeholder="Category">
-                    @error('category')
+                    <input type="text" name="name" class="form-control" placeholder="Category">
+                    @error('name')
                         <div class="alert alert-danger mt-1">
                             {{ $message }}
                         </div>
