@@ -14,6 +14,10 @@ Mentor is a platform where anyone can share their knowledge
 
 ``npm run dev``
 
+## Deploy application
+
+Run deploy: `php vendor/bin/envoy run deploy`
+
 ## Testing application
 Unit and Feature test
 
