@@ -3,7 +3,6 @@
 declare(strict_types = 1);
 
 use App\Http\Controllers\Auth\AccessController;
-use App\Http\Controllers\Auth\EmailVerificationController;
 use App\Http\Controllers\Auth\RegistrationController;
 use App\Http\Controllers\Platform\CourseController;
 use App\Http\Controllers\Platform\DashboardController;
@@ -44,7 +43,7 @@ Route::name('platform.')->group(function () {
 
     Route::get('search', [CourseController::class, 'search'])->name('course.search');
 
-    Route::middleware(['auth', 'verified'])->group(function () {
+    Route::middleware('auth')->group(function () {
         Route::get('file/{file}/download', [FileController::class, 'download'])->name('file.download');
 
         Route::resource('subscriptions', SubscriptionController::class)->only(['index', 'store', 'destroy']);
@@ -54,7 +53,7 @@ Route::name('platform.')->group(function () {
 });
 
 Route::name('system.')->group(function () {
-    Route::middleware(['auth', 'app.system-admin', 'verified'])->group(function () {
+    Route::middleware(['auth', 'app.system-admin'])->group(function () {
         Route::resource('categories', CategoryController::class)->except(['index', 'show']);
     });
 });
