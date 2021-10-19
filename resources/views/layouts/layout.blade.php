@@ -30,16 +30,16 @@
                         </button>
                         <div class="collapse navbar-collapse align-content-center" id="navbarNav">
                             <ul class="navbar-nav">
-                                <li>
+                                <li class="nav-item">
                                     <a href="{{ route('platform.courses.index') }}" class="text-decoration-none text-light h5 px-3">Courses</a>
                                 </li>
                                 @auth
-                                    <li>
+                                    <li class="nav-item">
                                         <a href="{{ route('platform.subscriptions.index') }}" class="text-decoration-none text-light h5 px-3">Subscriptions</a>
                                     </li>
-                                    <li>
+                                    <li class="nav-item">
                                         <div class="dropdown">
-                                            <span class="dropdown-toggle  text-white h5" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                            <span class="dropdown-toggle  text-white h5 px-3" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                                                 {{ auth()->user()->name }}
                                             </span>
                                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">

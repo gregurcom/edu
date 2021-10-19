@@ -5,11 +5,9 @@
 @section('description', $course->description)
 
 @section('content')
-    <div class="container wrapper flex-grow-1 mt-5 mb-5">
+    <div class="container wrapper flex-grow-1 mt-3 mb-5">
         @can('view', $course)
-            <div>
-                <a href="{{ route('platform.lessons.create', ['course' => $course->id]) }}" class="btn btn-outline-dark">Create lesson</a>
-            </div>
+            <a href="{{ route('platform.lessons.create', ['course' => $course->id]) }}" class="btn btn-outline-dark">Create lesson</a>
         @endcan
 
         @if (session('status'))
