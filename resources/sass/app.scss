@@ -29,12 +29,13 @@ footer, nav {
 }
 
 body, .search-input {
-    background-color: pink;
+    background-color: lightpink;
 }
 
 .alert-window {
     border: solid 1px black;
-    background-color: pink;
+    background-color: lightpink;
+    margin-bottom: 8px;
 }
 
 .alert-text {
@@ -42,5 +43,5 @@ body, .search-input {
 }
 
 .text-pink {
-    color: pink;
+    color: lightpink;
 }

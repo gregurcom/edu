@@ -2,6 +2,8 @@
 
 @section('title', $course->title . ' - course')
 
+@section('description', $course->description)
+
 @section('content')
     <div class="container wrapper flex-grow-1 mt-5 mb-5">
         @can('view', $course)

@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta property="og:site_name" content="{{ config('app.name') }}" />
     <meta property="og:image" content="{{ asset('images/ogImage.png') }}" />
+    <meta property="og:description" content="@yield('description')" />
     <meta property="og:title" content="@yield('title', 'Mentor')" />
     @yield('meta')
 
