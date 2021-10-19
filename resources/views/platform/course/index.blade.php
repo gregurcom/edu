@@ -11,8 +11,8 @@
         @endcan
 
         @if (session('status'))
-            <div class="alert-window mt-2 text-center">
-                <div class="alert-text">{{ session('status') }}</div>
+            <div class="alert alert-info text-center">
+                {{ session('status') }}
             </div>
         @endif
         <div class="text-center">
@@ -67,8 +67,8 @@
                         </div>
                     </div>
                 @empty
-                    <div class="alert-window text-center mt-2">
-                        <div class="alert-text">This course does not contain lessons yet</div>
+                    <div class="alert alert-info text-center">
+                        This course does not contain lessons yet
                     </div>
                 @endforelse
             </div>

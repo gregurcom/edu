@@ -30,20 +30,15 @@ footer, nav {
     height: 60px;
 }
 
-body, .search-input {
-    background-color: lightpink;
+.alert-info {
+    margin: 8px;
 }
 
-.alert-window {
-    border: solid 1px black;
-    background-color: lightpink;
-    margin-bottom: 8px;
+.navbar-toggler {
+    color: #69d2f1;
 }
 
-.alert-text {
-    padding: 16px;
-}
-
-.text-pink {
-    color: lightpink;
+.dropdown-menu {
+    z-index: 1;
+    position: relative !important;
 }

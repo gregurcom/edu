@@ -28,12 +28,13 @@ Route::get('/', fn() => view('home'))->name('home');
 Route::get('dashboard', [DashboardController::class, 'show'])->name('dashboard')->middleware('auth');
 
 Route::name('auth.')->group(function () {
-    Route::get('login', [AccessController::class, 'login'])->name('login');
-    Route::post('login', [AccessController::class, 'authenticate'])->name('authenticate');
+    Route::middleware('guest')->group(function () {
+        Route::get('login', [AccessController::class, 'login'])->name('login');
+        Route::post('login', [AccessController::class, 'authenticate'])->name('authenticate');
 
-    Route::get('registration', [RegistrationController::class, 'registration'])->name('registration');
-    Route::post('registration', [RegistrationController::class, 'save'])->name('registration.save');
-
+        Route::get('registration', [RegistrationController::class, 'registration'])->name('registration');
+        Route::post('registration', [RegistrationController::class, 'save'])->name('registration.save');
+    });
     Route::get('logout', [AccessController::class, 'logout'])->name('logout');
 });
 

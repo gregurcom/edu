@@ -36,8 +36,8 @@
                 @endforeach
             </div>
         @else
-            <div class="alert-window mt-3 text-center">
-                <div class="alert-text">You don't have any courses yet</div>
+            <div class="alert alert-info text-center">
+                You don't have any courses yet
             </div>
         @endif
     </div>

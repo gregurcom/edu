@@ -33,8 +33,8 @@
                 </div>
             </div>
         @empty
-            <div class="alert-window text-center">
-                <div class="alert-text">You have not followed to any course yet</div>
+            <div class="alert alert-info text-center">
+                You have not followed to any course yet
             </div>
         @endforelse
     </div>

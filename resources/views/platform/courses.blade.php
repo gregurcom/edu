@@ -5,8 +5,8 @@
 @section('content')
     <div class="container wrapper flex-grow-1 mt-5 mb-5">
         @if (session('status'))
-            <div class="alert-window mt-2 text-center">
-                <div class="alert-text">{{ session('status') }}</div>
+            <div class="alert alert-info mt-2 text-center">
+                {{ session('status') }}
             </div>
         @endif
 
@@ -22,7 +22,7 @@
                 </div>
             </div>
         </form>
-        @foreach ($categories as $category)
+        @forelse ($categories as $category)
             <h2 class="mt-5">{{ $category->name }}</h2>
             @forelse ($category->courses()->with('rates', 'author')->get() as $course)
                 <div class="mt-4">
@@ -51,10 +51,15 @@
                     </div>
                 </div>
             @empty
-                <div class="alert-window">
-                    <div class="alert-text">This category does not contain courses yet</div>
+                <div class="alert alert-info">
+                    This category does not contain courses yet
                 </div>
             @endforelse
-        @endforeach
+
+        @empty
+            <div class="alert alert-info">
+                There are no registered courses yet
+            </div>
+        @endforelse
     </div>
 @endsection

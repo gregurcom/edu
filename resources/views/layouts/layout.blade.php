@@ -25,10 +25,10 @@
                         <div class="align-content-center">
                             <a href="{{ route('home') }}" class="text-decoration-none text-light h5">Mentor</a>
                         </div>
-                        <button class="navbar-toggler text-pink" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                             <i class="fas fa-list"></i>
                         </button>
-                        <div class="collapse navbar-collapse align-content-center" id="navbarNav">
+                        <div class="collapse navbar-collapse align-content-center bg-dark" id="navbarNav">
                             <ul class="navbar-nav">
                                 <li class="nav-item">
                                     <a href="{{ route('platform.courses.index') }}" class="text-decoration-none text-light h5 px-3">Courses</a>
@@ -39,7 +39,7 @@
                                     </li>
                                     <li class="nav-item">
                                         <div class="dropdown">
-                                            <span class="dropdown-toggle  text-white h5 px-3" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                            <span class="dropdown-toggle text-white h5 px-3" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                                                 {{ auth()->user()->name }}
                                             </span>
                                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
