@@ -50,7 +50,7 @@
                                     </li>
                                 @else
                                     <li>
-                                        <a href="{{ route('auth.login') }}" class="text-decoration-none text-light h5">Login</a>
+                                        <a href="{{ route('auth.login') }}" class="text-decoration-none text-light h5 px-3">Login</a>
                                     </li>
                                 @endauth
                             </ul>
