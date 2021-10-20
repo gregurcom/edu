@@ -40,6 +40,8 @@
                                 </form>
                             @endif
                         </div>
+                    @else
+                        <a href="{{ route('auth.login') }}" class="btn btn-outline-dark">Subscribe</a>
                     @endauth
                 </div>
             </div>
@@ -81,7 +83,7 @@
                     <h2>About this course:</h2>
                     <p>{{ $course->description }}</p>
                     <h4>Author: {{ $course->author->name }}</h4>
-                    <h4>Lesson subscribers: ({{ $course->users()->count() ?: 0 }} students)</h4>
+                    <h4>Subscribers: ({{ $course->users()->count() ?: 0 }} students)</h4>
                     <h4>Average rating: {{ round($course->averageRate()) }}</h4>
                 </div>
             </div>
