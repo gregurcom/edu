@@ -22,6 +22,12 @@
                 </div>
             </div>
         </form>
+        @error('q')
+            <div class="alert alert-danger mt-1">
+                {{ $message }}
+            </div>
+        @enderror
+
         @forelse ($categories as $category)
             <h2 class="mt-5">{{ $category->name }}</h2>
             @forelse ($category->courses()->with('rates', 'author')->get() as $course)

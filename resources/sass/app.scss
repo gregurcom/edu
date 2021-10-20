@@ -38,9 +38,20 @@ footer, nav {
     color: #69d2f1;
 }
 
-@media screen and (max-width: 600px) {
-    .dropdown-menu {
+@media screen and (max-width: 991px) {
+    #homeIlustrate {
+        width: 300px;
+    }
+
+    .navbar-collapse {
+        margin-top: 8px;
         z-index: 1;
         position: relative !important;
+    }
+}
+
+@media screen and (max-width: 930px) {
+    #homeIlustrate {
+        width: 250px;
     }
 }

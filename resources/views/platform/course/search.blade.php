@@ -13,7 +13,7 @@
         <form action="{{ route('platform.course.search') }}" method="GET">
             <div class="row g-1 justify-content-end">
                 <div class="col-auto">
-                    <input type="search" name="q" class="form-control" placeholder="Search course...">
+                    <input type="search" name="q" class="form-control border-dark search-input" placeholder="Search course...">
                 </div>
                 <div class="col-auto">
                     <button type="submit" class="btn btn-outline-dark">
@@ -22,6 +22,12 @@
                 </div>
             </div>
         </form>
+        @error('q')
+            <div class="alert alert-danger mt-1">
+                {{ $message }}
+            </div>
+        @enderror
+
         @forelse ($courses as $course)
             <div class="mt-4">
                 <div class="mt-3">

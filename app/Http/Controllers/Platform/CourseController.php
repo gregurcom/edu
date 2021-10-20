@@ -6,12 +6,12 @@ namespace App\Http\Controllers\Platform;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CourseRequest;
+use App\Http\Requests\SearchRequest;
 use App\Models\Category;
 use App\Models\Course;
 use App\Services\CourseService;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class CourseController extends Controller
@@ -66,7 +66,7 @@ class CourseController extends Controller
         return back()->with('status', 'You have successfully deleted course');
     }
 
-    public function search(Request $request, CourseService $courseService): View
+    public function search(SearchRequest $request, CourseService $courseService): View
     {
         $courses = $courseService->searchCourse($request);
 

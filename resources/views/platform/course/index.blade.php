@@ -16,7 +16,7 @@
             </div>
         @endif
         <div class="text-center">
-            <div class="d-flex justify-content-center">
+            <div class="d-flex justify-content-center mt-2">
                 <h2>{{ $course->title }}</h2>
                 @auth
                     <div class="px-3">
