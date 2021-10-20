@@ -43,6 +43,10 @@ footer, nav {
         width: 300px;
     }
 
+    .nav-item {
+        margin-top: 5px;
+    }
+
     .navbar-collapse {
         margin-top: 8px;
         z-index: 1;
@@ -53,5 +57,6 @@ footer, nav {
 @media screen and (max-width: 930px) {
     #homeIlustrate {
         width: 250px;
+        height: 300px;
     }
 }

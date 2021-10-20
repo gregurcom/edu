@@ -43,13 +43,13 @@
                                                 {{ auth()->user()->name }}
                                             </span>
                                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                                <li><a class="dropdown-item" href="{{ route('dashboard') }}">Dashboard</a></li>
-                                                <li><a class="dropdown-item" href="{{ route('auth.logout') }}">Logout</a></li>
+                                                <li class="nav-item"><a class="dropdown-item" href="{{ route('dashboard') }}">Dashboard</a></li>
+                                                <li class="nav-item"><a class="dropdown-item" href="{{ route('auth.logout') }}">Logout</a></li>
                                             </ul>
                                         </div>
                                     </li>
                                 @else
-                                    <li>
+                                    <li class="nav-item">
                                         <a href="{{ route('auth.login') }}" class="text-decoration-none text-light h5 px-3">Login</a>
                                     </li>
                                 @endauth
