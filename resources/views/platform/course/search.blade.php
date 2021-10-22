@@ -13,7 +13,7 @@
         <form action="{{ route('platform.course.search') }}" method="GET">
             <div class="row g-1 justify-content-end">
                 <div class="col-auto">
-                    <input type="search" name="q" class="form-control border-dark search-input" placeholder="Search course...">
+                    <input type="search" name="q" class="form-control border-dark search-input" placeholder="{{ __('app.input.course-search') }}...">
                 </div>
                 <div class="col-auto">
                     <button type="submit" class="btn btn-outline-dark">
@@ -56,7 +56,7 @@
             </div>
         @empty
             <div class="alert alert-info text-center">
-                No results were found for your search
+                {{ __('app.alert.no-search-result') }}
             </div>
         @endforelse
     </div>

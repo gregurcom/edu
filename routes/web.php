@@ -2,6 +2,8 @@
 
 declare(strict_types = 1);
 
+use App\Http\Controllers\Platform\LocaleController;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Auth\AccessController;
 use App\Http\Controllers\Auth\RegistrationController;
 use App\Http\Controllers\Platform\CourseController;
@@ -25,6 +27,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', fn() => view('home'))->name('home');
+Route::get('language', [LocaleController::class, 'switch'])->name('language.switch');
 Route::get('dashboard', [DashboardController::class, 'show'])->name('dashboard')->middleware('auth');
 
 Route::name('auth.')->group(function () {

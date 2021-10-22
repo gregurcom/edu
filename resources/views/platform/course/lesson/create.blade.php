@@ -10,14 +10,14 @@
                     @csrf
 
                     <input type="hidden" value="{{ $course->id }}" name="course_id">
-                    <input type="text" name="title" class="form-control" placeholder="Title">
+                    <input type="text" name="title" class="form-control" placeholder="{{ __('app.input.title') }}">
                     @error('title')
                         <div class="alert alert-danger mt-1">
                             {{ $message }}
                         </div>
                     @enderror
 
-                    <textarea name="information" class="form-control mt-2" placeholder="Information" rows="5"></textarea>
+                    <textarea name="information" class="form-control mt-2" placeholder="{{ __('app.input.information') }}" rows="5"></textarea>
                     @error('information')
                         <div class="alert alert-danger mt-1">
                             {{ $message }}
@@ -25,8 +25,8 @@
                     @enderror
 
                     <select class="form-control mt-2" name="status">
-                        <option value="1">Important (send emails to subscribers)</option>
-                        <option value="0">Not important</option>
+                        <option value="1">{{ __('app.input.important-lesson') }}</option>
+                        <option value="0">{{ __('app.input.not-important-lesson') }}</option>
                     </select>
 
                     <input type="file" name="files[]" class="mt-2" multiple>
@@ -36,7 +36,7 @@
                         </div>
                     @enderror
                     <div class="text-center mt-3">
-                        <button class="btn btn-outline-dark w-25" type="submit">Create</button>
+                        <button class="btn btn-outline-dark w-25" type="submit">{{ __('app.button.create') }}</button>
                     </div>
                 </form>
 

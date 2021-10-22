@@ -13,7 +13,7 @@
         <form action="{{ route('platform.course.search') }}" method="GET">
             <div class="row g-1 justify-content-end">
                 <div class="col-auto">
-                    <input type="search" name="q" class="form-control border-dark search-input" placeholder="Search course...">
+                    <input type="search" name="q" class="form-control border-dark search-input" placeholder="{{ __('app.input.course-search') }}...">
                 </div>
                 <div class="col-auto">
                     <button type="submit" class="btn btn-outline-dark">
@@ -58,13 +58,13 @@
                 </div>
             @empty
                 <div class="alert alert-info">
-                    This category does not contain courses yet
+                    {{ __('app.alert.category-without-course') }}
                 </div>
             @endforelse
 
         @empty
             <div class="alert alert-info">
-                There are no registered courses yet
+                {{ __('app.alert.no-courses') }}
             </div>
         @endforelse
     </div>

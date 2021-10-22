@@ -9,14 +9,14 @@
                 <form action="{{ route('auth.authenticate') }}" method="POST">
                     @csrf
 
-                    <input type="email" name="email" class="form-control" placeholder="Email">
+                    <input type="email" name="email" class="form-control" placeholder="{{ __('app.input.email') }}">
                     @error('email')
                         <div class="alert alert-danger mt-1">
                             {{ $message }}
                         </div>
                     @enderror
 
-                    <input type="password" name="password" class="form-control mt-2" placeholder="Password">
+                    <input type="password" name="password" class="form-control mt-2" placeholder="{{ __('app.input.password') }}">
                     @error('password')
                         <div class="alert alert-danger mt-1">
                             {{ $message }}
@@ -24,10 +24,10 @@
                     @enderror
 
                     <div class="mt-2">
-                        <a href="{{ route('auth.registration') }}" class="text-dark">Registration</a>
+                        <a href="{{ route('auth.registration') }}" class="text-dark">{{ __('auth.registration') }}</a>
                     </div>
                     <div class="text-center mt-3">
-                        <button class="btn btn-outline-dark w-25" type="submit">Login</button>
+                        <button class="btn btn-outline-dark" type="submit">{{ __('app.button.login') }}</button>
                     </div>
                 </form>
 

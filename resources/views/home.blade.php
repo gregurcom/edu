@@ -7,11 +7,10 @@
                 <div class="text-center info mt-5 mb-5">
                     <h1 class="mb-3">Mentor</h1>
                     <p class="h4">
-                        Mentor is a platform where anyone can share their knowledge
-                        Become a student or a mentor chose your favorite category
+                        {{ __('app.title.home-paragraph') }}
                     </p>
                     <div class="mt-3">
-                        <a href="{{ route('platform.courses.index') }}" class="course-button btn btn-outline-dark rounded-pill py-3 px-3 fw-bold">Courses</a>
+                        <a href="{{ route('platform.courses.index') }}" class="course-button btn btn-outline-dark rounded-pill py-3 px-3 fw-bold">{{ __('app.button.courses') }}</a>
                     </div>
                 </div>
             </div>

@@ -7,7 +7,7 @@
 @section('content')
     <div class="container wrapper flex-grow-1 mt-3 mb-5">
         @can('view', $course)
-            <a href="{{ route('platform.lessons.create', ['course' => $course->id]) }}" class="btn btn-outline-dark">Create lesson</a>
+            <a href="{{ route('platform.lessons.create', ['course' => $course->id]) }}" class="btn btn-outline-dark">{{ __('app.button.create-lesson')  }}</a>
         @endcan
 
         @if (session('status'))
@@ -29,19 +29,19 @@
                                     @method('DELETE')
 
                                     <input type="hidden" value="{{ $course->id }}" name="course_id">
-                                    <button type="submit" class="btn btn-outline-dark">Unsubscribe</button>
+                                    <button type="submit" class="btn btn-outline-dark">{{ __('app.button.unsubscribe') }}</button>
                                 </form>
                             @else
                                 <form action="{{ route('platform.subscriptions.store', $course->id) }}" method="POST">
                                     @csrf
 
                                     <input type="hidden" value="{{ $course->id }}" name="course_id">
-                                    <button type="submit" class="btn btn-outline-dark">Subscribe</button>
+                                    <button type="submit" class="btn btn-outline-dark">{{ __('app.button.subscribe') }}</button>
                                 </form>
                             @endif
                         </div>
                     @else
-                        <a href="{{ route('auth.login') }}" class="btn btn-outline-dark">Subscribe</a>
+                        <a href="{{ route('auth.login') }}" class="btn btn-outline-dark">{{ __('app.button.subscribe') }}</a>
                     @endauth
                 </div>
             </div>
@@ -56,35 +56,35 @@
 
         <div class="row">
             <div class="col-md-6">
-                <h2 class="mt-5 mb-4">Lessons: ({{ $course->lessons->count() }})</h2>
+                <h2 class="mt-5 mb-4">{{ __('app.title.lessons') }}: ({{ $course->lessons->count() }})</h2>
                 @forelse ($course->lessons as $lesson)
                     <div class="mt-4">
                         <h4><a href="{{ route('platform.lessons.show', $lesson->id) }}" class="text-decoration-none text-dark">{{ $lesson->title }}</a></h4>
                         <div class="d-flex">
                             @can('view', $course)
-                                <a href="{{ route('platform.lessons.edit', $lesson->id) }}" class="btn btn-outline-primary">Edit</a>
+                                <a href="{{ route('platform.lessons.edit', $lesson->id) }}" class="btn btn-outline-primary">{{ __('app.button.edit') }}</a>
                                 <form action="{{ route('platform.lessons.destroy', $lesson->id) }}" method="POST" class="px-2">
                                     @csrf
                                     @method('DELETE')
 
-                                    <button type="submit" class="btn btn-outline-danger">Delete</button>
+                                    <button type="submit" class="btn btn-outline-danger">{{ __('app.button.delete') }}</button>
                                 </form>
                             @endcan
                         </div>
                     </div>
                 @empty
                     <div class="alert alert-info text-center">
-                        This course does not contain lessons yet
+                        {{ __('app.alert.no-lessons') }}
                     </div>
                 @endforelse
             </div>
             <div class="col-md-6 mt-5 d-flex justify-content-center">
                 <div>
-                    <h2>About this course:</h2>
+                    <h2>{{ __('app.title.about-course') }}:</h2>
                     <p>{{ $course->description }}</p>
-                    <h4>Author: {{ $course->author->name }}</h4>
-                    <h4>Subscribers: ({{ $course->users()->count() ?: 0 }} students)</h4>
-                    <h4>Average rating: {{ round($course->averageRate()) }}</h4>
+                    <h4>{{ __('app.title.author') }}: {{ $course->author->name }}</h4>
+                    <h4>{{ __('app.title.subscribers') }}: ({{ $course->users()->count() ?: 0 }} students)</h4>
+                    <h4>{{ __('app.title.average-rating') }}: {{ round($course->averageRate()) }}</h4>
                 </div>
             </div>
         </div>

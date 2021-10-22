@@ -27,7 +27,7 @@ class CategoryController extends Controller
             'slug' => $slug,
         ]);
 
-        return redirect()->route('dashboard')->with('status', 'You have successfully created a category');
+        return redirect()->route('dashboard')->with('status', __('app.alert.create-category'));
     }
 
     public function edit(Category $category): View
@@ -39,13 +39,13 @@ class CategoryController extends Controller
     {
         $category->update($request->validated());
 
-        return redirect()->route('dashboard')->with('status', 'You have successfully edited category');
+        return redirect()->route('dashboard')->with('status', __('app.alert.edit-category'));
     }
 
     public function destroy(Category $category): RedirectResponse
     {
         $category->delete();
 
-        return redirect()->route('dashboard')->with('status', 'You have successfully deleted category');
+        return redirect()->route('dashboard')->with('status', __('app.alert.delete-category'));
     }
 }

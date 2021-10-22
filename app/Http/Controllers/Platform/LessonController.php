@@ -35,7 +35,7 @@ class LessonController extends Controller
             $lessonService->sendLessonCreateNotification($lesson);
         }
 
-        return redirect()->route('platform.courses.show', $lesson->course->id)->with('status', 'You have successfully created a lesson.');
+        return redirect()->route('platform.courses.show', $lesson->course->id)->with('status', __('app.alert.create-lesson'));
     }
 
     public function show(Lesson $lesson, LessonService $lessonService): View
@@ -57,7 +57,7 @@ class LessonController extends Controller
         $this->authorize('update', $lesson);
         $lesson->update($request->validated());
 
-        return redirect()->route('platform.courses.show', $lesson->course)->with('status', 'You have successfully edited lesson');
+        return redirect()->route('platform.courses.show', $lesson->course)->with('status', __('app.alert.edit-lesson'));
     }
 
     public function destroy(Lesson $lesson): RedirectResponse
@@ -65,6 +65,6 @@ class LessonController extends Controller
         $this->authorize('destroy', $lesson);
         $lesson->delete();
 
-        return back()->with('status', 'You have successfully deleted lesson');
+        return back()->with('status', __('app.alert.delete-lesson'));
     }
 }

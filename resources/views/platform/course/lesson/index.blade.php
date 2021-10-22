@@ -12,7 +12,7 @@
 
         @if ($lesson->files->isNotEmpty())
             <div class="mt-3">
-                <h4>Attached files</h4>
+                <h4>{{ trans_choice('app.title.attached-files', $lesson->files->count()) }}</h4>
                 @foreach ($lesson->files as $file)
                     <a href="{{ route('platform.file.download', $file) }}" class="btn btn-outline-dark mt-2">{{ $file->name }}</a>
                 @endforeach

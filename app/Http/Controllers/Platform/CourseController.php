@@ -34,7 +34,7 @@ class CourseController extends Controller
     {
         Course::create(array_merge(['user_id' => Auth::id()], $request->validated()));
 
-        return redirect()->route('dashboard')->with('status', 'You have successfully created a course');
+        return redirect()->route('dashboard')->with('status', __('app.alert.create-course'));
     }
 
     public function show(Course $course): View
@@ -55,7 +55,7 @@ class CourseController extends Controller
         $this->authorize('update', $course);
         $course->update($request->validated());
 
-        return redirect()->route('dashboard')->with('status', 'You have successfully edited course');
+        return redirect()->route('dashboard')->with('status', __('app.alert.edit-course'));
     }
 
     public function destroy(Course $course): RedirectResponse
@@ -63,7 +63,7 @@ class CourseController extends Controller
         $this->authorize('destroy', $course);
         $course->delete();
 
-        return back()->with('status', 'You have successfully deleted course');
+        return back()->with('status', __('app.alert.delete-course'));
     }
 
     public function search(SearchRequest $request, CourseService $courseService): View

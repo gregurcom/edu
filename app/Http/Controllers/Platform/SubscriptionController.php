@@ -28,13 +28,13 @@ class SubscriptionController extends Controller
         ]);
 
         return back()
-            ->with('status', 'You have successfully followed this course.Now you will receive a notification about the new release of the lesson to your mail');
+            ->with('status', __('app.alert.subscribe'));
     }
 
     public function destroy(Request $request): RedirectResponse
     {
         CourseUser::where('user_id', Auth::id())->where('course_id', $request->course_id)->delete();
 
-        return back()->with('status', 'You have successfully unfollowed this course');
+        return back()->with('status', __('app.alert.unsubscribe'));
     }
 }

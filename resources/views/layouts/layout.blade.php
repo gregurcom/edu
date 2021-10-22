@@ -23,7 +23,7 @@
                 <nav class="navbar navbar-expand-lg">
                     <div class="container-fluid">
                         <div class="align-content-center">
-                            <a href="{{ route('home') }}" class="text-decoration-none text-light h5">Mentor</a>
+                            <a href="{{ route('home') }}" class="text-decoration-none text-light h5 px-3">Mentor</a>
                         </div>
                         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                             <i class="fas fa-list"></i>
@@ -31,11 +31,11 @@
                         <div class="collapse navbar-collapse align-content-center bg-dark" id="navbarNav">
                             <ul class="navbar-nav">
                                 <li class="nav-item">
-                                    <a href="{{ route('platform.courses.index') }}" class="text-decoration-none text-light h5 px-3">Courses</a>
+                                    <a href="{{ route('platform.courses.index') }}" class="text-decoration-none text-light h5 px-3">{{ __('app.title.courses') }}</a>
                                 </li>
                                 @auth
                                     <li class="nav-item">
-                                        <a href="{{ route('platform.subscriptions.index') }}" class="text-decoration-none text-light h5 px-3">Subscriptions</a>
+                                        <a href="{{ route('platform.subscriptions.index') }}" class="text-decoration-none text-light h5 px-3">{{ __('app.title.subscribers') }}</a>
                                     </li>
                                     <li class="nav-item">
                                         <div class="dropdown">
@@ -43,16 +43,24 @@
                                                 {{ auth()->user()->name }}
                                             </span>
                                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                                <li class="nav-item"><a class="dropdown-item" href="{{ route('dashboard') }}">Dashboard</a></li>
-                                                <li class="nav-item"><a class="dropdown-item" href="{{ route('auth.logout') }}">Logout</a></li>
+                                                <li class="nav-item"><a class="dropdown-item" href="{{ route('dashboard') }}">{{ __('app.title.dashboard') }}</a></li>
+                                                <li class="nav-item"><a class="dropdown-item" href="{{ route('auth.logout') }}">{{ __('auth.logout') }}</a></li>
                                             </ul>
                                         </div>
                                     </li>
                                 @else
                                     <li class="nav-item">
-                                        <a href="{{ route('auth.login') }}" class="text-decoration-none text-light h5 px-3">Login</a>
+                                        <a href="{{ route('auth.login') }}" class="text-decoration-none text-light h5 px-3">{{ __('auth.login') }}</a>
                                     </li>
                                 @endauth
+                                <li class="nav-item">
+                                    <form action="{{ route('language.switch') }}" method="GET" class="px-3">
+                                        <select name="locale" class="bg-dark text-white border border-dark" onchange='this.form.submit()'>
+                                            <option value="en" {{ app()->getLocale() == 'en' ? 'selected' : '' }}>En</option>
+                                            <option value="ru" {{ app()->getLocale() == 'ru' ? 'selected' : '' }}>Ru</option>
+                                        </select>
+                                    </form>
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -65,7 +73,7 @@
         @section('footer')
             <footer class="footer mt-auto py-3 text-center bg-dark">
                 <div class="container">
-                    <span class="text-light">Copyright © {{ date("Y") }} Mentor</span>
+                    <span class="text-light">{{ __('app.title.copyright') }} © {{ date("Y") }} Mentor</span>
                 </div>
             </footer>
         @show

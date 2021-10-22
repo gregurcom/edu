@@ -34,7 +34,7 @@
             </div>
         @empty
             <div class="alert alert-info text-center">
-                You have not followed to any course yet
+                {{ __('app.alert.no-subscribe-course') }}
             </div>
         @endforelse
     </div>

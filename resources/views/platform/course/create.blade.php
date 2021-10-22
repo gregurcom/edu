@@ -9,14 +9,14 @@
                 <form action="{{ route('platform.courses.store') }}" method="POST">
                     @csrf
 
-                    <input type="text" name="title" class="form-control" placeholder="Title">
+                    <input type="text" name="title" class="form-control" placeholder="{{ __('app.input.title') }}">
                     @error('title')
                         <div class="alert alert-danger mt-1">
                             {{ $message }}
                         </div>
                     @enderror
 
-                    <textarea name="description" class="form-control mt-2" placeholder="Description" rows="5"></textarea>
+                    <textarea name="description" class="form-control mt-2" placeholder="{{ __('app.input.description') }}" rows="5"></textarea>
                     @error('description')
                         <div class="alert alert-danger mt-1">
                             {{ $message }}
@@ -35,7 +35,7 @@
                     @enderror
 
                     <div class="text-center mt-3">
-                        <button class="btn btn-outline-dark w-25" type="submit">Create</button>
+                        <button class="btn btn-outline-dark w-25" type="submit">{{ __('app.button.create') }}</button>
                     </div>
                 </form>
 

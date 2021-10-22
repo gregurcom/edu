@@ -9,22 +9,22 @@
                 <form action="{{ route('auth.registration.save') }}" method="POST">
                     @csrf
 
-                    <input type="text" name="name" class="form-control" placeholder="Name">
+                    <input type="text" name="name" class="form-control" placeholder="{{ __('app.input.name') }}">
                     @error('name')
                         <div class="alert alert-danger mt-1">
                             {{ $message }}
                         </div>
                     @enderror
 
-                    <input type="email" name="email" class="form-control mt-2" placeholder="Email">
+                    <input type="email" name="email" class="form-control mt-2" placeholder="{{ __('app.input.email') }}">
                     @error('email')
                         <div class="alert alert-danger mt-1">
                             {{ $message }}
                         </div>
                     @enderror
 
-                    <input type="password" name="password" class="form-control mt-2" placeholder="Password">
-                    <input type="password" name="password_confirmation" class="form-control mt-2" placeholder="Password repeat">
+                    <input type="password" name="password" class="form-control mt-2" placeholder="{{ __('app.input.password') }}">
+                    <input type="password" name="password_confirmation" class="form-control mt-2" placeholder="{{ __('app.input.password-repeat') }}">
                     @error('password')
                         <div class="alert alert-danger mt-1">
                             {{ $message }}
@@ -32,10 +32,10 @@
                     @enderror
 
                     <div class="mt-2">
-                        <a href="{{ route('auth.login') }}" class="text-dark">Login</a>
+                        <a href="{{ route('auth.login') }}" class="text-dark">{{ __('auth.login') }}</a>
                     </div>
                     <div class="text-center mt-3">
-                        <button class="btn btn-outline-dark w-25" type="submit">Register</button>
+                        <button class="btn btn-outline-dark" type="submit">{{ __('app.button.register') }}</button>
                     </div>
                 </form>
 
