@@ -14,6 +14,17 @@
     <script src="{{ asset('js/app.js') }}"></script>
     <link rel="shortcut icon" href="{{ asset('images/favicon.ico') }}" type="image/x-icon">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    @env('production')
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-NQBJ9919BD"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-NQBJ9919BD');
+        </script>
+    @endenv
+
     <title>@yield('title', 'Mentor')</title>
 </head>
 <body class="h-100">
