@@ -5,6 +5,7 @@
     install-dependencies
     migrate
     link-storage
+    route-cache
 @endstory
 
 @task('update-code')
@@ -27,4 +28,9 @@
 @task('link-storage')
     cd /var/www/mentor-IT11Z
     php artisan storage:link --force
+@endtask
+
+@task('route-cache')
+    cd /var/www/mentor-IT11Z
+    php artisan route:cache
 @endtask
