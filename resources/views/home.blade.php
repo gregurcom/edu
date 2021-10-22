@@ -10,7 +10,7 @@
                         {{ __('app.title.home-paragraph') }}
                     </p>
                     <div class="mt-3">
-                        <a href="{{ route('platform.courses.index') }}" class="course-button btn btn-outline-dark rounded-pill py-3 px-3 fw-bold">{{ __('app.button.courses') }}</a>
+                        <a href="{{ route('platform.categories.list') }}" class="course-button btn btn-outline-dark rounded-pill py-3 px-3 fw-bold">{{ __('app.button.courses') }}</a>
                     </div>
                 </div>
             </div>

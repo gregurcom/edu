@@ -42,7 +42,7 @@
                         <div class="collapse navbar-collapse align-content-center bg-dark" id="navbarNav">
                             <ul class="navbar-nav">
                                 <li class="nav-item">
-                                    <a href="{{ route('platform.courses.index') }}" class="text-decoration-none text-light h5 px-3">{{ __('app.title.courses') }}</a>
+                                    <a href="{{ route('platform.categories.list') }}" class="text-decoration-none text-light h5 px-3">{{ __('app.title.courses') }}</a>
                                 </li>
                                 @auth
                                     <li class="nav-item">

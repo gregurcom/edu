@@ -19,9 +19,9 @@ class DatabaseSeeder extends Seeder
     {
         User::factory()->count(3)->create();
 
-        Course::factory()->count(3)->hasLessons(10)->hasRates(4, ['user_id' => $this->getRandomUserId()])->forCategory()->create(['user_id' => $this->getRandomUserId()]);
-        Course::factory()->count(3)->hasLessons(10)->hasRates(4, ['user_id' => $this->getRandomUserId()])->forCategory()->create(['user_id' => $this->getRandomUserId()]);
-        Course::factory()->count(3)->hasLessons(10)->hasRates(4, ['user_id' => $this->getRandomUserId()])->forCategory()->create(['user_id' => $this->getRandomUserId()]);
+        Course::factory()->count(30)->hasLessons(2)->hasRates(4, ['user_id' => $this->getRandomUserId()])->forCategory()->create(['user_id' => $this->getRandomUserId()]);
+        Course::factory()->count(25)->hasLessons(2)->hasRates(4, ['user_id' => $this->getRandomUserId()])->forCategory()->create(['user_id' => $this->getRandomUserId()]);
+        Course::factory()->count(20)->hasLessons(2)->hasRates(4, ['user_id' => $this->getRandomUserId()])->forCategory()->create(['user_id' => $this->getRandomUserId()]);
     }
 
     private function getRandomUserId()

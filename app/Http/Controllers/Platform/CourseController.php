@@ -16,11 +16,11 @@ use Illuminate\Support\Facades\Auth;
 
 class CourseController extends Controller
 {
-    public function index(): View
+    public function list(Category $category): View
     {
-        $categories = Category::with('courses')->paginate(10);
+        $courses = $category->courses()->paginate(10);
 
-        return view('platform.courses', compact('categories'));
+        return view('platform.courses', compact('courses'));
     }
 
     public function create(): View

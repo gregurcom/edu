@@ -3,7 +3,6 @@
 declare(strict_types = 1);
 
 use App\Http\Controllers\Platform\LocaleController;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Auth\AccessController;
 use App\Http\Controllers\Auth\RegistrationController;
 use App\Http\Controllers\Platform\CourseController;
@@ -12,7 +11,8 @@ use App\Http\Controllers\Platform\FileController;
 use App\Http\Controllers\Platform\LessonController;
 use App\Http\Controllers\Platform\RateController;
 use App\Http\Controllers\Platform\SubscriptionController;
-use App\Http\Controllers\System\CategoryController;
+use App\Http\Controllers\Platform\CategoryController;
+use App\Http\Controllers\System\CategoryController as SystemCategoryController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -42,7 +42,11 @@ Route::name('auth.')->group(function () {
 });
 
 Route::name('platform.')->group(function () {
-    Route::resource('courses', CourseController::class);
+
+    Route::get('categories', [CategoryController::class, 'list'])->name('categories.list');
+    Route::get('categories/{category}/courses', [CourseController::class, 'list'])->name('courses.list');
+
+    Route::resource('courses', CourseController::class)->except('index');
     Route::resource('lessons', LessonController::class)->except('index');
 
     Route::get('search', [CourseController::class, 'search'])->name('course.search');
@@ -58,6 +62,6 @@ Route::name('platform.')->group(function () {
 
 Route::name('system.')->group(function () {
     Route::middleware(['auth', 'app.system-admin'])->group(function () {
-        Route::resource('categories', CategoryController::class)->except(['index', 'show']);
+        Route::resource('categories', SystemCategoryController::class)->except(['index', 'show']);
     });
 });

@@ -23,49 +23,45 @@
             </div>
         </form>
         @error('q')
-            <div class="alert alert-danger mt-1">
-                {{ $message }}
-            </div>
+        <div class="alert alert-danger mt-1">
+            {{ $message }}
+        </div>
         @enderror
 
-        @forelse ($categories as $category)
-            <h2 class="mt-5">{{ $category->name }}</h2>
-            @forelse ($category->courses()->with('rates', 'author')->get() as $course)
-                <div class="mt-4">
-                    <div class="mt-3">
-                        <div class="row">
-                            <div class="col-md-8">
-                                <ul>
-                                    <li>
-                                        <a href="{{ route('platform.courses.show', $course->id) }}" class="text-decoration-none text-dark h3">{{ $course->title }}</a>
-                                        <span class="h4 px-2">(<a href="#" class="text-decoration-none text-dark">{{ $course->author->name }}</a>)</span>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="col-md-4 d-flex">
-                                <div class="px-3">
-                                    @if ($course->rates->count('id') > 0)
-                                        <span>
-                                            @for ($i = 1; $i <= 5; $i++)
-                                                <i class="star fa fa-star{{ round($course->averageRate()) >= $i ? '' : '-o' }}"></i>
-                                            @endfor
-                                        </span>
-                                    @endif
-                                </div>
+        @forelse ($courses as $course)
+            <div class="mt-4">
+                <div class="mt-3">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <ul>
+                                <li>
+                                    <a href="{{ route('platform.courses.show', $course->id) }}" class="text-decoration-none text-dark h3">{{ $course->title }}</a>
+                                    <span class="h4 px-2">(<a href="#" class="text-decoration-none text-dark">{{ $course->author->name }}</a>)</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-md-4 d-flex">
+                            <div class="px-3">
+                                @if ($course->rates->count('id') > 0)
+                                    <span>
+                                        @for ($i = 1; $i <= 5; $i++)
+                                            <i class="star fa fa-star{{ round($course->averageRate()) >= $i ? '' : '-o' }}"></i>
+                                        @endfor
+                                    </span>
+                                @endif
                             </div>
                         </div>
                     </div>
                 </div>
-            @empty
-                <div class="alert alert-info">
-                    {{ __('app.alert.category-without-courses') }}
-                </div>
-            @endforelse
-
+            </div>
         @empty
             <div class="alert alert-info">
-                {{ __('app.alert.no-courses') }}
+                {{ __('app.alert.category-without-courses') }}
             </div>
         @endforelse
+
+        <div class="d-flex justify-content-center mt-3 text-black">
+            {{ $courses->links() }}
+        </div>
     </div>
 @endsection
