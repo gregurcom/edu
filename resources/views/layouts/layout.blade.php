@@ -44,7 +44,7 @@
                                             </span>
                                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                                                 <li class="nav-item"><a class="dropdown-item" href="{{ route('dashboard') }}">{{ __('app.title.dashboard') }}</a></li>
-                                                <li class="nav-item"><a class="dropdown-item" href="{{ route('auth.logout') }}">{{ __('auth.logout') }}</a></li>
+                                                <li class="nav-item"><a class="dropdown-item" href="{{ route('auth.logout') }}">{{ __('app.button.logout') }}</a></li>
                                             </ul>
                                         </div>
                                     </li>

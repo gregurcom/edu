@@ -10,6 +10,7 @@ return [
         'create' => 'Create',
         'register' => 'Register',
         'login' => 'Login',
+        'logout' => 'Logout',
         'edit' => 'Edit',
         'delete' => 'Delete',
         'courses' => 'Courses',
