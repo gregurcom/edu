@@ -58,7 +58,7 @@
                 </div>
             @empty
                 <div class="alert alert-info">
-                    {{ __('app.alert.category-without-course') }}
+                    {{ __('app.alert.category-without-courses') }}
                 </div>
             @endforelse
 
