@@ -83,7 +83,7 @@
                     <h2>{{ __('app.title.about-course') }}:</h2>
                     <p>{{ $course->description }}</p>
                     <h4>{{ __('app.title.author') }}: {{ $course->author->name }}</h4>
-                    <h4>{{ __('app.title.subscribers') }}: ({{ $course->users()->count() ?: 0 }} students)</h4>
+                    <h4>{{ __('app.title.subscriptions') }}: {{ $course->users()->count() ?: 0 }}</h4>
                     <h4>{{ __('app.title.average-rating') }}: {{ round($course->averageRate()) }}</h4>
                 </div>
             </div>

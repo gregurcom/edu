@@ -21,7 +21,7 @@ return [
         'courses' => 'Courses',
         'author' => 'Author',
         'attached-files' => 'Attached file|Attached files',
-        'subscribers' => 'Subscribers',
+        'subscriptions' => 'Subscriptions',
         'home-paragraph' => 'Mentor is a platform where anyone can share their knowledge. Become a student or a mentor chose your favorite category',
         'average-rating' => 'Average rating',
         'about-course' => 'About this course',
