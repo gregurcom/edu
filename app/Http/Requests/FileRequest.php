@@ -11,7 +11,7 @@ class FileRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'files' => 'nullable',
+            'files' => 'max:2048|nullable',
         ];
     }
 }

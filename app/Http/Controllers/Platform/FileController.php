@@ -14,8 +14,8 @@ class FileController extends Controller
     public function download(File $file): StreamedResponse
     {
         $course = str_replace(' ', '', $file->lesson->course->title);
-        $path = "$course/";
+        $path = "$course/$file->name";
 
-        return Storage::disk('s3')->download($path . $file->name);
+        return Storage::disk('s3')->download($path);
     }
 }
