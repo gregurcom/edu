@@ -20,7 +20,7 @@ class CourseController extends Controller
     {
         $courses = $category->courses()->paginate(10);
 
-        return view('platform.courses', compact('courses'));
+        return view('platform.courses', compact(['courses', 'category']));
     }
 
     public function create(): View

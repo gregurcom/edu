@@ -3,7 +3,7 @@
 @section('title', 'Mentor - categories')
 
 @section('content')
-    <div class="container wrapper flex-grow-1 mt-5 mb-5">
+    <div class="container wrapper flex-grow-1 mt-5 mb-3">
         @if (session('status'))
             <div class="alert alert-info mt-2 text-center">
                 {{ session('status') }}
@@ -29,7 +29,7 @@
         @enderror
 
         @forelse ($categories as $category)
-            <h2 class="mt-5"><a href="{{ route('platform.courses.list', $category->id) }}" class="text-dark">{{ $category->name }}</a></h2>
+            <h2 class="mt-5"><a href="{{ route('platform.courses.list', $category->id) }}" class="text-dark text-decoration-none category-title">{{ $category->name }}</a></h2>
             @forelse ($category->courses()->with('rates', 'author')->latest()->take(5)->get() as $course)
                 <div class="mt-4">
                     <div class="mt-3">
@@ -68,7 +68,7 @@
             </div>
         @endforelse
 
-        <div class="d-flex justify-content-center mt-3 text-black">
+        <div class="d-flex justify-content-center text-black">
             {{ $categories->links() }}
         </div>
     </div>

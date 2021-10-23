@@ -3,7 +3,7 @@
 @section('title', 'Mentor - courses')
 
 @section('content')
-    <div class="container wrapper flex-grow-1 mt-5 mb-5">
+    <div class="container wrapper flex-grow-1 mt-5 mb-3">
         @if (session('status'))
             <div class="alert alert-info mt-2 text-center">
                 {{ session('status') }}
@@ -23,22 +23,21 @@
             </div>
         </form>
         @error('q')
-        <div class="alert alert-danger mt-1">
-            {{ $message }}
-        </div>
+            <div class="alert alert-danger mt-1">
+                {{ $message }}
+            </div>
         @enderror
 
+        <div class="text-center mb-5 mt-3">
+            <h2 class="mt-5"><a href="{{ route('platform.courses.list', $category->id) }}" class="text-dark text-decoration-none category-title">{{ $category->name }}</a></h2>
+        </div>
         @forelse ($courses as $course)
-            <div class="mt-4">
+            <div class="mt-5">
                 <div class="mt-3">
                     <div class="row">
                         <div class="col-md-8">
-                            <ul>
-                                <li>
-                                    <a href="{{ route('platform.courses.show', $course->id) }}" class="text-decoration-none text-dark h3">{{ $course->title }}</a>
-                                    <span class="h4 px-2">(<a href="#" class="text-decoration-none text-dark">{{ $course->author->name }}</a>)</span>
-                                </li>
-                            </ul>
+                            <a href="{{ route('platform.courses.show', $course->id) }}" class="text-decoration-none text-dark h3">{{ $course->title }}</a>
+                            <span class="h4 px-2">(<a href="#" class="text-decoration-none text-dark">{{ $course->author->name }}</a>)</span>
                         </div>
                         <div class="col-md-4 d-flex">
                             <div class="px-3">
@@ -60,7 +59,7 @@
             </div>
         @endforelse
 
-        <div class="d-flex justify-content-center mt-3 text-black">
+        <div class="d-flex justify-content-center text-black">
             {{ $courses->links() }}
         </div>
     </div>
