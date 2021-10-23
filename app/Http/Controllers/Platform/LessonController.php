@@ -13,6 +13,7 @@ use App\Services\LessonService;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class LessonController extends Controller
 {
@@ -25,15 +26,17 @@ class LessonController extends Controller
 
     public function store(LessonRequest $lessonRequest, FileRequest $fileRequest, LessonService $lessonService): RedirectResponse
     {
-        $lesson = Lesson::create($lessonRequest->validated());
+        DB::transaction(function () use ($lessonRequest, $fileRequest, $lessonService) {
+            $lesson = Lesson::create($lessonRequest->validated());
 
-        if ($fileRequest->hasFile('files')) {
-            $lessonService->storeAttachedFiles($lesson, $fileRequest);
-        }
-        if ($lessonRequest->status == 1) {
-            // send emails to subscribers with a link to lesson
-            $lessonService->sendLessonCreateNotification($lesson);
-        }
+            if ($fileRequest->hasFile('files')) {
+                $lessonService->storeAttachedFiles($lesson, $fileRequest);
+            }
+            if ($lessonRequest->status == 1) {
+                // send emails to subscribers with a link to lesson
+                $lessonService->sendLessonCreateNotification($lesson);
+            }
+        });
 
         return redirect()->route('platform.courses.show', $lesson->course->id)->with('status', __('app.alert.create-lesson'));
     }
