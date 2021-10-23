@@ -30,7 +30,7 @@ class LessonService
                 'lesson_id' => $lesson->id,
             ]);
 
-            Storage::put($file->path(), $file->getContent(), 'private');
+            Storage::disk('s3')->put($file->path(), $file->getContent(), 'private');
         }
     }
 

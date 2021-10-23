@@ -13,6 +13,6 @@ class FileController extends Controller
 {
     public function download(File $file): StreamedResponse
     {
-        return Storage::download($file->path, $file->name);
+        return Storage::disk('s3')->download($file->path, $file->name);
     }
 }
