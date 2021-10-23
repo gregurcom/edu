@@ -57,7 +57,7 @@
                     </div>
                 </div>
             @empty
-                <div class="alert alert-info">
+                <div class="alert alert-info mt-4">
                     {{ __('app.alert.category-without-courses') }}
                 </div>
             @endforelse
