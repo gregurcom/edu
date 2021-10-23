@@ -10,7 +10,12 @@
 
 @task('update-code')
     cd /var/www/mentor-IT11Z
-    git pull origin main
+
+    @if ($branch)
+        git pull origin {{ $branch }}
+    @else
+        git pull origin main
+    @endif
 @endtask
 
 @task('install-dependencies')
