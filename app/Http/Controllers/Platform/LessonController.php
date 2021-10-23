@@ -38,7 +38,7 @@ class LessonController extends Controller
             }
         });
 
-        return redirect()->route('platform.courses.show', $lesson->course->id)->with('status', __('app.alert.create-lesson'));
+        return redirect()->route('platform.courses.show', $lessonRequest->course_id)->with('status', __('app.alert.create-lesson'));
     }
 
     public function show(Lesson $lesson, LessonService $lessonService): View
