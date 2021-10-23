@@ -36,7 +36,7 @@
                         </div>
                     @enderror
                     <div class="text-center mt-3">
-                        <button class="btn btn-outline-dark w-25" type="submit">{{ __('app.button.create') }}</button>
+                        <button class="btn btn-outline-dark" type="submit">{{ __('app.button.create') }}</button>
                     </div>
                 </form>
 

@@ -12,6 +12,7 @@ use App\Http\Controllers\Platform\LessonController;
 use App\Http\Controllers\Platform\RateController;
 use App\Http\Controllers\Platform\SubscriptionController;
 use App\Http\Controllers\Platform\CategoryController;
+use App\Http\Controllers\Platform\TechSupportController;
 use App\Http\Controllers\System\CategoryController as SystemCategoryController;
 use Illuminate\Support\Facades\Route;
 
@@ -57,6 +58,9 @@ Route::name('platform.')->group(function () {
         Route::resource('subscriptions', SubscriptionController::class)->only(['index', 'store', 'destroy']);
 
         Route::get('courses/rate/{course}', [RateController::class, 'rate'])->name('course.rate');
+
+        Route::get('tech-support', [TechSupportController::class, 'show'])->name('tech-support');
+        Route::post('tech-support', [TechSupportController::class, 'send'])->name('tech-support.send');
     });
 });
 

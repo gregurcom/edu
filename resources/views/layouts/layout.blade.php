@@ -49,6 +49,9 @@
                                         <a href="{{ route('platform.subscriptions.index') }}" class="text-decoration-none text-light h5 px-3">{{ __('app.title.subscriptions') }}</a>
                                     </li>
                                     <li class="nav-item">
+                                        <a href="{{ route('platform.tech-support') }}" class="text-decoration-none text-light h5 px-3">{{ __('app.title.tech-support') }}</a>
+                                    </li>
+                                    <li class="nav-item">
                                         <div class="dropdown">
                                             <span class="dropdown-toggle text-white h5 px-3" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                                                 {{ auth()->user()->name }}

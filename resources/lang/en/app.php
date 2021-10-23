@@ -14,6 +14,7 @@ return [
         'edit' => 'Edit',
         'delete' => 'Delete',
         'courses' => 'Courses',
+        'submit' => 'Submit',
     ],
     'title' => [
         'dashboard' => 'Dashboard',
@@ -27,6 +28,7 @@ return [
         'about-course' => 'About this course',
         'your-courses' => 'Your courses',
         'copyright' => 'Copyright',
+        'tech-support' => 'Tech support',
     ],
     'input' => [
         'course-search' => 'Search course',
@@ -59,5 +61,6 @@ return [
         'delete-category' => 'You have successfully deleted category',
         'no-dashboard-courses' => 'You don\'t have any courses yet',
         'auth-fail' => 'The provided credentials do not match our records',
+        'tech-support' => 'You have successfully sent your message to tech support',
     ],
 ];
