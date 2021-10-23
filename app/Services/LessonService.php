@@ -23,14 +23,15 @@ class LessonService
     public function storeAttachedFiles(Lesson $lesson, FileRequest $fileRequest): void
     {
         foreach ($fileRequest->file('files') as $file) {
+            $course = str_replace(' ', '', $lesson->course->title);
             $name = $file->getClientOriginalName();
+            $path = $file->storeAs($course, $name, 's3');
+
             File::create([
                 'name' => $name,
-                'path' => $file->path(),
+                'path' => Storage::disk('s3')->url($path),
                 'lesson_id' => $lesson->id,
             ]);
-
-            Storage::disk('s3')->put($file->path(), $file->getContent(), 'private');
         }
     }
 
