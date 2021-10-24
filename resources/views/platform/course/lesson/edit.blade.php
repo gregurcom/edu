@@ -6,7 +6,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-4 offset-md-4">
-                <form action="{{ route('platform.lessons.update', $lesson->id) }}" method="POST">
+                <form action="{{ route('platform.lessons.update', $lesson->slug) }}" method="POST">
                     @csrf
                     @method('PUT')
 

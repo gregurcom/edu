@@ -59,11 +59,11 @@
                 <h2 class="mt-5 mb-4">{{ __('app.title.lessons') }}: ({{ $course->lessons->count() }})</h2>
                 @forelse ($course->lessons as $lesson)
                     <div class="mt-4">
-                        <h4><a href="{{ route('platform.lessons.show', $lesson->id) }}" class="text-decoration-none text-dark">{{ $lesson->title }}</a></h4>
+                        <h4><a href="{{ route('platform.lessons.show', $lesson->slug) }}" class="text-decoration-none text-dark">{{ $lesson->title }}</a></h4>
                         <div class="d-flex">
                             @can('view', $course)
-                                <a href="{{ route('platform.lessons.edit', $lesson->id) }}" class="btn btn-outline-primary">{{ __('app.button.edit') }}</a>
-                                <form action="{{ route('platform.lessons.destroy', $lesson->id) }}" method="POST" class="px-2">
+                                <a href="{{ route('platform.lessons.edit', $lesson->slug) }}" class="btn btn-outline-primary">{{ __('app.button.edit') }}</a>
+                                <form action="{{ route('platform.lessons.destroy', $lesson->slug) }}" method="POST" class="px-2">
                                     @csrf
                                     @method('DELETE')
 

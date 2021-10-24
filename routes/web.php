@@ -44,10 +44,14 @@ Route::name('auth.')->group(function () {
 
 Route::name('platform.')->group(function () {
     Route::get('categories', [CategoryController::class, 'list'])->name('categories.list');
-    Route::get('categories/{category}/courses', [CourseController::class, 'list'])->name('courses.list');
+    Route::get('categories/{category:slug}/courses', [CourseController::class, 'list'])->name('courses.list');
 
-    Route::resource('courses', CourseController::class)->except('index');
-    Route::resource('lessons', LessonController::class)->except('index');
+    Route::resource('courses', CourseController::class)->except('index')->scoped([
+        'course' => 'slug',
+    ]);
+    Route::resource('lessons', LessonController::class)->except('index')->scoped([
+        'lesson' => 'slug',
+    ]);
 
     Route::get('search', [CourseController::class, 'search'])->name('course.search');
 

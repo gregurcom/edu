@@ -20,6 +20,7 @@ class LessonFactory extends Factory
     {
         return [
             'title' => $this->faker->jobTitle,
+            'slug' => $this->faker->slug,
             'information' => $this->faker->paragraphs(rand(10, 15), true),
         ];
     }

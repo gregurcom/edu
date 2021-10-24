@@ -32,7 +32,8 @@ class CourseController extends Controller
 
     public function store(CourseRequest $request): RedirectResponse
     {
-        Course::create(array_merge(['user_id' => Auth::id()], $request->validated()));
+        $slug = strtolower(str_replace(' ', '-', $request->title));
+        Course::create(array_merge(['user_id' => Auth::id(), 'slug' => $slug], $request->validated()));
 
         return redirect()->route('dashboard')->with('status', __('app.alert.create-course'));
     }
