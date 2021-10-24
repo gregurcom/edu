@@ -23,7 +23,7 @@
                 <div class="col-md-6" id="subscribeButton">
                     @auth
                         <div class="px-4">
-                            @if (Auth::user()->isSubscribed($course->id))
+                            @if (Auth::user()->isSubscribedOnCourse($course->id))
                                 <form action="{{ route('platform.subscriptions.destroy', $course->id) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
@@ -48,7 +48,7 @@
             <form action="{{ route('platform.course.rate', $course->id) }}" method="GET" class="mt-3">
                 @for ($i = 1; $i <= 5; $i++)
                     <label for="{{ $i }}">
-                        <input name="rate" type="submit" value="{{ $i }}" id="{{ 'rate' . $i }}" class="rate btn btn-outline-dark {{ $course->isRateByUser() == $i ? 'bg-dark text-light' : ' ' }}">
+                        <input name="rate" type="submit" value="{{ $i }}" id="{{ 'rate' . $i }}" class="rate btn btn-outline-dark {{ $course->isRateByUser(Auth::id()) == $i ? 'bg-dark text-light' : ' ' }}">
                     </label>
                 @endfor
             </form>
@@ -83,7 +83,7 @@
                     <h2>{{ __('app.title.about-course') }}:</h2>
                     <p>{{ $course->description }}</p>
                     <h4>{{ __('app.title.author') }}: {{ $course->author->name }}</h4>
-                    <h4>{{ __('app.title.subscriptions') }}: {{ $course->users()->count() ?: 0 }}</h4>
+                    <h4>{{ __('app.title.subscriptions') }}: {{ $course->users()->count() }}</h4>
                     <h4>{{ __('app.title.average-rating') }}: {{ round($course->averageRate()) }}</h4>
                 </div>
             </div>

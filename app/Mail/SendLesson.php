@@ -18,6 +18,6 @@ class SendLesson extends Mailable
 
     public function build(): self
     {
-        return $this->subject('There is a new lesson')->view('mail.lesson');
+        return $this->subject('New lesson!')->view('mail.lesson');
     }
 }

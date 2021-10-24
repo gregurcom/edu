@@ -9,7 +9,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class SystemAdminMiddleware
+class AdminMiddleware
 {
     /**
      * Handle an incoming request.
@@ -20,7 +20,7 @@ class SystemAdminMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        if (Auth::user()->role != User::SYSTEM_ADMIN_ROLE) {
+        if (Auth::user()->role != User::ADMIN_ROLE) {
             return redirect()->route('dashboard');
         }
 

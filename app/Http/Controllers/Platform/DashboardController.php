@@ -13,7 +13,7 @@ class DashboardController extends Controller
 {
     public function show(): View
     {
-        if (Auth::user()->isSystemAdmin()) {
+        if (Auth::user()->isAdmin()) {
             $categories = Category::get();
 
             return view('system.dashboard', compact('categories'));

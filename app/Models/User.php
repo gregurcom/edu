@@ -42,7 +42,7 @@ class User extends Authenticatable implements MustVerifyEmail
 {
     use HasApiTokens, HasFactory, Notifiable;
 
-    const SYSTEM_ADMIN_ROLE = 'system-admin';
+    const ADMIN_ROLE = 'admin';
     const USER_ROLE = 'user';
 
     protected $guarded = [];
@@ -75,12 +75,12 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->belongsToMany(Course::class);
     }
 
-    public function isSystemAdmin(): bool
+    public function isAdmin(): bool
     {
-        return $this->role == self::SYSTEM_ADMIN_ROLE;
+        return $this->role == self::ADMIN_ROLE;
     }
 
-    public function isSubscribed(int $courseId): bool
+    public function isSubscribedOnCourse(int $courseId): bool
     {
         foreach ($this->subscriptions as $subscription) {
             if ($subscription->id == $courseId) {

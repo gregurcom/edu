@@ -43,7 +43,6 @@ Route::name('auth.')->group(function () {
 });
 
 Route::name('platform.')->group(function () {
-
     Route::get('categories', [CategoryController::class, 'list'])->name('categories.list');
     Route::get('categories/{category}/courses', [CourseController::class, 'list'])->name('courses.list');
 
@@ -65,7 +64,7 @@ Route::name('platform.')->group(function () {
 });
 
 Route::name('system.')->group(function () {
-    Route::middleware(['auth', 'app.system-admin'])->group(function () {
+    Route::middleware(['auth', 'app.admin'])->group(function () {
         Route::resource('categories', SystemCategoryController::class)->except(['index', 'show']);
     });
 });

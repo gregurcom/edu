@@ -9,7 +9,6 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Support\Facades\Auth;
 
 /**
  * App\Models\Course
@@ -66,17 +65,15 @@ class Course extends Model
         return $this->hasMany(Rate::class);
     }
 
-    public function averageRate(): float|null
+    public function averageRate(): float
     {
-        if ($this->rates->count('id') > 0) {
-            return $this->rates->sum('rate') / $this->rates->count('id');
-        }
+        $countRates = $this->rates->count('id');
 
-        return null;
+        return $countRates > 0 ? $this->rates->sum('rate') / $countRates : 0;
     }
 
-    public function isRateByUser(): int|null
+    public function isRateByUser($userId): int|null
     {
-        return $this->rates()->where('user_id', Auth::id())->first()->rate ?? null;
+        return $this->rates()->where('user_id', $userId)->first()->rate ?? null;
     }
 }

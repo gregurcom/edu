@@ -8,7 +8,7 @@ use App\Models\User;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Hash;
 
-class CreateSysAdmin extends Command
+class CreateAdmin extends Command
 {
     /**
      * The name and signature of the console command.
@@ -22,7 +22,7 @@ class CreateSysAdmin extends Command
      *
      * @var string
      */
-    protected $description = 'Create system admin';
+    protected $description = 'Create admin';
 
     public function handle(): void
     {
@@ -30,7 +30,7 @@ class CreateSysAdmin extends Command
             'name' => $this->argument('name'),
             'email' => $this->argument('email'),
             'password' => Hash::make($this->argument('password')),
-            'role' => User::SYSTEM_ADMIN_ROLE,
+            'role' => User::ADMIN_ROLE,
         ]);
     }
 }
