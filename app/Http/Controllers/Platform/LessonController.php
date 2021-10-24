@@ -59,7 +59,9 @@ class LessonController extends Controller
     public function update(Lesson $lesson, LessonRequest $request): RedirectResponse
     {
         $this->authorize('update', $lesson);
-        $lesson->update($request->validated());
+
+        $slug = strtolower(str_replace(' ', '-', $request->title));
+        $lesson->update(array_merge(['slug' => $slug], $request->validated()));
 
         return redirect()->route('platform.courses.show', $lesson->course)->with('status', __('app.alert.edit-lesson'));
     }

@@ -37,7 +37,8 @@ class CategoryController extends Controller
 
     public function update(Category $category, CategoryRequest $request): RedirectResponse
     {
-        $category->update($request->validated());
+        $slug = strtolower(str_replace(' ', '-', $request->name));
+        $category->update(array_merge(['slug' => $slug], $request->validated()));
 
         return redirect()->route('dashboard')->with('status', __('app.alert.edit-category'));
     }

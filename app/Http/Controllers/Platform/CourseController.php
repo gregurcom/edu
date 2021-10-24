@@ -54,7 +54,9 @@ class CourseController extends Controller
     public function update(Course $course, CourseRequest $request): RedirectResponse
     {
         $this->authorize('update', $course);
-        $course->update($request->validated());
+
+        $slug = strtolower(str_replace(' ', '-', $request->title));
+        $course->update(array_merge(['slug' => $slug], $request->validated()));
 
         return redirect()->route('dashboard')->with('status', __('app.alert.edit-course'));
     }

@@ -12,7 +12,7 @@ class LessonRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => 'required',
+            'title' => 'required|string|max:255',
             'information' => 'required',
             'course_id' => 'integer',
             'status' => Rule::in([0, 1]),
