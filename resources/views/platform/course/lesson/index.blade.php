@@ -25,7 +25,7 @@
                 <span class="text-secondary">{{ $lesson->created_at->day }} {{ $lesson->created_at->monthName }}, {{ $readDuration }}</span>
             </div>
             <div class="mt-5">
-                <p>{{ $lesson->information }}</p>
+                <p>{!! $lesson->information !!}</p>
             </div>
         </div>
     </div>

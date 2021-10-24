@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Tonysm\RichTextLaravel\Models\Traits\HasRichText;
 
 /**
  * App\Models\Lesson
@@ -35,9 +36,11 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  */
 class Lesson extends Model
 {
-    use HasFactory;
+    use HasFactory, HasRichText;
 
     protected $guarded = [];
+
+    protected $richTextFields = [];
 
     public function course(): BelongsTo
     {
