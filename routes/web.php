@@ -2,6 +2,7 @@
 
 declare(strict_types = 1);
 
+use App\Http\Controllers\Auth\EmailVerificationController;
 use App\Http\Controllers\Platform\LocaleController;
 use App\Http\Controllers\Auth\AccessController;
 use App\Http\Controllers\Auth\RegistrationController;
@@ -51,7 +52,7 @@ Route::name('platform.')->group(function () {
 
     Route::get('search', [CourseController::class, 'search'])->name('course.search');
 
-    Route::middleware('auth')->group(function () {
+    Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('file/{file}/download', [FileController::class, 'download'])->name('file.download');
 
         Route::resource('subscriptions', SubscriptionController::class)->only(['index', 'store', 'destroy']);
@@ -66,5 +67,16 @@ Route::name('platform.')->group(function () {
 Route::name('system.')->group(function () {
     Route::middleware(['auth', 'app.admin'])->group(function () {
         Route::resource('categories', SystemCategoryController::class)->except(['index', 'show']);
+    });
+});
+
+Route::middleware(['auth', 'app.email-verification'])->group(function () {
+    Route::name('verification.')->group(function () {
+        Route::get('/verify-email', [EmailVerificationController::class, 'show'])->name('notice');
+        Route::post('/verify-email/request', [EmailVerificationController::class, 'request'])->name('request');
+
+        Route::get('/verify-email/{id}/{hash}', [EmailVerificationController::class, 'verify'])
+            ->middleware('signed')
+            ->name('verify');
     });
 });
