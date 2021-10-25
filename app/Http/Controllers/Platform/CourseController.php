@@ -32,8 +32,7 @@ class CourseController extends Controller
 
     public function store(CourseRequest $request): RedirectResponse
     {
-        $slug = strtolower(str_replace(' ', '-', $request->title));
-        Course::create(array_merge(['user_id' => Auth::id(), 'slug' => $slug], $request->validated()));
+        Course::create(array_merge(['user_id' => Auth::id()], $request->validated()));
 
         return redirect()->route('dashboard')->with('status', __('app.alert.create-course'));
     }
@@ -54,9 +53,7 @@ class CourseController extends Controller
     public function update(Course $course, CourseRequest $request): RedirectResponse
     {
         $this->authorize('update', $course);
-
-        $slug = strtolower(str_replace(' ', '-', $request->title));
-        $course->update(array_merge(['slug' => $slug], $request->validated()));
+        $course->update($request->validated());
 
         return redirect()->route('dashboard')->with('status', __('app.alert.edit-course'));
     }

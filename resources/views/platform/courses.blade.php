@@ -36,7 +36,7 @@
                 <div class="mt-3">
                     <div class="row">
                         <div class="col-md-8">
-                            <a href="{{ route('platform.courses.show', $course->slug) }}" class="text-decoration-none text-dark h3">{{ $course->title }}</a>
+                            <a href="{{ route('platform.courses.show', $course->id) }}" class="text-decoration-none text-dark h3">{{ $course->title }}</a>
                             <span class="h4 px-2">(<a href="#" class="text-decoration-none text-dark">{{ $course->author->name }}</a>)</span>
                         </div>
                         <div class="col-md-4 d-flex">

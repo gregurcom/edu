@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Str;
 use Tonysm\RichTextLaravel\Models\Traits\HasRichText;
 
 /**
@@ -50,5 +51,17 @@ class Lesson extends Model
     public function files(): HasMany
     {
         return $this->hasMany(File::class);
+    }
+
+    public function getReadDuration(): string
+    {
+        Str::macro('readDuration', function(...$text) {
+            $totalWords = str_word_count(implode(" ", $text));
+            $minutesToRead = round($totalWords / 200);
+
+            return (int) max(1, $minutesToRead);
+        });
+
+        return Str::readDuration($this->information) . ' min read';
     }
 }

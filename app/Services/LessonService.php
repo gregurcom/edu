@@ -34,16 +34,4 @@ class LessonService
             ]);
         }
     }
-
-    public function getReadDuration(Lesson $lesson): string
-    {
-        Str::macro('readDuration', function(...$text) {
-            $totalWords = str_word_count(implode(" ", $text));
-            $minutesToRead = round($totalWords / 200);
-
-            return (int) max(1, $minutesToRead);
-        });
-
-        return Str::readDuration($lesson->information) . ' min read';
-    }
 }

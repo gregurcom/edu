@@ -18,11 +18,11 @@
                 <h2 class="mb-5">{{ __('app.title.your-courses') }}:</h2>
                 @foreach($courses as $course)
                     <div class="mt-3">
-                        <h4><a href="{{ route('platform.courses.show', $course->slug) }}" class="text-decoration-none text-dark">{{ $course->title }}</a></h4>
+                        <h4><a href="{{ route('platform.courses.show', $course->id) }}" class="text-decoration-none text-dark">{{ $course->title }}</a></h4>
                         <p>{{ $course->description }}</p>
                         <div class="d-flex">
-                            <a href="{{ route('platform.courses.edit', $course->slug) }}" class="btn btn-outline-primary">{{ __('app.button.edit') }}</a>
-                            <form action="{{ route('platform.courses.destroy', $course->slug) }}" method="POST" class="px-2">
+                            <a href="{{ route('platform.courses.edit', $course->id) }}" class="btn btn-outline-primary">{{ __('app.button.edit') }}</a>
+                            <form action="{{ route('platform.courses.destroy', $course->id) }}" method="POST" class="px-2">
                                 @csrf
                                 @method('DELETE')
 

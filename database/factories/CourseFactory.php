@@ -20,7 +20,6 @@ class CourseFactory extends Factory
     {
         return [
             'title' => $this->faker->name,
-            'slug' => $this->faker->slug,
             'description' => $this->faker->paragraph,
         ];
     }

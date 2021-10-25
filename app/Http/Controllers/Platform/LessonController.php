@@ -26,9 +26,8 @@ class LessonController extends Controller
 
     public function store(LessonRequest $lessonRequest, FileRequest $fileRequest, LessonService $lessonService): RedirectResponse
     {
-        $slug = strtolower(str_replace(' ', '-', $lessonRequest->title));
-        DB::transaction(function () use ($lessonRequest, $fileRequest, $lessonService, $slug) {
-            $lesson = Lesson::create(array_merge(['slug' => $slug], $lessonRequest->validated()));
+        DB::transaction(function () use ($lessonRequest, $fileRequest, $lessonService) {
+            $lesson = Lesson::create($lessonRequest->validated());
 
             if ($fileRequest->hasFile('files')) {
                 $lessonService->storeAttachedFiles($lesson, $fileRequest);
@@ -39,12 +38,12 @@ class LessonController extends Controller
             }
         });
 
-        return redirect()->route('platform.lessons.show', $slug)->with('status', __('app.alert.create-lesson'));
+        return redirect()->route('platform.courses.show', $lessonRequest->course_id)->with('status', __('app.alert.create-lesson'));
     }
 
-    public function show(Lesson $lesson, LessonService $lessonService): View
+    public function show(Lesson $lesson): View
     {
-        $readDuration = $lessonService->getReadDuration($lesson);
+        $readDuration = $lesson->getReadDuration();
 
         return view('platform.course.lesson.index', compact(['lesson', 'readDuration']));
     }
@@ -59,9 +58,7 @@ class LessonController extends Controller
     public function update(Lesson $lesson, LessonRequest $request): RedirectResponse
     {
         $this->authorize('update', $lesson);
-
-        $slug = strtolower(str_replace(' ', '-', $request->title));
-        $lesson->update(array_merge(['slug' => $slug], $request->validated()));
+        $lesson->update($request->validated());
 
         return redirect()->route('platform.courses.show', $lesson->course)->with('status', __('app.alert.edit-lesson'));
     }

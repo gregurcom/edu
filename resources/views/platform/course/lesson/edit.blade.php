@@ -4,7 +4,7 @@
 
 @section('content')
     <div class="container container wrapper flex-grow-1 mt-5 mb-5">
-        <form action="{{ route('platform.lessons.update', $lesson->slug) }}" method="POST">
+        <form action="{{ route('platform.lessons.update', $lesson->id) }}" method="POST">
             @csrf
             @method('PUT')
 
