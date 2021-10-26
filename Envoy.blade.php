@@ -4,8 +4,8 @@
     update-code
     install-dependencies
     migrate
-    link-storage
     route-cache
+    link-storage
 @endstory
 
 @task('update-code')
