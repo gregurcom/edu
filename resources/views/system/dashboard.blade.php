@@ -1,6 +1,6 @@
 @extends('layouts.layout')
 
-@section('title', 'Mentor - dashboard')
+@section('title', 'Mentor - admin dashboard')
 
 @section('content')
     <div class="container wrapper flex-grow-1 mt-3">

@@ -5,7 +5,7 @@
 @section('content')
     <div class="container wrapper flex-grow-1 mt-5 mb-3">
         @if (session('status'))
-            <div class="alert alert-info mt-2 text-center">
+            <div class="alert alert-dark mt-2 text-center">
                 {{ session('status') }}
             </div>
         @endif

@@ -8,7 +8,7 @@
             <a href="{{ route('platform.courses.create') }}" class="btn btn-outline-dark">{{ __('app.button.create-course') }}</a>
         </div>
         @if (session('status'))
-            <div class="alert alert-info mt-2 text-center">
+            <div class="alert alert-dark mt-2 text-center">
                 {{ session('status') }}
             </div>
         @endif

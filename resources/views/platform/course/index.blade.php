@@ -11,7 +11,7 @@
         @endcan
 
         @if (session('status'))
-            <div class="alert alert-info text-center">
+            <div class="alert alert-dark text-center">
                 {{ session('status') }}
             </div>
         @endif

@@ -70,12 +70,12 @@ Route::name('system.')->group(function () {
     });
 });
 
-Route::middleware(['auth', 'app.email-verification'])->group(function () {
-    Route::name('verification.')->group(function () {
-        Route::get('/verify-email', [EmailVerificationController::class, 'show'])->name('notice');
-        Route::post('/verify-email/request', [EmailVerificationController::class, 'request'])->name('request');
+Route::name('verification.')->group(function () {
+    Route::middleware(['auth', 'app.email-verification'])->group(function () {
+        Route::get('verify-email', [EmailVerificationController::class, 'show'])->name('notice');
+        Route::post('verify-email/request', [EmailVerificationController::class, 'request'])->name('request');
 
-        Route::get('/verify-email/{id}/{hash}', [EmailVerificationController::class, 'verify'])
+        Route::get('verify-email/{id}/{hash}', [EmailVerificationController::class, 'verify'])
             ->middleware('signed')
             ->name('verify');
     });

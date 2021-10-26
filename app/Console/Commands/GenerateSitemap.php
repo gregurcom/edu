@@ -28,9 +28,8 @@ class GenerateSitemap extends Command
     {
         Sitemap::create()
             ->add(Url::create('/'))
+            ->add(Url::create('/categories'))
             ->add(Url::create('/courses'))
-            ->add(Url::create('/subscriptions'))
-            ->add(Url::create('/dashboard'))
             ->add(Url::create('/lessons'))
             ->add(Url::create('/login'))
             ->add(Url::create('/register'))
