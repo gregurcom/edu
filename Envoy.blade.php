@@ -39,3 +39,8 @@
     cd /var/www/mentor-IT11Z
     php artisan route:cache
 @endtask
+
+@task('app:generate-sitemap')
+    cd /var/www/mentor-IT11Z
+    php artisan app:generate-sitemap
+@endtask
