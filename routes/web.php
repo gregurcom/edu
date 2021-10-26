@@ -60,7 +60,9 @@ Route::name('platform.')->group(function () {
         Route::get('courses/rate/{course}', [RateController::class, 'rate'])->name('course.rate');
 
         Route::get('tech-support', [TechSupportController::class, 'show'])->name('tech-support');
-        Route::post('tech-support', [TechSupportController::class, 'send'])->name('tech-support.send');
+        Route::post('tech-support', [TechSupportController::class, 'send'])
+            ->name('tech-support.send')
+            ->middleware('throttle:tech-support');
     });
 });
 
