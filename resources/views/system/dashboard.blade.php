@@ -1,7 +1,5 @@
 @extends('layouts.layout')
 
-@section('title', 'Mentor - admin dashboard')
-
 @section('content')
     <div class="container wrapper flex-grow-1 mt-3">
         <a href="{{ route('system.categories.create') }}" class="btn btn-outline-dark mb-3">Create category</a>
@@ -24,21 +22,26 @@
                 @foreach ($categories as $position => $category)
                     <tr class="text-center">
                         <td>{{ $position + 1 }}</td>
-                        <td>{{ $category->name }}</td>
+                        <td>
+                            <a href="{{ route('platform.courses.list', $category->id) }}" class="text-dark">{{ $category->name }}</a>
+                        </td>
                         <td>{{ $category->courses->count() }}</td>
                         <td>{{ $category->created_at }}</td>
                         <td>
-                            <a href="{{ route('system.categories.edit', $category->id) }}" class="btn btn-outline-primary w-75">Edit</a>
+                            <a href="{{ route('system.categories.edit', $category->id) }}" class="btn btn-outline-primary table-button">Edit</a>
                             <form action="{{ route('system.categories.destroy', $category->id) }}" method="POST" class="mt-2">
                                 @csrf
                                 @method('DELETE')
 
-                                <button type="submit" class="btn btn-outline-danger w-75">Delete</button>
+                                <button type="submit" class="btn btn-outline-danger table-button">Delete</button>
                             </form>
                         </td>
                     </tr>
                 @endforeach
             </tbody>
         </table>
+        <div class="d-flex justify-content-center">
+            {{ $categories->links() }}
+        </div>
     </div>
 @endsection

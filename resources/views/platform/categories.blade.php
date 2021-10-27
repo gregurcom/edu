@@ -29,7 +29,9 @@
         @enderror
 
         @forelse ($categories as $category)
-            <h2 class="mt-5"><a href="{{ route('platform.courses.list', $category->id) }}" class="text-dark text-decoration-none category-title">{{ $category->name }}</a></h2>
+            <h2 class="mt-5">
+                <a href="{{ route('platform.courses.list', $category->id) }}" class="text-dark text-decoration-none title-border">{{ $category->name }}</a>
+            </h2>
             @forelse ($category->courses()->with('rates', 'author')->latest()->take(5)->get() as $course)
                 <div class="mt-4">
                     <div class="mt-3">

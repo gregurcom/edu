@@ -56,7 +56,9 @@
 
         <div class="row">
             <div class="col-md-6">
-                <h2 class="mt-5 mb-4">{{ __('app.title.lessons') }}: ({{ $course->lessons->count() }})</h2>
+                <h2 class="mt-5 mb-4">
+                    <span class="title-border">{{ __('app.title.lessons') }}: ({{ $course->lessons->count() }})</span>
+                </h2>
                 @forelse ($course->lessons as $lesson)
                     <div class="mt-4">
                         <h4 class="lesson-title">
@@ -82,7 +84,9 @@
             </div>
             <div class="col-md-6 mt-5 d-flex justify-content-center">
                 <div>
-                    <h2>{{ __('app.title.about-course') }}:</h2>
+                    <h2>
+                        <span class="title-border">{{ __('app.title.about-course') }}:</span>
+                    </h2>
                     <p>{{ $course->description }}</p>
                     <h4>{{ __('app.title.author') }}: {{ $course->author->name }}</h4>
                     <h4>{{ __('app.title.subscriptions') }}: {{ $course->users()->count() }}</h4>

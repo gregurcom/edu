@@ -7,7 +7,7 @@ use App\Http\Controllers\Platform\LocaleController;
 use App\Http\Controllers\Auth\AccessController;
 use App\Http\Controllers\Auth\RegistrationController;
 use App\Http\Controllers\Platform\CourseController;
-use App\Http\Controllers\Platform\DashboardController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Platform\FileController;
 use App\Http\Controllers\Platform\LessonController;
 use App\Http\Controllers\Platform\RateController;

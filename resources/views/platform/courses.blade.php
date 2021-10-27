@@ -28,8 +28,10 @@
             </div>
         @enderror
 
-        <div class="text-center mb-5 mt-3">
-            <h2 class="mt-5"><a href="{{ route('platform.courses.list', $category->id) }}" class="text-dark text-decoration-none category-title">{{ $category->name }}</a></h2>
+        <div class="text-center mb-5 mt-5">
+            <h2>
+                <a href="{{ route('platform.courses.list', $category->id) }}" class="text-dark text-decoration-none title-border">{{ $category->name }}</a>
+            </h2>
         </div>
         @forelse ($courses as $course)
             <div class="mt-5">

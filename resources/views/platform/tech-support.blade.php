@@ -7,7 +7,7 @@
         <div class="row">
             <div class="col-md-4 offset-md-4">
                 <div class="text-center">
-                    <h3 class="page-title">Mentor - {{ __('app.title.tech-support') }}</h3>
+                    <h3><span class="title-border">Mentor - {{ __('app.title.tech-support') }}</span></h3>
                 </div>
                 <form action="{{ route('platform.tech-support.send') }}" method="POST" class="mt-3">
                     @csrf
