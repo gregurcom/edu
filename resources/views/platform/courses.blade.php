@@ -30,7 +30,7 @@
 
         <div class="text-center mb-5 mt-5">
             <h2>
-                <a href="{{ route('platform.courses.list', $category->id) }}" class="text-dark text-decoration-none title-border">{{ $category->name }}</a>
+                <a href="{{ route('platform.courses.list', $category->id) }}" class="text-dark text-decoration-none head-link">{{ $category->name }}</a>
             </h2>
         </div>
         @forelse ($courses as $course)

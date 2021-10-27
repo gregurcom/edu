@@ -30,7 +30,7 @@
 
         @forelse ($categories as $category)
             <h2 class="mt-5">
-                <a href="{{ route('platform.courses.list', $category->id) }}" class="text-dark text-decoration-none title-border">{{ $category->name }}</a>
+                <a href="{{ route('platform.courses.list', $category->id) }}" class="text-dark text-decoration-none head-link">{{ $category->name }}</a>
             </h2>
             @forelse ($category->courses()->with('rates', 'author')->latest()->take(5)->get() as $course)
                 <div class="mt-4">

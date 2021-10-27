@@ -42,13 +42,13 @@ footer, nav {
     }
 
     .nav-item {
-        margin-top: 5px;
+        margin-top: 15px;
     }
 
     .navbar-collapse {
         margin-top: 8px;
         z-index: 1;
-        position: relative !important;
+        position: relative;
     }
 }
 
@@ -74,7 +74,7 @@ footer, nav {
     }
 }
 
-.title-border {
+.head-link {
     border-bottom: 3px solid rgba(105, 210, 241, 0.4);
 }
 
@@ -89,4 +89,8 @@ footer, nav {
 .trix-content {
     min-height: 300px !important;
     overflow-y: auto;
+}
+
+#switch-lang {
+    padding-left: 11px;
 }

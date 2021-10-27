@@ -68,8 +68,8 @@
                                     </li>
                                 @endauth
                                 <li class="nav-item">
-                                    <form action="{{ route('language.switch') }}" method="GET" class="px-3">
-                                        <select name="locale" class="bg-dark text-white border border-dark" onchange='this.form.submit()'>
+                                    <form action="{{ route('language.switch') }}" method="GET">
+                                        <select name="locale" class="bg-dark text-white border border-dark h6" id="switch-lang" onchange='this.form.submit()'>
                                             <option value="en" {{ app()->getLocale() == 'en' ? 'selected' : '' }}>En</option>
                                             <option value="ru" {{ app()->getLocale() == 'ru' ? 'selected' : '' }}>Ru</option>
                                         </select>
