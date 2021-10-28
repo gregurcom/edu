@@ -15,6 +15,7 @@ return [
         'delete' => 'Удалить',
         'courses' => 'Курсы',
         'submit' => 'Отправить',
+        'reset' => 'Сброс',
     ],
     'title' => [
         'dashboard' => 'Панель управления',

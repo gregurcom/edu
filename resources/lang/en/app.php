@@ -15,6 +15,7 @@ return [
         'delete' => 'Delete',
         'courses' => 'Courses',
         'submit' => 'Submit',
+        'reset' => 'Reset',
     ],
     'title' => [
         'dashboard' => 'Dashboard',

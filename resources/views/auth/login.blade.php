@@ -24,6 +24,9 @@
                     @enderror
 
                     <div class="mt-2">
+                        <a href="{{ route('password.request') }}" class="text-dark">{{ __('auth.password-forgot') }}</a>
+                    </div>
+                    <div class="mt-2">
                         <a href="{{ route('auth.registration') }}" class="text-dark">{{ __('auth.registration') }}</a>
                     </div>
                     <div class="text-center mt-3">
@@ -32,7 +35,7 @@
                 </form>
 
                 @if (session('status'))
-                    <div class="alert alert-danger mt-2">
+                    <div class="alert alert-dark mt-2">
                         {{ session('status') }}
                     </div>
                 @endif

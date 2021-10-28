@@ -3,6 +3,7 @@
 declare(strict_types = 1);
 
 use App\Http\Controllers\Auth\EmailVerificationController;
+use App\Http\Controllers\Auth\PasswordResetController;
 use App\Http\Controllers\Platform\LocaleController;
 use App\Http\Controllers\Auth\AccessController;
 use App\Http\Controllers\Auth\RegistrationController;
@@ -80,5 +81,15 @@ Route::name('verification.')->group(function () {
         Route::get('verify-email/{id}/{hash}', [EmailVerificationController::class, 'verify'])
             ->middleware('signed')
             ->name('verify');
+    });
+});
+
+Route::name('password.')->group(function () {
+    Route::middleware('guest')->group(function () {
+        Route::get('forgot-password', [PasswordResetController::class, 'forgotPassword'])->name('request');
+        Route::post('forgot-password', [PasswordResetController::class, 'sendResetLink'])->name('email');
+
+        Route::get('reset-password/{token}', [PasswordResetController::class, 'resetForm'])->name('reset');
+        Route::post('reset-password', [PasswordResetController::class, 'reset'])->name('update');
     });
 });
