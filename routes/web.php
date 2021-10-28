@@ -90,6 +90,6 @@ Route::name('password.')->group(function () {
         Route::post('forgot-password', [PasswordResetController::class, 'sendResetLink'])->name('email');
 
         Route::get('reset-password/{token}', [PasswordResetController::class, 'resetForm'])->name('reset');
-        Route::post('reset-password', [PasswordResetController::class, 'reset'])->name('update');
+        Route::post('reset-password', [PasswordResetController::class, 'update'])->name('update');
     });
 });

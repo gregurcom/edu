@@ -37,7 +37,7 @@ class PasswordResetController extends Controller
         return view('auth.reset-password', ['token' => $token]);
     }
 
-    public function reset(PasswordResetRequest $request): RedirectResponse
+    public function update(PasswordResetRequest $request): RedirectResponse
     {
         $status = Password::reset(
             $request->only('email', 'password', 'password_confirmation', 'token'),
