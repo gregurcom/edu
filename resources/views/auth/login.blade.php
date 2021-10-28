@@ -6,6 +6,12 @@
     <div class="container">
         <div class="row">
             <div class="col-md-4 offset-md-4">
+                @if (session('status'))
+                    <div class="alert alert-dark">
+                        {{ session('status') }}
+                    </div>
+                @endif
+
                 <form action="{{ route('auth.authenticate') }}" method="POST">
                     @csrf
 
@@ -33,12 +39,6 @@
                         <button class="btn btn-outline-dark" type="submit">{{ __('app.button.login') }}</button>
                     </div>
                 </form>
-
-                @if (session('status'))
-                    <div class="alert alert-dark mt-2">
-                        {{ session('status') }}
-                    </div>
-                @endif
             </div>
         </div>
     </div>

@@ -65,7 +65,7 @@
                             <a href="{{ route('platform.lessons.show', $lesson->id) }}" class="text-decoration-none text-dark head-link">{{ $lesson->title }}</a>
                         </h4>
                         @can('view', $course)
-                            <div class="d-flex lesson-title">
+                            <div class="d-flex lesson-title mt-3">
                                 <a href="{{ route('platform.lessons.edit', $lesson->id) }}" class="btn btn-outline-primary">{{ __('app.button.edit') }}</a>
                                 <form action="{{ route('platform.lessons.destroy', $lesson->id) }}" method="POST" class="px-2">
                                     @csrf
