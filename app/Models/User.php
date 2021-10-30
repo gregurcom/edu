@@ -39,12 +39,9 @@ use Laravel\Sanctum\HasApiTokens;
  * @method static \Illuminate\Database\Eloquent\Builder|User whereUpdatedAt($value)
  * @mixin \Eloquent
  */
-class User extends Authenticatable implements MustVerifyEmail, CanResetPassword
+class User extends \TCG\Voyager\Models\User implements MustVerifyEmail, CanResetPassword
 {
     use HasApiTokens, HasFactory, Notifiable;
-
-    const ADMIN_ROLE = 'admin';
-    const USER_ROLE = 'user';
 
     protected $guarded = [];
 
@@ -74,11 +71,6 @@ class User extends Authenticatable implements MustVerifyEmail, CanResetPassword
     public function subscriptions(): BelongsToMany
     {
         return $this->belongsToMany(Course::class);
-    }
-
-    public function isAdmin(): bool
-    {
-        return $this->role == self::ADMIN_ROLE;
     }
 
     public function isSubscribedOnCourse(int $courseId): bool

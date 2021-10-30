@@ -8,14 +8,13 @@ use App\Http\Controllers\Platform\LocaleController;
 use App\Http\Controllers\Auth\AccessController;
 use App\Http\Controllers\Auth\RegistrationController;
 use App\Http\Controllers\Platform\CourseController;
-use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\Platform\DashboardController;
 use App\Http\Controllers\Platform\FileController;
 use App\Http\Controllers\Platform\LessonController;
 use App\Http\Controllers\Platform\RateController;
 use App\Http\Controllers\Platform\SubscriptionController;
 use App\Http\Controllers\Platform\CategoryController;
 use App\Http\Controllers\Platform\TechSupportController;
-use App\Http\Controllers\System\CategoryController as SystemCategoryController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -67,12 +66,6 @@ Route::name('platform.')->group(function () {
     });
 });
 
-Route::name('system.')->group(function () {
-    Route::middleware(['auth', 'app.admin'])->group(function () {
-        Route::resource('categories', SystemCategoryController::class)->except(['index', 'show']);
-    });
-});
-
 Route::name('verification.')->group(function () {
     Route::middleware(['auth', 'app.email-verification'])->group(function () {
         Route::get('verify-email', [EmailVerificationController::class, 'show'])->name('notice');
@@ -92,4 +85,9 @@ Route::name('password.')->group(function () {
         Route::get('reset-password/{token}', [PasswordResetController::class, 'resetForm'])->name('reset');
         Route::put('reset-password', [PasswordResetController::class, 'update'])->name('update');
     });
+});
+
+
+Route::group(['prefix' => 'admin'], function () {
+    Voyager::routes();
 });
