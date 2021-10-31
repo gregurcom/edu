@@ -6,7 +6,7 @@
     <div class="container wrapper flex-grow-1 mt-3">
         <div>
             <a href="{{ route('platform.courses.create') }}" class="btn btn-outline-dark">{{ __('app.button.create-course') }}</a>
-            @can('viewTelescope')
+            @can('viewTelescope', 'App\Models\User')
                 <a href="telescope" class="btn btn-outline-dark">Telescope</a>
             @endcan
         </div>
