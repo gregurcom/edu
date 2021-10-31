@@ -17,7 +17,6 @@ class ModifyUsersTable extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->string('remember_token')->nullable();
-            $table->timestamp('email_verified_at')->nullable()->change();
         });
     }
 
@@ -30,7 +29,6 @@ class ModifyUsersTable extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->dropColumn('remember_token');
-            $table->timestamp('email_verified_at')->change();
         });
     }
 }
