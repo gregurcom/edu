@@ -6,6 +6,9 @@
     <div class="container wrapper flex-grow-1 mt-3">
         <div>
             <a href="{{ route('platform.courses.create') }}" class="btn btn-outline-dark">{{ __('app.button.create-course') }}</a>
+            @can('viewTelescope')
+                <a href="telescope" class="btn btn-outline-dark">Telescope</a>
+            @endcan
         </div>
         @if (session('status'))
             <div class="alert alert-dark mt-2 text-center">
