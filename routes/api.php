@@ -25,8 +25,13 @@ Route::get('courses/{course}', [CourseController::class, 'show'])->name('courses
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('courses', [CourseController::class, 'store'])->name('courses.store');
-    Route::put('courses/{course}', [CourseController::class, 'update'])->name('courses.update');
-    Route::delete('courses/{course}', [CourseController::class, 'destroy'])->name('courses.destroy');
+    Route::put('courses/{course}', [CourseController::class, 'update'])
+        ->name('courses.update')
+        ->middleware('can:update,course');
+
+    Route::delete('courses/{course}', [CourseController::class, 'destroy'])
+        ->name('courses.destroy')
+        ->middleware('can:destroy,course');
 
     Route::post('auth/logout', [AuthController::class, 'logout'])->name('logout');
 });

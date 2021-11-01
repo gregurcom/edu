@@ -31,7 +31,7 @@ class CourseController extends Controller
         return response(['course' => $course], 201);
     }
 
-    public function update(Course $course, CourseRequest $request): response
+    public function update(Course $course, CourseRequest $request): Response
     {
         $course->update($request->validated());
 
