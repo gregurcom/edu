@@ -16,9 +16,9 @@ use Illuminate\Support\Facades\Auth;
 
 class CourseController extends Controller
 {
-    public function list(Category $category): View
+    public function list(Category $category, CourseService $courseService): View
     {
-        $courses = $category->courses()->with(['author', 'rates'])->paginate(10);
+        $courses = $courseService->getCourses($category);
 
         return view('platform.courses', compact(['courses', 'category']));
     }

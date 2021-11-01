@@ -9,7 +9,6 @@ use App\Jobs\SendLessonEmailJob;
 use App\Models\File;
 use App\Models\Lesson;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Str;
 
 class LessonService
 {
