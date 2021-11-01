@@ -72,7 +72,7 @@ class Course extends Model
         return $countRates > 0 ? $this->rates->sum('rate') / $countRates : 0;
     }
 
-    public function isRateByUser(int $userId): int|null
+    public function isRateByUser(?int $userId): int|null
     {
         return $this->rates()->where('user_id', $userId)->first()->rate ?? null;
     }
