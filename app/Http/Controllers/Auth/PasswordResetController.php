@@ -5,7 +5,7 @@ declare(strict_types = 1);
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\PasswordResetRequest;
+use App\Http\Requests\ResetPasswordRequest;
 use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
@@ -37,7 +37,7 @@ class PasswordResetController extends Controller
         return view('auth.reset-password', ['token' => $token]);
     }
 
-    public function update(PasswordResetRequest $request): RedirectResponse
+    public function update(ResetPasswordRequest $request): RedirectResponse
     {
         $status = Password::reset(
             $request->only('email', 'password', 'password_confirmation', 'token'),

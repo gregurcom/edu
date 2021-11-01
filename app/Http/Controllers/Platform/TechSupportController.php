@@ -5,7 +5,7 @@ declare(strict_types = 1);
 namespace App\Http\Controllers\Platform;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\TechSupportRequest;
+use App\Http\Requests\SubmitTechSupportRequest;
 use App\Mail\TechSupportMail;
 use App\Models\User;
 use Illuminate\Contracts\View\View;
@@ -19,10 +19,9 @@ class TechSupportController extends Controller
         return view('platform.tech-support');
     }
 
-    public function send(TechSupportRequest $request): RedirectResponse
+    public function send(SubmitTechSupportRequest $request): RedirectResponse
     {
-        $admin = User::where('role', User::ADMIN_ROLE)->firstOrFail();
-        Mail::to($admin->email)->send(new TechSupportMail($request->text));
+        Mail::to(User::ADMIN_EMAIL)->send(new TechSupportMail($request->text));
 
         return redirect()->route('dashboard')->with('status', __('app.alert.tech-support'));
     }

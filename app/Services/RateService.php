@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Auth;
 
 class RateService
 {
-    public function updateRating(Course $course, Request $request)
+    public function updateRating(Course $course, Request $request): void
     {
         Rate::updateOrCreate(
             [

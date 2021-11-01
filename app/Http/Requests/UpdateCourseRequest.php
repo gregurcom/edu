@@ -6,12 +6,13 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class FileRequest extends FormRequest
+class UpdateCourseRequest extends FormRequest
 {
     public function rules(): array
     {
         return [
-            'files' => 'max:2048|nullable',
+            'title' => 'required|string|max:255',
+            'description' => 'required|min:6',
         ];
     }
 }

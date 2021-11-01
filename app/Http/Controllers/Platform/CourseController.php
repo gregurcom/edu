@@ -5,8 +5,9 @@ declare(strict_types = 1);
 namespace App\Http\Controllers\Platform;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\CourseRequest;
+use App\Http\Requests\StoreCourseRequest;
 use App\Http\Requests\SearchRequest;
+use App\Http\Requests\UpdateCourseRequest;
 use App\Models\Category;
 use App\Models\Course;
 use App\Services\CourseService;
@@ -35,7 +36,7 @@ class CourseController extends Controller
         return view('platform.course.create', compact('categories'));
     }
 
-    public function store(CourseRequest $request): RedirectResponse
+    public function store(StoreCourseRequest $request): RedirectResponse
     {
         Course::create(array_merge(['user_id' => Auth::id()], $request->validated()));
 
@@ -50,7 +51,7 @@ class CourseController extends Controller
         return view('platform.course.edit', compact(['course', 'categories']));
     }
 
-    public function update(Course $course, CourseRequest $request): RedirectResponse
+    public function update(Course $course, UpdateCourseRequest $request): RedirectResponse
     {
         $this->authorize('update', $course);
         $course->update($request->validated());

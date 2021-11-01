@@ -41,7 +41,7 @@ class Lesson extends Model
 
     protected $guarded = [];
 
-    protected $richTextFields = [];
+    protected array $richTextFields = [];
 
     public function course(): BelongsTo
     {

@@ -43,6 +43,8 @@ class User extends \TCG\Voyager\Models\User implements MustVerifyEmail, CanReset
 {
     use HasApiTokens, HasFactory, Notifiable;
 
+    const ADMIN_EMAIL = 'mikhailgregurco@gmail.com';
+
     protected $guarded = [];
 
     /**

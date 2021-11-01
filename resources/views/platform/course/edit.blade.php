@@ -24,17 +24,6 @@
                         </div>
                     @enderror
 
-                    <select class="form-control mt-2" name="category_id">
-                        @foreach ($categories as $category)
-                            <option value="{{ $category->id }}" {{ $category->name == $course->category->name ? 'selected' : '' }}>{{ $category->name }}</option>
-                        @endforeach
-                    </select>
-                    @error('category_id')
-                        <div class="alert alert-danger mt-1">
-                            {{ $message }}
-                        </div>
-                    @enderror
-
                     <div class="text-center mt-3">
                         <button class="btn btn-outline-dark" type="submit">{{ __('app.button.update') }}</button>
                     </div>

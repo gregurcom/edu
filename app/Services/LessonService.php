@@ -4,7 +4,7 @@ declare(strict_types = 1);
 
 namespace App\Services;
 
-use App\Http\Requests\FileRequest;
+use App\Http\Requests\StoreFileRequest;
 use App\Jobs\SendLessonEmailJob;
 use App\Models\File;
 use App\Models\Lesson;
@@ -19,7 +19,7 @@ class LessonService
         }
     }
 
-    public function storeAttachedFiles(Lesson $lesson, FileRequest $fileRequest): void
+    public function storeAttachedFiles(Lesson $lesson, StoreFileRequest $fileRequest): void
     {
         foreach ($fileRequest->file('files') as $file) {
             $course = str_replace(' ', '', $lesson->course->title);

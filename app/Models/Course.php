@@ -67,12 +67,12 @@ class Course extends Model
 
     public function averageRate(): float
     {
-        $countRates = $this->rates->count('id');
+        $countRates = $this->rates->count();
 
         return $countRates > 0 ? $this->rates->sum('rate') / $countRates : 0;
     }
 
-    public function isRateByUser($userId): int|null
+    public function isRateByUser(int $userId): int|null
     {
         return $this->rates()->where('user_id', $userId)->first()->rate ?? null;
     }

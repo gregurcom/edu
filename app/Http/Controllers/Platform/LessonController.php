@@ -5,8 +5,9 @@ declare(strict_types = 1);
 namespace App\Http\Controllers\Platform;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\FileRequest;
-use App\Http\Requests\LessonRequest;
+use App\Http\Requests\StoreFileRequest;
+use App\Http\Requests\StoreLessonRequest;
+use App\Http\Requests\UpdateLessonRequest;
 use App\Models\Course;
 use App\Models\Lesson;
 use App\Services\LessonService;
@@ -31,7 +32,7 @@ class LessonController extends Controller
         return view('platform.course.lesson.create', compact('course'));
     }
 
-    public function store(LessonRequest $lessonRequest, FileRequest $fileRequest, LessonService $lessonService): RedirectResponse
+    public function store(StoreLessonRequest $lessonRequest, StoreFileRequest $fileRequest, LessonService $lessonService): RedirectResponse
     {
         DB::transaction(function () use ($lessonRequest, $fileRequest, $lessonService) {
             $lesson = Lesson::create($lessonRequest->validated());
@@ -55,7 +56,7 @@ class LessonController extends Controller
         return view('platform.course.lesson.edit', compact('lesson'));
     }
 
-    public function update(Lesson $lesson, LessonRequest $request): RedirectResponse
+    public function update(Lesson $lesson, UpdateLessonRequest $request): RedirectResponse
     {
         $this->authorize('update', $lesson);
         $lesson->update($request->validated());
