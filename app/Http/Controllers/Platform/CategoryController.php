@@ -12,7 +12,7 @@ class CategoryController extends Controller
 {
     public function list(): View
     {
-        $categories = Category::with('courses')->paginate(10);
+        $categories = Category::paginate(10, ['id', 'name']);
 
         return view('platform.categories', compact('categories'));
     }

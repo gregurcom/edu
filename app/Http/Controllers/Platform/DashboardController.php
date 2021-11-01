@@ -12,7 +12,7 @@ class DashboardController extends Controller
 {
     public function show(): View
     {
-        $courses = Auth::user()->courses;
+        $courses = Auth::user()->courses()->get(['id', 'title', 'description']);
 
         return view('platform.dashboard', compact('courses'));
     }

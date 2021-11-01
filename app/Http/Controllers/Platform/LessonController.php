@@ -17,6 +17,13 @@ use Illuminate\Support\Facades\DB;
 
 class LessonController extends Controller
 {
+    public function show(Lesson $lesson): View
+    {
+        $readDuration = $lesson->getReadDuration();
+
+        return view('platform.course.lesson.index', compact(['lesson', 'readDuration']));
+    }
+
     public function create(Request $request): View
     {
         $course = Course::findOrFail($request->course);
@@ -39,13 +46,6 @@ class LessonController extends Controller
         });
 
         return redirect()->route('platform.courses.show', $lessonRequest->course_id)->with('status', __('app.alert.create-lesson'));
-    }
-
-    public function show(Lesson $lesson): View
-    {
-        $readDuration = $lesson->getReadDuration();
-
-        return view('platform.course.lesson.index', compact(['lesson', 'readDuration']));
     }
 
     public function edit(Lesson $lesson): View

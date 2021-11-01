@@ -14,6 +14,7 @@ class CourseService
     {
         return Course::where('title', 'like', '%' . $request->q . '%')
             ->orWhere('description', 'like', '%' . $request->q . '%')
+            ->with(['rates', 'author'])
             ->get();
     }
 }
