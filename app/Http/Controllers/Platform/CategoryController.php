@@ -10,7 +10,7 @@ use Illuminate\Contracts\View\View;
 
 class CategoryController extends Controller
 {
-    public function list(): View
+    public function __invoke(): View
     {
         $categories = Category::paginate(10, ['id', 'name']);
 

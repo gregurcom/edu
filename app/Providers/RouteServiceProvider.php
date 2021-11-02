@@ -4,6 +4,7 @@ declare(strict_types = 1);
 
 namespace App\Providers;
 
+use App\Models\User;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Http\Request;
@@ -67,7 +68,7 @@ class RouteServiceProvider extends ServiceProvider
         });
 
         RateLimiter::for('tech-support', function (Request $request) {
-            return $request->user()->isAdmin() ? Limit::none() : Limit::perMinute(50);
+            return $request->user()->email == User::ADMIN_EMAIL ? Limit::none() : Limit::perMinute(50);
         });
     }
 }

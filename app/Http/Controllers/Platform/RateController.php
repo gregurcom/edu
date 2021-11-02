@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Auth;
 
 class RateController extends Controller
 {
-    public function rate(Course $course, Request $request, RateService $rateService): RedirectResponse
+    public function __invoke(Course $course, Request $request, RateService $rateService): RedirectResponse
     {
         $existingSameRating = $this->getExistingSameRating($course, $request);
 

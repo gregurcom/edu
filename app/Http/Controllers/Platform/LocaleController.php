@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Session;
 
 class LocaleController extends Controller
 {
-    public function switch(Request $request): RedirectResponse
+    public function __invoke(Request $request): RedirectResponse
     {
         App::setLocale($request->input('locale'));
         Session::put('locale', $request->input('locale'));

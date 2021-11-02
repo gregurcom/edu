@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\StreamedResponse;
 
 class FileController extends Controller
 {
-    public function download(File $file): StreamedResponse
+    public function __invoke(File $file): StreamedResponse
     {
         $course = str_replace(' ', '', $file->lesson->course->title);
         $path = "$course/$file->name";

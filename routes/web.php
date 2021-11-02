@@ -28,9 +28,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', fn() => view('home'))->name('home');
-Route::get('language', [LocaleController::class, 'switch'])->name('language.switch');
-Route::get('dashboard', [DashboardController::class, 'show'])->name('dashboard')->middleware('auth');
+Route::view('/', 'home')->name('home');
+
+Route::get('language', LocaleController::class)->name('language.switch');
+Route::get('dashboard', DashboardController::class)->name('dashboard')->middleware('auth');
 
 Route::name('auth.')->group(function () {
     Route::middleware('guest')->group(function () {
@@ -44,7 +45,7 @@ Route::name('auth.')->group(function () {
 });
 
 Route::name('platform.')->group(function () {
-    Route::get('categories', [CategoryController::class, 'list'])->name('categories.list');
+    Route::get('categories', CategoryController::class)->name('categories.list');
     Route::get('categories/{category}/courses', [CourseController::class, 'list'])->name('courses.list');
 
     Route::resource('courses', CourseController::class)->except('index');
@@ -53,11 +54,11 @@ Route::name('platform.')->group(function () {
     Route::get('search', [CourseController::class, 'search'])->name('course.search');
 
     Route::middleware(['auth', 'verified'])->group(function () {
-        Route::get('file/{file}/download', [FileController::class, 'download'])->name('file.download');
+        Route::get('file/{file}/download', FileController::class)->name('file.download');
 
         Route::resource('subscriptions', SubscriptionController::class)->only(['index', 'store', 'destroy']);
 
-        Route::get('courses/rate/{course}', [RateController::class, 'rate'])->name('course.rate');
+        Route::get('courses/rate/{course}', RateController::class)->name('course.rate');
 
         Route::get('tech-support', [TechSupportController::class, 'show'])->name('tech-support');
         Route::post('tech-support', [TechSupportController::class, 'send'])
