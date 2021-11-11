@@ -5,7 +5,7 @@ declare(strict_types = 1);
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\CourseRequest;
+use App\Http\Requests\StoreCourseRequest;
 use App\Http\Resources\CourseResource;
 use App\Models\Course;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
@@ -24,14 +24,14 @@ class CourseController extends Controller
         return new CourseResource($course);
     }
 
-    public function store(CourseRequest $request): Response
+    public function store(StoreCourseRequest $request): Response
     {
         $course = Course::create(array_merge(['user_id' => Auth::id()], $request->validated()));
 
         return response(['course' => $course], 201);
     }
 
-    public function update(Course $course, CourseRequest $request): Response
+    public function update(Course $course, StoreCourseRequest $request): Response
     {
         $course->update($request->validated());
 

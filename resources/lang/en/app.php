@@ -16,6 +16,7 @@ return [
         'courses' => 'Courses',
         'submit' => 'Submit',
         'reset' => 'Reset',
+        'end-time' => 'End time',
     ],
     'title' => [
         'dashboard' => 'Dashboard',
@@ -30,6 +31,7 @@ return [
         'your-courses' => 'Your courses',
         'copyright' => 'Copyright',
         'tech-support' => 'Tech support',
+        'limit-date' => 'Limit date',
     ],
     'input' => [
         'course-search' => 'Search course',
@@ -42,6 +44,8 @@ return [
         'information' => 'Information',
         'important-lesson' => 'Important (send email to subscribers)',
         'not-important-lesson' => 'Not important',
+        'optional' => 'optional',
+        'task' => 'Task',
     ],
     'alert' => [
         'subscribe' => 'You have successfully followed this course.Now you will receive a notification about the new release of the lesson to your mail',
