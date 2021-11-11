@@ -75,6 +75,11 @@ class User extends \TCG\Voyager\Models\User implements MustVerifyEmail, CanReset
         return $this->belongsToMany(Course::class);
     }
 
+    public function tasks(): HasMany
+    {
+        return $this->hasMany(Task::class);
+    }
+
     public function isSubscribedOnCourse(int $courseId): bool
     {
         foreach ($this->subscriptions as $subscription) {
