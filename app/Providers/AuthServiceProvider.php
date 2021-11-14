@@ -38,6 +38,12 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
+        Gate::define('update-task', function (User $user, Task $task) {
+            return $user->id === $task->user_id;
+        });
+
+        Gate::define('destroy-task', function (User $user, Task $task) {
+            return $user->id === $task->user_id;
+        });
     }
 }

@@ -1,0 +1,306 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Laravel OpenApi Documentation",
+        "description": "L5 Swagger OpenApi. Mentor API documentation",
+        "contact": {
+            "email": "mikhailgregurco@gmail.com"
+        },
+        "license": {
+            "name": "Apache 2.4.41",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        },
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://127.0.0.1:8000/api/v1",
+            "description": "Demo API Server"
+        }
+    ],
+    "paths": {
+        "/": {
+            "get": {
+                "description": "Home page",
+                "responses": {
+                    "default": {
+                        "description": "Welcome page"
+                    }
+                }
+            }
+        },
+        "/tasks": {
+            "get": {
+                "tags": [
+                    "Tasks"
+                ],
+                "summary": "Get list of tasks",
+                "description": "Returns list of tasks",
+                "operationId": "getTasksList",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/TaskResource"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Tasks"
+                ],
+                "summary": "Store new task",
+                "description": "Returns task data",
+                "operationId": "storeTask",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/StoreTaskRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Task"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            }
+        },
+        "/tasks/{task}": {
+            "put": {
+                "tags": [
+                    "Tasks"
+                ],
+                "summary": "Update existing task",
+                "description": "Returns updated task data",
+                "operationId": "updateTask",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Task id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/StoreTaskRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "202": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Task"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Tasks"
+                ],
+                "summary": "Delete existing task",
+                "description": "Deletes a record and returns no content",
+                "operationId": "deleteTask",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Task id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "StoreTaskRequest": {
+                "title": "Store Task request",
+                "description": "Store Task request body data",
+                "required": [
+                    "title"
+                ],
+                "properties": {
+                    "title": {
+                        "title": "title",
+                        "description": "Name of the new task",
+                        "type": "string",
+                        "example": "Drink coffee"
+                    },
+                    "description": {
+                        "title": "description",
+                        "description": "Description of the new task",
+                        "type": "string",
+                        "example": "This is new task's description"
+                    },
+                    "end_time": {
+                        "title": "end_time",
+                        "description": "Limit date of task",
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2021-11-11 23:31"
+                    }
+                },
+                "type": "object"
+            },
+            "TaskResource": {
+                "title": "TaskResource",
+                "description": "Task resource",
+                "properties": {
+                    "": {
+                        "title": "Title",
+                        "description": "Task title"
+                    }
+                },
+                "type": "object",
+                "xml": {
+                    "name": "TaskResource"
+                }
+            },
+            "Task": {
+                "title": "Task",
+                "description": "Task model",
+                "properties": {
+                    "id": {
+                        "title": "ID",
+                        "description": "ID",
+                        "type": "integer",
+                        "format": "int64",
+                        "example": 1
+                    },
+                    "title": {
+                        "title": "Title",
+                        "description": "Title of the new task",
+                        "type": "string",
+                        "example": "drink coffee"
+                    },
+                    "description": {
+                        "title": "Description",
+                        "description": "Description of the new task",
+                        "type": "string",
+                        "example": "This is new task's description"
+                    },
+                    "end_time": {
+                        "title": "End time",
+                        "description": "End time of task",
+                        "type": "string",
+                        "format": "datetime",
+                        "example": "2020-01-27 17:50:45"
+                    },
+                    "user_id": {
+                        "title": "User ID",
+                        "description": "User's id of the new task",
+                        "type": "integer",
+                        "format": "int64",
+                        "example": 1
+                    },
+                    "created_at": {
+                        "title": "Created at",
+                        "description": "Created at",
+                        "type": "string",
+                        "format": "datetime",
+                        "example": "2020-01-27 17:50:45"
+                    },
+                    "updated_at": {
+                        "title": "Updated at",
+                        "description": "Updated at",
+                        "type": "string",
+                        "format": "datetime",
+                        "example": "2020-01-27 17:50:45"
+                    }
+                },
+                "type": "object",
+                "xml": {
+                    "name": "Task"
+                }
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Mentor",
+            "description": "API Endpoints of Mentor"
+        }
+    ],
+    "security": [
+        []
+    ]
+}

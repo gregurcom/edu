@@ -65,24 +65,6 @@ Route::name('platform.')->group(function () {
         Route::post('tech-support', [TechSupportController::class, 'send'])
             ->name('tech-support.send')
             ->middleware('throttle:tech-support');
-
-        Route::name('tasks.')->group(function () {
-            Route::get('tasks', [TaskController::class, 'index'])->name('index');
-            Route::post('tasks', [TaskController::class, 'store'])
-                ->name('store');
-
-            Route::get('tasks/{task}/edit', [TaskController::class, 'edit'])
-                ->name('edit')
-                ->can('update', 'task');
-
-            Route::put('tasks/{task}', [TaskController::class, 'update'])
-                ->name('update')
-                ->can('update', 'task');
-
-            Route::delete('tasks/{task}', [TaskController::class, 'destroy'])
-                ->name('destroy')
-                ->can('destroy', 'task');
-        });
     });
 });
 

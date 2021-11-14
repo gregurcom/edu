@@ -4,6 +4,7 @@ declare(strict_types = 1);
 
 use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\API\CourseController;
+use App\Http\Controllers\API\TaskController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -32,6 +33,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::delete('courses/{course}', [CourseController::class, 'destroy'])
         ->name('courses.destroy')
         ->middleware('can:destroy,course');
+
+    Route::apiResource('tasks', TaskController::class);
 
     Route::post('auth/logout', [AuthController::class, 'logout'])->name('logout');
 });

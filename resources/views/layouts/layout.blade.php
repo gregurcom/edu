@@ -11,7 +11,6 @@
     <meta property="og:title" content="@yield('title', 'Mentor')" />
     @yield('meta')
 
-    <script src="{{ asset('js/app.js') }}"></script>
     <link rel="shortcut icon" href="{{ asset('images/favicon.ico') }}" type="image/x-icon">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     @env('production')
