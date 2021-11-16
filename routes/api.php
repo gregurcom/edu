@@ -18,8 +18,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::post('auth/register', [AuthController::class, 'register'])->name('register');
-Route::post('auth/login', [AuthController::class, 'login'])->name('login');
+Route::post('register', [AuthController::class, 'register'])->name('register');
+Route::post('login', [AuthController::class, 'login'])->name('login');
 
 Route::get('courses', [CourseController::class, 'index'])->name('courses.index');
 Route::get('courses/{course}', [CourseController::class, 'show'])->name('courses.show');
@@ -36,5 +36,5 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::apiResource('tasks', TaskController::class);
 
-    Route::post('auth/logout', [AuthController::class, 'logout'])->name('logout');
+    Route::post('logout', [AuthController::class, 'logout'])->name('logout');
 });

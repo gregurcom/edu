@@ -1,5 +1,6 @@
 require('bootstrap');
 
+window.axios = require('axios');
 import './libs/trix.js';
 
 import Vue from 'vue'

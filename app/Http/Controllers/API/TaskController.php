@@ -22,6 +22,7 @@ class TaskController extends Controller
      *      tags={"Tasks"},
      *      summary="Get list of tasks",
      *      description="Returns list of tasks",
+     *      security={{ "Bearer":{} }},
      *      @OA\Response(
      *          response=200,
      *          description="Successful operation",
@@ -31,10 +32,6 @@ class TaskController extends Controller
      *          response=401,
      *          description="Unauthenticated",
      *      ),
-     *      @OA\Response(
-     *          response=403,
-     *          description="Forbidden"
-     *      )
      *     )
      */
     public function index(): JsonResponse
@@ -52,6 +49,7 @@ class TaskController extends Controller
      *      tags={"Tasks"},
      *      summary="Store new task",
      *      description="Returns task data",
+     *      security={{ "Bearer":{} }},
      *      @OA\RequestBody(
      *          required=true,
      *          @OA\JsonContent(ref="#/components/schemas/StoreTaskRequest")
@@ -69,10 +67,6 @@ class TaskController extends Controller
      *          response=401,
      *          description="Unauthenticated",
      *      ),
-     *      @OA\Response(
-     *          response=403,
-     *          description="Forbidden"
-     *      )
      * )
      */
     public function store(StoreTaskRequest $request): JsonResponse
@@ -84,11 +78,12 @@ class TaskController extends Controller
 
     /**
      * @OA\Put(
-     *      path="/tasks/{task}",
+     *      path="/tasks/{id}",
      *      operationId="updateTask",
      *      tags={"Tasks"},
      *      summary="Update existing task",
      *      description="Returns updated task data",
+     *      security={{ "Bearer":{} }},
      *      @OA\Parameter(
      *          name="id",
      *          description="Task id",
@@ -136,11 +131,12 @@ class TaskController extends Controller
 
     /**
      * @OA\Delete(
-     *      path="/tasks/{task}",
+     *      path="/tasks/{id}",
      *      operationId="deleteTask",
      *      tags={"Tasks"},
      *      summary="Delete existing task",
      *      description="Deletes a record and returns no content",
+     *      security={{ "Bearer":{} }},
      *      @OA\Parameter(
      *          name="id",
      *          description="Task id",

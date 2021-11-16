@@ -14,7 +14,6 @@ use App\Http\Controllers\Platform\LessonController;
 use App\Http\Controllers\Platform\RateController;
 use App\Http\Controllers\Platform\SubscriptionController;
 use App\Http\Controllers\Platform\CategoryController;
-use App\Http\Controllers\Platform\TaskController;
 use App\Http\Controllers\Platform\TechSupportController;
 use Illuminate\Support\Facades\Route;
 

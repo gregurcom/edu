@@ -29,6 +29,13 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @method static \Illuminate\Database\Eloquent\Builder|Course whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Course whereUserId($value)
  * @mixin \Eloquent
+ * @OA\Schema(
+ *     title="Course",
+ *     description="Course model",
+ *     @OA\Xml(
+ *         name="Course"
+ *     )
+ * )
  */
 class Course extends Model
 {
