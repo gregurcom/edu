@@ -7,10 +7,10 @@ namespace App\Http\Controllers\Platform;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\SubmitTechSupportRequest;
 use App\Mail\TechSupportMail;
-use App\Models\User;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Log;
 
 class TechSupportController extends Controller
 {
@@ -21,7 +21,13 @@ class TechSupportController extends Controller
 
     public function send(SubmitTechSupportRequest $request): RedirectResponse
     {
-        Mail::to(User::ADMIN_EMAIL)->send(new TechSupportMail($request->text));
+        try {
+            Mail::to(config('app.admin-email'))->send(new TechSupportMail($request->text));
+        } catch (\Exception $e) {
+            Log::alert($e->getMessage());
+
+            return redirect()->route('dashboard');
+        }
 
         return redirect()->route('dashboard')->with('status', __('app.alert.tech-support'));
     }

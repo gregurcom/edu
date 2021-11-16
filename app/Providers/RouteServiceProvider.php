@@ -68,7 +68,7 @@ class RouteServiceProvider extends ServiceProvider
         });
 
         RateLimiter::for('tech-support', function (Request $request) {
-            return $request->user()->email == User::ADMIN_EMAIL ? Limit::none() : Limit::perMinute(50);
+            return $request->user()->email == config('app.admin-email') ? Limit::none() : Limit::perMinute(50);
         });
     }
 }

@@ -12,6 +12,7 @@
     <meta property="og:title" content="@yield('title', 'Mentor')" />
     @yield('meta')
 
+    <script src="{{ 'js/app.js' }}"></script>
     <link rel="shortcut icon" href="{{ asset('images/favicon.ico') }}" type="image/x-icon">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     @env('production')
@@ -59,7 +60,7 @@
                                     </li>
                                     <li class="nav-item">
                                         <div class="dropdown">
-                                            <span class="{{ Route::is('dashboard') ? 'text-info' : 'text-light' }} dropdown-toggle h5 px-3" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                            <span class="{{ Route::is('dashboard') ? 'text-info' : 'text-light' }} dropdown-toggle h5 px-3" data-bs-toggle="dropdown" aria-expanded="false">
                                                 {{ auth()->user()->name }}
                                             </span>
                                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
