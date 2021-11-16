@@ -15,7 +15,7 @@
                 </div>
             </div>
             <div class="col-md-4 text-center">
-                <img src="{{ asset('images/homeIlustrate.png') }}" width="350px" height="350px" id="homeIlustrate">
+                <img src="{{ asset('images/homeIllustrate.png') }}" width="350px" height="350px" id="homeIllustrate" alt="home illustrate">
             </div>
         </div>
     </main>
