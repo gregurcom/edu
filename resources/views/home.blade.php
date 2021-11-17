@@ -5,7 +5,9 @@
         <div class="row d-flex align-items-center">
             <div class="col-md-8">
                 <div class="text-center info mt-5 mb-5">
-                    <h1 class="mb-3">Mentor</h1>
+                    <div itemscope itemtype="http://schema.org/SoftwareApplication">
+                        <h1 class="mb-3" itemprop="name">Mentor</h1>
+                    </div>
                     <p class="h4">
                         {{ __('app.title.home-paragraph') }}
                     </p>

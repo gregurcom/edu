@@ -5,7 +5,7 @@
 @section('description', $course->description)
 
 @section('content')
-    <div class="container wrapper flex-grow-1 mt-3 mb-5">
+    <div class="container wrapper flex-grow-1 mt-3 mb-5" itemscope itemtype="http://schema.org/Course">
         @can('view', $course)
             <a href="{{ route('platform.lessons.create', ['course' => $course->id]) }}" class="btn btn-outline-dark">{{ __('app.button.create-lesson')  }}</a>
         @endcan
@@ -18,7 +18,7 @@
         <div class="text-center mt-3">
             <div class="row">
                 <div class="col-md-6" id="courseTitle">
-                    <h2>{{ $course->title }}</h2>
+                    <h2 itemprop="name">{{ $course->title }}</h2>
                 </div>
                 <div class="col-md-6" id="subscribeButton">
                     @auth
@@ -88,7 +88,9 @@
                     <p>{{ $course->description }}</p>
                     <h4>{{ __('app.title.author') }}: {{ $course->author->name }}</h4>
                     <h4>{{ __('app.title.subscriptions') }}: {{ $course->users()->count() }}</h4>
-                    <h4>{{ __('app.title.average-rating') }}: {{ round($course->averageRate()) }}</h4>
+                    <div itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">
+                        <h4>{{ __('app.title.average-rating') }}: <span itemprop="ratingValue">{{ round($course->averageRate()) }}</span></h4>
+                    </div>
                 </div>
             </div>
         </div>
