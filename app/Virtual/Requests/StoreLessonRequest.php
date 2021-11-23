@@ -9,7 +9,7 @@ namespace App\Virtual\Requests;
  *      title="Store Lesson request",
  *      description="Store Lesson request body data",
  *      type="object",
- *      required={"title", "description", "course_id"}
+ *      required={"title", "information", "course_id"}
  * )
  */
 class StoreLessonRequest

@@ -123,7 +123,7 @@ class CourseController extends Controller
      *      @OA\Response(
      *          response=202,
      *          description="Successful operation",
-     *          @OA\JsonContent(ref="#/components/schemas/Task")
+     *          @OA\JsonContent(ref="#/components/schemas/Course")
      *       ),
      *      @OA\Response(
      *          response=400,
