@@ -38,17 +38,10 @@ use Laravel\Sanctum\HasApiTokens;
  * @method static \Illuminate\Database\Eloquent\Builder|User whereRememberToken($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereUpdatedAt($value)
  * @mixin \Eloquent
- * @OA\Schema(
- *     title="User",
- *     description="User model",
- *     @OA\Xml(
- *         name="User"
- *     )
- * )
  */
-class User extends \TCG\Voyager\Models\User implements MustVerifyEmail, CanResetPassword
+class User extends Authenticatable implements MustVerifyEmail, CanResetPassword
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasFactory, Notifiable;
 
     protected $guarded = [];
 

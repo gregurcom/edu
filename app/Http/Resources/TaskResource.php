@@ -6,12 +6,6 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-/**
- * @OA\Schema(
- *     title="TaskResource",
- *     description="Task resource",
- * )
- */
 class TaskResource extends JsonResource
 {
     public function toArray($request): array

@@ -358,7 +358,7 @@
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "#/components/schemas/StoreTaskRequest"
+                                "$ref": "#/components/schemas/TaskRequest"
                             }
                         }
                     }
@@ -412,7 +412,7 @@
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "#/components/schemas/StoreTaskRequest"
+                                "$ref": "#/components/schemas/TaskRequest"
                             }
                         }
                     }
@@ -494,6 +494,262 @@
     },
     "components": {
         "schemas": {
+            "Category": {
+                "title": "Category",
+                "description": "Category model",
+                "properties": {
+                    "id": {
+                        "title": "id",
+                        "description": "Unique id of category",
+                        "type": "integer",
+                        "format": "int64",
+                        "example": 1
+                    },
+                    "name": {
+                        "title": "name",
+                        "description": "Category name",
+                        "type": "string",
+                        "example": "web programming"
+                    },
+                    "slug": {
+                        "title": "slug",
+                        "description": "Category slug",
+                        "type": "string",
+                        "example": "web-programming"
+                    },
+                    "created_at": {
+                        "title": "Created at",
+                        "description": "Created at",
+                        "type": "string",
+                        "format": "datetime",
+                        "example": "2020-01-27 17:50:45"
+                    },
+                    "updated_at": {
+                        "title": "Updated at",
+                        "description": "Updated at",
+                        "type": "string",
+                        "format": "datetime",
+                        "example": "2020-01-27 17:50:45"
+                    }
+                },
+                "type": "object",
+                "xml": {
+                    "name": "Category"
+                }
+            },
+            "Course": {
+                "title": "Course",
+                "description": "Course model",
+                "properties": {
+                    "id": {
+                        "title": "id",
+                        "description": "Unique id of course",
+                        "type": "integer",
+                        "format": "int64",
+                        "example": 1
+                    },
+                    "title": {
+                        "title": "title",
+                        "description": "Course title",
+                        "type": "string",
+                        "example": "programming"
+                    },
+                    "description": {
+                        "title": "description",
+                        "description": "Description of the new course",
+                        "type": "string",
+                        "example": "This is new project's description"
+                    },
+                    "user_id": {
+                        "title": "user ID",
+                        "description": "User's id of the new project",
+                        "type": "integer",
+                        "format": "int64",
+                        "example": 1
+                    },
+                    "category_id": {
+                        "title": "category ID",
+                        "description": "Category's id of the new course",
+                        "type": "integer",
+                        "format": "int64",
+                        "example": 1
+                    },
+                    "created_at": {
+                        "title": "created at",
+                        "description": "Created at",
+                        "type": "string",
+                        "format": "datetime",
+                        "example": "2020-01-27 17:50:45"
+                    },
+                    "updated_at": {
+                        "title": "updated at",
+                        "description": "Updated at",
+                        "type": "string",
+                        "format": "datetime",
+                        "example": "2020-01-27 17:50:45"
+                    }
+                },
+                "type": "object",
+                "xml": {
+                    "name": "Course"
+                }
+            },
+            "Lesson": {
+                "title": "Lesson",
+                "description": "Lesson model",
+                "properties": {
+                    "id": {
+                        "title": "id",
+                        "description": "Unique id of lesson",
+                        "type": "integer",
+                        "format": "int64",
+                        "example": 1
+                    },
+                    "title": {
+                        "title": "title",
+                        "description": "Lesson title",
+                        "type": "string",
+                        "example": "HTML5 basic"
+                    },
+                    "information": {
+                        "title": "information",
+                        "description": "Information of the new lesson",
+                        "type": "string",
+                        "example": "Lesson information..."
+                    },
+                    "course_id": {
+                        "title": "course ID",
+                        "description": "course id of new lesson",
+                        "type": "integer",
+                        "format": "int64",
+                        "example": 1
+                    },
+                    "created_at": {
+                        "title": "created at",
+                        "description": "Created at",
+                        "type": "string",
+                        "format": "datetime",
+                        "example": "2020-01-27 17:50:45"
+                    },
+                    "updated_at": {
+                        "title": "updated at",
+                        "description": "Updated at",
+                        "type": "string",
+                        "format": "datetime",
+                        "example": "2020-01-27 17:50:45"
+                    }
+                },
+                "type": "object",
+                "xml": {
+                    "name": "Lesson"
+                }
+            },
+            "Task": {
+                "title": "Task",
+                "description": "Task model",
+                "properties": {
+                    "id": {
+                        "title": "id",
+                        "description": "Unique id of task",
+                        "type": "integer",
+                        "format": "int64",
+                        "example": 1
+                    },
+                    "title": {
+                        "title": "title",
+                        "description": "Task title",
+                        "type": "string",
+                        "example": "read book"
+                    },
+                    "description": {
+                        "title": "description",
+                        "description": "Description of the new task",
+                        "type": "string",
+                        "example": "This is new task's description"
+                    },
+                    "user_id": {
+                        "title": "user ID",
+                        "description": "User's id of the new task",
+                        "type": "integer",
+                        "format": "int64",
+                        "example": 1
+                    },
+                    "end_time": {
+                        "title": "end time",
+                        "description": "End time of task",
+                        "type": "string",
+                        "format": "datetime",
+                        "example": "2020-01-28 20:50:45"
+                    },
+                    "created_at": {
+                        "title": "created at",
+                        "description": "Created at",
+                        "type": "string",
+                        "format": "datetime",
+                        "example": "2020-01-27 17:50:45"
+                    },
+                    "updated_at": {
+                        "title": "updated at",
+                        "description": "Updated at",
+                        "type": "string",
+                        "format": "datetime",
+                        "example": "2020-01-27 17:50:45"
+                    }
+                },
+                "type": "object",
+                "xml": {
+                    "name": "Task"
+                }
+            },
+            "User": {
+                "title": "User",
+                "description": "User model",
+                "properties": {
+                    "id": {
+                        "title": "id",
+                        "description": "Unique id of user",
+                        "type": "integer",
+                        "format": "int64",
+                        "example": 1
+                    },
+                    "name": {
+                        "title": "name",
+                        "description": "User name",
+                        "type": "string",
+                        "example": "Joe Doe"
+                    },
+                    "email": {
+                        "title": "email",
+                        "description": "User email",
+                        "type": "string",
+                        "example": "joe@gmail.com"
+                    },
+                    "password": {
+                        "title": "password",
+                        "description": "User password",
+                        "type": "string",
+                        "example": "joedoe123"
+                    },
+                    "created_at": {
+                        "title": "created at",
+                        "description": "Created at",
+                        "type": "string",
+                        "format": "datetime",
+                        "example": "2020-01-27 17:50:45"
+                    },
+                    "updated_at": {
+                        "title": "updated at",
+                        "description": "Updated at",
+                        "type": "string",
+                        "format": "datetime",
+                        "example": "2020-01-27 17:50:45"
+                    }
+                },
+                "type": "object",
+                "xml": {
+                    "name": "User"
+                }
+            },
             "AccessRequest": {
                 "title": "Login User request",
                 "description": "Login user request body data",
@@ -565,27 +821,28 @@
                 "properties": {
                     "title": {
                         "title": "title",
-                        "description": "Name of the new task",
+                        "description": "Course title",
                         "type": "string",
-                        "example": "Computer networking"
+                        "example": "programming"
                     },
                     "description": {
                         "title": "description",
-                        "description": "Description of the new task",
+                        "description": "Description of the new course",
                         "type": "string",
-                        "example": "Computer networking is a course..."
+                        "example": "This is new project's description"
                     },
                     "category_id": {
-                        "title": "category_id",
-                        "description": "Category id",
+                        "title": "category ID",
+                        "description": "Category's id of the new course",
                         "type": "integer",
+                        "format": "int64",
                         "example": 1
                     }
                 },
                 "type": "object"
             },
-            "StoreTaskRequest": {
-                "title": "Store Task request",
+            "TaskRequest": {
+                "title": "Task request",
                 "description": "Store Task request body data",
                 "required": [
                     "title"
@@ -638,32 +895,23 @@
             },
             "CourseResource": {
                 "title": "CourseResource",
-                "description": "Course resource"
+                "description": "Course resource",
+                "properties": {
+                    "data": {
+                        "$ref": "#/components/schemas/Course"
+                    }
+                },
+                "type": "object"
             },
             "TaskResource": {
                 "title": "TaskResource",
-                "description": "Task resource"
-            },
-            "Course": {
-                "title": "Course",
-                "description": "Course model",
-                "xml": {
-                    "name": "Course"
-                }
-            },
-            "Task": {
-                "title": "Task",
-                "description": "Task model",
-                "xml": {
-                    "name": "Task"
-                }
-            },
-            "User": {
-                "title": "User",
-                "description": "User model",
-                "xml": {
-                    "name": "User"
-                }
+                "description": "Task resource",
+                "properties": {
+                    "data": {
+                        "$ref": "#/components/schemas/Task"
+                    }
+                },
+                "type": "object"
             }
         }
     },

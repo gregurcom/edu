@@ -5,7 +5,7 @@ declare(strict_types = 1);
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreTaskRequest;
+use App\Http\Requests\TaskRequest;
 use App\Http\Resources\TaskResource;
 use App\Models\Task;
 use Illuminate\Support\Facades\Auth;
@@ -52,7 +52,7 @@ class TaskController extends Controller
      *      security={{ "Bearer":{} }},
      *      @OA\RequestBody(
      *          required=true,
-     *          @OA\JsonContent(ref="#/components/schemas/StoreTaskRequest")
+     *          @OA\JsonContent(ref="#/components/schemas/TaskRequest")
      *      ),
      *      @OA\Response(
      *          response=201,
@@ -69,7 +69,7 @@ class TaskController extends Controller
      *      ),
      * )
      */
-    public function store(StoreTaskRequest $request): JsonResponse
+    public function store(TaskRequest $request): JsonResponse
     {
         $task = Task::create(array_merge(['user_id' => Auth::id()], $request->all()));
 
@@ -95,7 +95,7 @@ class TaskController extends Controller
      *      ),
      *      @OA\RequestBody(
      *          required=true,
-     *          @OA\JsonContent(ref="#/components/schemas/StoreTaskRequest")
+     *          @OA\JsonContent(ref="#/components/schemas/TaskRequest")
      *      ),
      *      @OA\Response(
      *          response=202,
@@ -120,7 +120,7 @@ class TaskController extends Controller
      *      )
      * )
      */
-    public function update(StoreTaskRequest $request, Task $task): JsonResponse
+    public function update(TaskRequest $request, Task $task): JsonResponse
     {
         abort_if(Gate::denies('update-task'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 

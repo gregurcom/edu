@@ -2,19 +2,17 @@
 
 declare(strict_types = 1);
 
-namespace App\Http\Requests;
-
-use Illuminate\Foundation\Http\FormRequest;
+namespace App\Virtual\Requests;
 
 /**
  * @OA\Schema(
- *      title="Store Task request",
+ *      title="Task request",
  *      description="Store Task request body data",
  *      type="object",
  *      required={"title"}
  * )
  */
-class StoreTaskRequest extends FormRequest
+class TaskRequest
 {
     /**
      * @OA\Property(
@@ -48,13 +46,4 @@ class StoreTaskRequest extends FormRequest
      * @var \DateTime
      */
     public $end_time;
-
-    public function rules(): array
-    {
-        return [
-            'title' => 'required|string|max:255',
-            'description' => 'nullable|min:5',
-            'end_time' => 'nullable|after:' . date('Y-m-d'),
-        ];
-    }
 }

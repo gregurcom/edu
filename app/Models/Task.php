@@ -29,13 +29,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @method static \Illuminate\Database\Eloquent\Builder|Task whereTitle($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Task whereUpdatedAt($value)
  * @mixin \Eloquent
- * @OA\Schema(
- *     title="Task",
- *     description="Task model",
- *     @OA\Xml(
- *         name="Task"
- *     )
- * )
  */
 
 class Task extends Model
