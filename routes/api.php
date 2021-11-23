@@ -30,20 +30,27 @@ Route::get('lessons/{lesson}', [LessonController::class, 'show'])->name('lessons
 Route::middleware('auth:api')->group(function () {
     Route::name('courses.')->group(function () {
         Route::post('courses', [CourseController::class, 'store'])->name('store');
+
         Route::put('courses/{course}', [CourseController::class, 'update'])
             ->name('update')
-            ->middleware('can:update,course');
+            ->can('update', 'course');
 
         Route::delete('courses/{course}', [CourseController::class, 'destroy'])
             ->name('destroy')
-            ->middleware('can:destroy,course');
+            ->can('destroy', 'course');
     });
 
     Route::name('lessons.')->group(function () {
         Route::get('lessons/create', [LessonController::class, 'create'])->name('create');
         Route::post('lessons', [LessonController::class, 'store'])->name('store');
-        Route::put('lessons/{lesson}', [LessonController::class, 'update'])->name('update');
-        Route::delete('lessons/{lesson}', [LessonController::class, 'destroy'])->name('destroy');
+
+        Route::put('lessons/{lesson}', [LessonController::class, 'update'])
+            ->name('update')
+            ->can('update', 'lesson');
+
+        Route::delete('lessons/{lesson}', [LessonController::class, 'destroy'])
+            ->name('destroy')
+            ->can('destroy', 'lesson');
     });
 
     Route::apiResource('tasks', TaskController::class);

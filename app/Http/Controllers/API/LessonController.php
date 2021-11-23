@@ -182,7 +182,6 @@ class LessonController extends Controller
      */
     public function update(Lesson $lesson, UpdateLessonRequest $request): JsonResponse
     {
-        $this->authorize('update', $lesson);
         $lesson->update($request->validated());
 
         return response()->json($lesson, Response::HTTP_ACCEPTED);
@@ -226,7 +225,6 @@ class LessonController extends Controller
      */
     public function destroy(Lesson $lesson): JsonResponse
     {
-        $this->authorize('destroy', $lesson);
         $lesson->delete();
 
         return response()->json(null, Response::HTTP_NO_CONTENT);
