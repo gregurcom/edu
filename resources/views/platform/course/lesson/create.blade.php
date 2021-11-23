@@ -16,7 +16,7 @@
             @enderror
 
             <input id="post_body" class="mt-5" value="" type="hidden" name="information">
-            <trix-editor input="post_body" class="trix-content"></trix-editor>
+            <textarea name="information" class="form-control"></textarea>
             @error('information')
                 <div class="alert alert-danger mt-1">
                     {{ $message }}

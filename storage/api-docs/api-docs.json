@@ -841,6 +841,44 @@
                 },
                 "type": "object"
             },
+            "StoreLessonRequest": {
+                "title": "Store Lesson request",
+                "description": "Store Lesson request body data",
+                "required": [
+                    "title",
+                    "description",
+                    "category_id"
+                ],
+                "properties": {
+                    "title": {
+                        "title": "title",
+                        "description": "Lesson title",
+                        "type": "string",
+                        "example": "programming basics"
+                    },
+                    "information": {
+                        "title": "information",
+                        "description": "Lesson information",
+                        "type": "string",
+                        "example": "programming..."
+                    },
+                    "course_id": {
+                        "title": "course ID",
+                        "description": "Course's id of the new lesson",
+                        "type": "integer",
+                        "format": "int64",
+                        "example": 1
+                    },
+                    "status": {
+                        "title": "status",
+                        "description": "Status of lesson. Can be 0 (not important) or 1 (important)",
+                        "type": "integer",
+                        "format": "int64",
+                        "example": 1
+                    }
+                },
+                "type": "object"
+            },
             "TaskRequest": {
                 "title": "Task request",
                 "description": "Store Task request body data",
@@ -899,6 +937,16 @@
                 "properties": {
                     "data": {
                         "$ref": "#/components/schemas/Course"
+                    }
+                },
+                "type": "object"
+            },
+            "LessonResource": {
+                "title": "LessonResource",
+                "description": "Lesson resource",
+                "properties": {
+                    "data": {
+                        "$ref": "#/components/schemas/Lesson"
                     }
                 },
                 "type": "object"

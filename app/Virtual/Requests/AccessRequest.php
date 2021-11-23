@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace App\Virtual\Requests;
 
 /**
@@ -21,7 +23,7 @@ class AccessRequest
      *
      * @var string
      */
-    public $email;
+    public string $email;
 
     /**
      * @OA\Property(
@@ -32,5 +34,5 @@ class AccessRequest
      *
      * @var string
      */
-    public $password;
+    public string $password;
 }

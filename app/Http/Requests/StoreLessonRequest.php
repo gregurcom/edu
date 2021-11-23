@@ -14,7 +14,7 @@ class StoreLessonRequest extends FormRequest
         return [
             'title' => 'required|string|max:255',
             'information' => 'required',
-            'course_id' => 'integer',
+            'course_id' => 'required|integer',
             'status' => Rule::in([0, 1]),
         ];
     }

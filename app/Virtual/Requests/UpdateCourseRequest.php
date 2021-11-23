@@ -23,7 +23,7 @@ class UpdateCourseRequest
      *
      * @var string
      */
-    public $title;
+    public string $title;
 
     /**
      * @OA\Property(
@@ -34,5 +34,5 @@ class UpdateCourseRequest
      *
      * @var string
      */
-    public $description;
+    public string $description;
 }

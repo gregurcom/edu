@@ -44,7 +44,7 @@ class AuthController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
-        return response(['token' => $user->createToken($request->name)->plainTextToken], 201);
+        return response(['token' => $user->createToken($request->name)->accessToken], 201);
     }
 
     /**
@@ -72,9 +72,7 @@ class AuthController extends Controller
     public function login(AccessRequest $request): Response
     {
         if (Auth::attempt($request->validated())) {
-            $request->session()->regenerate();
-
-            return response(['token' => Auth::user()->createToken(Auth::user()->name)->plainTextToken], 200);
+            return response(['token' => Auth::user()->createToken(Auth::user()->name)->accessToken], 200);
         }
 
         return response('Credentials not match', 401);

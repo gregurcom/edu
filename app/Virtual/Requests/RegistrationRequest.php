@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace App\Virtual\Requests;
 
 /**
@@ -21,7 +23,7 @@ class RegistrationRequest
      *
      * @var string
      */
-    public $name;
+    public string $name;
 
     /**
      * @OA\Property(
@@ -32,7 +34,7 @@ class RegistrationRequest
      *
      * @var string
      */
-    public $email;
+    public string $email;
 
     /**
      * @OA\Property(
@@ -43,7 +45,7 @@ class RegistrationRequest
      *
      * @var string
      */
-    public $password;
+    public string $password;
 
     /**
      * @OA\Property(
@@ -54,5 +56,5 @@ class RegistrationRequest
      *
      * @var string
      */
-    public $password_confirmation;
+    public string $password_confirmation;
 }

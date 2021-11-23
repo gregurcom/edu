@@ -4,6 +4,7 @@ declare(strict_types = 1);
 
 use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\API\CourseController;
+use App\Http\Controllers\API\LessonController;
 use App\Http\Controllers\API\TaskController;
 use Illuminate\Support\Facades\Route;
 
@@ -24,15 +25,26 @@ Route::post('login', [AuthController::class, 'login'])->name('login');
 Route::get('courses', [CourseController::class, 'index'])->name('courses.index');
 Route::get('courses/{course}', [CourseController::class, 'show'])->name('courses.show');
 
-Route::middleware('auth:sanctum')->group(function () {
-    Route::post('courses', [CourseController::class, 'store'])->name('courses.store');
-    Route::put('courses/{course}', [CourseController::class, 'update'])
-        ->name('courses.update')
-        ->middleware('can:update,course');
+Route::get('lessons/{lesson}', [LessonController::class, 'show'])->name('lessons.show');
 
-    Route::delete('courses/{course}', [CourseController::class, 'destroy'])
-        ->name('courses.destroy')
-        ->middleware('can:destroy,course');
+Route::middleware('auth:api')->group(function () {
+    Route::name('courses.')->group(function () {
+        Route::post('courses', [CourseController::class, 'store'])->name('store');
+        Route::put('courses/{course}', [CourseController::class, 'update'])
+            ->name('update')
+            ->middleware('can:update,course');
+
+        Route::delete('courses/{course}', [CourseController::class, 'destroy'])
+            ->name('destroy')
+            ->middleware('can:destroy,course');
+    });
+
+    Route::name('lessons.')->group(function () {
+        Route::get('lessons/create', [LessonController::class, 'create'])->name('create');
+        Route::post('lessons', [LessonController::class, 'store'])->name('store');
+        Route::put('lessons/{lesson}', [LessonController::class, 'update'])->name('update');
+        Route::delete('lessons/{lesson}', [LessonController::class, 'destroy'])->name('destroy');
+    });
 
     Route::apiResource('tasks', TaskController::class);
 

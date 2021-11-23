@@ -23,7 +23,7 @@ class TaskRequest
      *
      * @var string
      */
-    public $title;
+    public string $title;
 
     /**
      * @OA\Property(
@@ -34,7 +34,7 @@ class TaskRequest
      *
      * @var string
      */
-    public $description;
+    public string $description;
 
     /**
      * @OA\Property(
@@ -45,5 +45,5 @@ class TaskRequest
      *
      * @var \DateTime
      */
-    public $end_time;
+    public \DateTime $end_time;
 }
