@@ -56,7 +56,9 @@ Route::name('platform.')->group(function () {
     Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('file/{file}/download', FileController::class)->name('file.download');
 
-        Route::resource('subscriptions', SubscriptionController::class)->only(['index', 'store', 'destroy']);
+        Route::get('subscriptions', [SubscriptionController::class, 'index'])->name('subscriptions.index');
+        Route::post('subscriptions/{course}', [SubscriptionController::class, 'store'])->name('subscriptions.store');
+        Route::delete('subscriptions/{course}', [SubscriptionController::class, 'destroy'])->name('subscriptions.destroy');
 
         Route::get('courses/rate/{course}', RateController::class)->name('course.rate');
 

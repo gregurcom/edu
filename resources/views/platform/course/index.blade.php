@@ -28,14 +28,12 @@
                                     @csrf
                                     @method('DELETE')
 
-                                    <input type="hidden" value="{{ $course->id }}" name="course_id">
                                     <button type="submit" class="btn btn-outline-dark">{{ __('app.button.unsubscribe') }}</button>
                                 </form>
                             @else
                                 <form action="{{ route('platform.subscriptions.store', $course->id) }}" method="POST">
                                     @csrf
 
-                                    <input type="hidden" value="{{ $course->id }}" name="course_id">
                                     <button type="submit" class="btn btn-outline-dark">{{ __('app.button.subscribe') }}</button>
                                 </form>
                             @endif
