@@ -535,6 +535,101 @@
                 ]
             }
         },
+        "/subscriptions": {
+            "get": {
+                "tags": [
+                    "Subscriptions"
+                ],
+                "summary": "Get list of subscriptions",
+                "description": "Return list of subscriptions",
+                "operationId": "getSubscriptions",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            }
+        },
+        "/subscriptions/{courseId}": {
+            "post": {
+                "tags": [
+                    "Subscriptions"
+                ],
+                "summary": "Store new subscription",
+                "operationId": "storeSubscription",
+                "responses": {
+                    "201": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Subscription"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Subscriptions"
+                ],
+                "summary": "Delete existing subscription",
+                "description": "Deletes a record and returns no content",
+                "operationId": "deleteSubscription",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Course id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            }
+        },
         "/tasks": {
             "get": {
                 "tags": [
@@ -776,11 +871,11 @@
                         "title": "description",
                         "description": "Description of the new course",
                         "type": "string",
-                        "example": "This is new project's description"
+                        "example": "This is new course's description"
                     },
                     "user_id": {
                         "title": "user ID",
-                        "description": "User's id of the new project",
+                        "description": "User's id of the new course",
                         "type": "integer",
                         "format": "int64",
                         "example": 1
@@ -860,6 +955,37 @@
                 "type": "object",
                 "xml": {
                     "name": "Lesson"
+                }
+            },
+            "Subscription": {
+                "title": "Subscription",
+                "description": "Subscription model",
+                "properties": {
+                    "id": {
+                        "title": "id",
+                        "description": "Unique id of subscription",
+                        "type": "integer",
+                        "format": "int64",
+                        "example": 1
+                    },
+                    "user_id": {
+                        "title": "user ID",
+                        "description": "User's id of the new subscription",
+                        "type": "integer",
+                        "format": "int64",
+                        "example": 1
+                    },
+                    "course_id": {
+                        "title": "course ID",
+                        "description": "Course's id of the new subscription",
+                        "type": "integer",
+                        "format": "int64",
+                        "example": 1
+                    }
+                },
+                "type": "object",
+                "xml": {
+                    "name": "Subscription"
                 }
             },
             "Task": {

@@ -42,7 +42,7 @@ class Course
      * @OA\Property(
      *      title="description",
      *      description="Description of the new course",
-     *      example="This is new project's description"
+     *      example="This is new course's description"
      * )
      *
      * @var string
@@ -52,7 +52,7 @@ class Course
     /**
      * @OA\Property(
      *      title="user ID",
-     *      description="User's id of the new project",
+     *      description="User's id of the new course",
      *      format="int64",
      *      example=1
      * )
