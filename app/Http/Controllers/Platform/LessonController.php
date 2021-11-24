@@ -13,7 +13,6 @@ use App\Models\Lesson;
 use App\Services\LessonService;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class LessonController extends Controller
@@ -25,10 +24,8 @@ class LessonController extends Controller
         return view('platform.course.lesson.index', compact(['lesson', 'readDuration']));
     }
 
-    public function create(Request $request): View
+    public function create(Course $course): View
     {
-        $course = Course::findOrFail($request->course);
-
         return view('platform.course.lesson.create', compact('course'));
     }
 

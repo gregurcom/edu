@@ -7,11 +7,11 @@
 @section('content')
     <div class="container wrapper flex-grow-1 mt-3 mb-5" itemscope itemtype="http://schema.org/Course">
         @can('view', $course)
-            <a href="{{ route('platform.lessons.create', ['course' => $course->id]) }}" class="btn btn-outline-dark">{{ __('app.button.create-lesson')  }}</a>
+            <a href="{{ route('platform.lessons.create', $course->id) }}" class="btn btn-outline-dark">{{ __('app.button.create-lesson')  }}</a>
         @endcan
 
         @if (session('status'))
-            <div class="alert alert-dark text-center">
+            <div class="alert alert-dark text-center mt-2">
                 {{ session('status') }}
             </div>
         @endif

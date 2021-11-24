@@ -49,7 +49,8 @@ Route::name('platform.')->group(function () {
     Route::get('categories/{category}/courses', [CourseController::class, 'list'])->name('courses.list');
 
     Route::resource('courses', CourseController::class)->except('index');
-    Route::resource('lessons', LessonController::class)->except('index');
+    Route::resource('lessons', LessonController::class)->except(['index', 'create']);
+    Route::get('lessons/create/{course}', [LessonController::class, 'create'])->name('lessons.create');
 
     Route::get('search', [CourseController::class, 'search'])->name('course.search');
 
