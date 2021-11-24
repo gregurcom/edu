@@ -29,6 +29,11 @@ Browser Test
 2. ``php artisan serve``
 3. ``php artisan dusk``
 
+## Generate OpenAPI
+```
+php artisan l5-swagger:generate
+```
+
 ## Code analysis
 1. Run analysis:
 ```

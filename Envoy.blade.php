@@ -6,6 +6,8 @@
     migrate
     route-cache
     link-storage
+    app:generate-sitemap
+    app:generate-open-api
 @endstory
 
 @task('update-code')
@@ -43,4 +45,9 @@
 @task('app:generate-sitemap')
     cd /var/www/mentor-IT11Z
     php artisan app:generate-sitemap
+@endtask
+
+@task('app:generate-open-api')
+    cd /var/www/mentor-IT11Z
+    php artisan l5-swagger:generate
 @endtask

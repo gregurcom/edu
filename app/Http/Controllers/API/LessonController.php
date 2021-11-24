@@ -59,6 +59,7 @@ class LessonController extends Controller
      *      operationId="lessonCreation",
      *      tags={"Lessons"},
      *      summary="Get course id for creating lesson",
+     *      security={{ "Bearer":{} }},
      *      @OA\Parameter(
      *          name="course_id",
      *          description="Course id",
