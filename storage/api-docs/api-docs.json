@@ -117,6 +117,64 @@
                 ]
             }
         },
+        "/categories": {
+            "get": {
+                "tags": [
+                    "Categories"
+                ],
+                "summary": "Get list of categories",
+                "description": "Return list of categories",
+                "operationId": "getCategoriesList",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CategoryResource"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/categories/{id}": {
+            "get": {
+                "tags": [
+                    "Categories"
+                ],
+                "summary": "Get category",
+                "description": "Return category",
+                "operationId": "getCategory",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Category id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CategoryResource"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                }
+            }
+        },
         "/courses": {
             "get": {
                 "tags": [
@@ -1311,6 +1369,16 @@
                         "description": "Lesson information",
                         "type": "string",
                         "example": "programming..."
+                    }
+                },
+                "type": "object"
+            },
+            "CategoryResource": {
+                "title": "CategoryResource",
+                "description": "Category resource",
+                "properties": {
+                    "data": {
+                        "$ref": "#/components/schemas/Category"
                     }
                 },
                 "type": "object"
