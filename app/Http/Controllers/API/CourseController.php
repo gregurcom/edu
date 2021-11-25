@@ -5,11 +5,14 @@ declare(strict_types = 1);
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\SearchRequest;
 use App\Http\Requests\StoreCourseRequest;
 use App\Http\Resources\CourseResource;
 use App\Models\Course;
+use App\Services\CourseService;
+use Symfony\Component\HttpFoundation\Response;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
-use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 
 class CourseController extends Controller
@@ -191,5 +194,12 @@ class CourseController extends Controller
         $course->delete();
 
         return response(['message' => 'Destroy course'], 200);
+    }
+
+    public function search(SearchRequest $request, CourseService $courseService): JsonResponse
+    {
+        $courses = $courseService->searchCourse($request);
+
+        return response()->json($courses, Response::HTTP_OK);
     }
 }

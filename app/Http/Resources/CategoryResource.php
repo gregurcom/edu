@@ -14,7 +14,7 @@ class CategoryResource extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'slug' => $this->slug,
-            'courses' => CourseResource::collection($this->courses),
+            'courses' => CourseResource::collection($this->courses)->collection->take(5),
             'created_at' => $this->created_at,
         ];
     }
