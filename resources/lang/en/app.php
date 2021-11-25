@@ -22,6 +22,7 @@ return [
         'dashboard' => 'Dashboard',
         'lessons' => 'Lessons',
         'courses' => 'Courses',
+        'categories' => 'Categories',
         'author' => 'Author',
         'attached-files' => 'Attached file|Attached files',
         'subscriptions' => 'Subscriptions',

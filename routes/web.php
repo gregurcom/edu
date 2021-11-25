@@ -45,7 +45,6 @@ Route::name('auth.')->group(function () {
 });
 
 Route::name('platform.')->group(function () {
-    Route::get('categories', CategoryController::class)->name('categories.list');
     Route::get('categories/{category}/courses', [CourseController::class, 'list'])->name('courses.list');
 
     Route::view('tasks', 'platform.task.index')->name('tasks');

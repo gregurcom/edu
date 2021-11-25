@@ -22,6 +22,7 @@ return [
         'dashboard' => 'Панель управления',
         'lessons' => 'Уроки',
         'courses' => 'Курсы',
+        'categories' => 'Категории',
         'author' => 'Автор',
         'attached-files' => 'Приклепленный файл|Прикрепленные файлы',
         'subscriptions' => 'Подписки',

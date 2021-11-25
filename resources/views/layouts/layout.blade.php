@@ -43,7 +43,7 @@
                             <ul class="navbar-nav">
                                 <li class="nav-item">
                                     <a href="{{ route('platform.categories.list') }}"
-                                       class="{{ Route::is('platform.categories.list') ? 'text-info' : 'text-light' }} text-decoration-none h5 px-3">{{ __('app.title.courses') }}
+                                       class="{{ Route::is('platform.categories.list') ? 'text-info' : 'text-light' }} text-decoration-none h5 px-3">{{ __('app.title.categories') }}
                                     </a>
                                 </li>
                                 @auth
