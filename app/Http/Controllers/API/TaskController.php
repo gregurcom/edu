@@ -10,7 +10,7 @@ use App\Http\Resources\TaskResource;
 use App\Models\Task;
 use Illuminate\Support\Facades\Auth;
 use Gate;
-use Symfony\Component\HttpFoundation\JsonResponse;
+use Illuminate\Http\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 
 class TaskController extends Controller
@@ -126,7 +126,7 @@ class TaskController extends Controller
 
         $task->update($request->validated());
 
-        return response()->json($task, Response::HTTP_OK);
+        return response()->json($task, Response::HTTP_ACCEPTED);
     }
 
     /**

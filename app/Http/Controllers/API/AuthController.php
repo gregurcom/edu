@@ -8,9 +8,10 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\AccessRequest;
 use App\Http\Requests\RegistrationRequest;
 use App\Models\User;
-use Illuminate\Http\Response;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Symfony\Component\HttpFoundation\Response;
 
 class AuthController extends Controller
 {
@@ -36,7 +37,7 @@ class AuthController extends Controller
      *      ),
      * )
      */
-    public function register(RegistrationRequest $request): Response
+    public function register(RegistrationRequest $request): JsonResponse
     {
         $user = User::create([
             'name' => $request->name,
@@ -44,7 +45,7 @@ class AuthController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
-        return response(['token' => $user->createToken($request->name)->accessToken], 201);
+        return response()->json(['token' => $user->createToken($request->name)->accessToken], Response::HTTP_CREATED);
     }
 
     /**
@@ -69,13 +70,13 @@ class AuthController extends Controller
      *      ),
      * )
      */
-    public function login(AccessRequest $request): Response
+    public function login(AccessRequest $request): JsonResponse
     {
         if (Auth::attempt($request->validated())) {
-            return response(['token' => Auth::user()->createToken(Auth::user()->name)->accessToken], 200);
+            return response()->json(['token' => Auth::user()->createToken(Auth::user()->name)->accessToken], Response::HTTP_OK);
         }
 
-        return response('Credentials not match', 401);
+        return response()->json('Credentials not match', Response::HTTP_NO_CONTENT);
     }
 
     /**
@@ -100,10 +101,10 @@ class AuthController extends Controller
      *      ),
      * )
      */
-    public function logout(): Response
+    public function logout(): JsonResponse
     {
         Auth::user()->tokens()->delete();
 
-        return response(['message' => 'Tokens Revoked'], 200);
+        return response()->json('Tokens Revoked', Response::HTTP_OK);
     }
 }

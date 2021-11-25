@@ -95,11 +95,11 @@ class CourseController extends Controller
      *      ),
      * )
      */
-    public function store(StoreCourseRequest $request): Response
+    public function store(StoreCourseRequest $request): JsonResponse
     {
         $course = Course::create(array_merge(['user_id' => Auth::id()], $request->validated()));
 
-        return response(['course' => $course], 201);
+        return response()->json($course, Response::HTTP_CREATED);
     }
 
     /**
@@ -146,11 +146,11 @@ class CourseController extends Controller
      *      )
      * )
      */
-    public function update(Course $course, StoreCourseRequest $request): Response
+    public function update(Course $course, StoreCourseRequest $request): JsonResponse
     {
         $course->update($request->validated());
 
-        return response(['course' => $course], 204);
+        return response()->json($course, Response::HTTP_ACCEPTED);
     }
 
     /**
@@ -189,11 +189,11 @@ class CourseController extends Controller
      *      )
      * )
      */
-    public function destroy(Course $course): Response
+    public function destroy(Course $course): JsonResponse
     {
         $course->delete();
 
-        return response(['message' => 'Destroy course'], 200);
+        return response()->json(null, Response::HTTP_NO_CONTENT);
     }
 
     public function search(SearchRequest $request, CourseService $courseService): JsonResponse
