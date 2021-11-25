@@ -48,6 +48,8 @@ Route::name('platform.')->group(function () {
     Route::get('categories', CategoryController::class)->name('categories.list');
     Route::get('categories/{category}/courses', [CourseController::class, 'list'])->name('courses.list');
 
+    Route::view('tasks', 'platform.task.index')->name('tasks');
+
     Route::resource('courses', CourseController::class)->except('index');
     Route::resource('lessons', LessonController::class)->except(['index', 'create']);
     Route::get('lessons/create/{course}', [LessonController::class, 'create'])->name('lessons.create');
