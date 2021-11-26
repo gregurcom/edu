@@ -5,6 +5,7 @@ declare(strict_types = 1);
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\CourseResource;
 use App\Models\Course;
 use App\Models\CourseUser;
 use Illuminate\Http\JsonResponse;
@@ -30,6 +31,7 @@ class SubscriptionController extends Controller
     public function index(): JsonResponse
     {
         $courses = Auth::user()->subscriptions()->with(['author', 'rates'])->get();
+        $courses = CourseResource::collection($courses);
 
         return response()->json($courses, Response::HTTP_OK);
     }
