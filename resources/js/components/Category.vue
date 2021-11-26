@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div :class="{'loading': loading}">
         <div v-for="category in categories">
             <h2 class="mt-5">
                 <a :href="`/categories/${category.id}/courses`" class="text-dark text-decoration-none head-link">{{ category.name }}</a>
@@ -35,11 +35,13 @@
         data() {
             return {
                 categories: [],
+                loading: true,
             }
         },
         mounted() {
             axios.get('api/v1/categories').then(response => {
                 this.categories = response.data.data
+                this.loading = false
             })
         },
     }

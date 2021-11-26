@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div :class="{'loading': loading}">
         <div class="mt-4" v-for="course in courses">
             <div class="mt-3">
                 <div class="row">
@@ -25,12 +25,14 @@
     export default {
         data() {
             return {
-                courses: []
+                courses: [],
+                loading: true,
             }
         },
         mounted() {
             axios.get('api/v1/subscriptions').then(response => {
                 this.courses = response.data
+                this.loading = false
             });
         }
     }

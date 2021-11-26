@@ -1,9 +1,7 @@
 <template>
     <div>
-        <div>
-            <a href="/courses/create" class="btn btn-outline-dark">Create course</a>
-            <a href="/tasks" class="btn btn-outline-dark">Tasks</a>
-        </div>
+        <a href="/courses/create" class="btn btn-outline-dark">Create course</a>
+        <a href="/tasks" class="btn btn-outline-dark">Tasks</a>
         <div class="mt-5 mb-5">
             <h2>Your courses:</h2>
             <div class="mt-3" v-for="course in courses">
