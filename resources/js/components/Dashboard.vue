@@ -1,11 +1,11 @@
 <template>
-    <div class="container wrapper flex-grow-1 mt-3">
+    <div>
         <div>
             <a href="/courses/create" class="btn btn-outline-dark">Create course</a>
             <a href="/tasks" class="btn btn-outline-dark">Tasks</a>
         </div>
         <div class="mt-5 mb-5">
-            <h2 class="mb-5">Your courses:</h2>
+            <h2>Your courses:</h2>
             <div class="mt-3" v-for="course in courses">
                 <h4><a :href="`courses/${course.id}`" class="text-decoration-none text-dark">{{ course.title }}</a></h4>
                 <p>{{ course.description }}</p>

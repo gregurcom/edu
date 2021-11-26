@@ -1,5 +1,5 @@
 <template>
-    <div class="container wrapper flex-grow-1 mt-5 mb-4">
+    <div>
         <div class="mb-5" v-for="task in tasks">
             <h3 class="d-inline"><a href="#" class="head-link text-decoration-none text-black">{{ task.title }}</a></h3>
             <span class="text-secondary px-2">{{ task.end_time }}</span>

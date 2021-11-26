@@ -1,5 +1,5 @@
 <template>
-    <div class="container wrapper flex-grow-1 mt-5 mb-4">
+    <div>
         <div class="mt-4" v-for="course in courses">
             <div class="mt-3">
                 <div class="row">

@@ -1,5 +1,5 @@
 <template>
-    <div class="container wrapper flex-grow-1 mt-5 mb-3">
+    <div>
         <div v-for="category in categories">
             <h2 class="mt-5">
                 <a :href="`/categories/${category.id}/courses`" class="text-dark text-decoration-none head-link">{{ category.name }}</a>
