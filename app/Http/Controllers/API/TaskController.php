@@ -122,8 +122,6 @@ class TaskController extends Controller
      */
     public function update(TaskRequest $request, Task $task): JsonResponse
     {
-        abort_if(Gate::denies('update-task'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-
         $task->update($request->validated());
 
         return response()->json($task, Response::HTTP_ACCEPTED);
@@ -167,8 +165,6 @@ class TaskController extends Controller
      */
     public function destroy(Task $task): JsonResponse
     {
-        abort_if(Gate::denies('destroy-task'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-
         $task->delete();
 
         return response()->json(null, Response::HTTP_NO_CONTENT);

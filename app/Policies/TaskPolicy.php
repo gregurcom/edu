@@ -12,11 +12,6 @@ class TaskPolicy
 {
     use HandlesAuthorization;
 
-    public function store(User $user, Task $task): bool
-    {
-        return $user->id === $task->user_id;
-    }
-
     public function update(User $user, Task $task): bool
     {
         return $user->id === $task->user_id;
