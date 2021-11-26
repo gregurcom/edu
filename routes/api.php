@@ -5,6 +5,7 @@ declare(strict_types = 1);
 use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\API\CategoryController;
 use App\Http\Controllers\API\CourseController;
+use App\Http\Controllers\API\DashboardController;
 use App\Http\Controllers\API\LessonController;
 use App\Http\Controllers\API\SubscriptionController;
 use App\Http\Controllers\API\TaskController;
@@ -33,6 +34,8 @@ Route::get('courses/{course}', [CourseController::class, 'show'])->name('courses
 Route::get('lessons/{lesson}', [LessonController::class, 'show'])->name('lessons.show');
 
 Route::middleware('auth:api')->group(function () {
+    Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
+
     Route::name('courses.')->group(function () {
         Route::post('courses', [CourseController::class, 'store'])->name('store');
 

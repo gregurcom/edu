@@ -10,11 +10,6 @@
             <a href="{{ route('platform.lessons.create', $course->id) }}" class="btn btn-outline-dark">{{ __('app.button.create-lesson')  }}</a>
         @endcan
 
-        @if (session('status'))
-            <div class="alert alert-dark text-center mt-2">
-                {{ session('status') }}
-            </div>
-        @endif
         <div class="text-center mt-3">
             <div class="row">
                 <div class="col-md-6" id="courseTitle">
@@ -24,14 +19,12 @@
                     @auth
                         <div class="px-4">
                             @if (Auth::user()->isSubscribedOnCourse($course->id))
-                                <form action="{{ route('platform.subscriptions.destroy', $course->id) }}" method="POST">
-                                    @csrf
-                                    @method('DELETE')
+                                <form action="/" method="POST">
 
                                     <button type="submit" class="btn btn-outline-dark">{{ __('app.button.unsubscribe') }}</button>
                                 </form>
                             @else
-                                <form action="{{ route('platform.subscriptions.store', $course->id) }}" method="POST">
+                                <form action="/" method="POST">
                                     @csrf
 
                                     <button type="submit" class="btn btn-outline-dark">{{ __('app.button.subscribe') }}</button>
