@@ -37,8 +37,6 @@ class Task extends Model
 
     protected $guarded = [];
 
-    protected $casts = ['end_time' => 'datetime:Y-m-d H:i:s'];
-
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
