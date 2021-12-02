@@ -29,34 +29,33 @@
         @enderror
 
         @forelse ($courses as $course)
-            <div class="mt-4">
-                <div class="mt-3">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <ul>
-                                <li>
-                                    <a href="{{ route('platform.courses.show', $course->id) }}" class="text-decoration-none text-dark h3">{{ $course->title }}</a>
-                                    <span class="h4 px-2">({{ $course->author->name }})</span>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="col-md-6 d-flex">
-                            <div class="px-3">
-                                @if ($course->rates->count('id') > 0)
-                                    <span>
-                                        @for ($i = 1; $i <= 5; $i++)
-                                            <i class="star fa fa-star{{ round($course->averageRate()) >= $i ? '' : '-o' }}"></i>
-                                        @endfor
-                                    </span>
-                                @endif
-                            </div>
+            <div class="row mb-2 mt-4">
+                <div class="col-md-8">
+                    <div class="d-block mb-2">
+                        <a href="{{ route('platform.courses.show', $course->id) }}" class="text-decoration-none text-dark h4">{{ $course->title }}</a>
+                        <div class="px-3 d-inline">
+                            @if ($course->rates->count('id') > 0)
+                                <span>
+                                    @for ($i = 1; $i <= 5; $i++)
+                                        <i class="star fa fa-star{{ round($course->averageRate()) >= $i ? '' : '-o' }}"></i>
+                                    @endfor
+                                </span>
+                            @endif
                         </div>
                     </div>
+                    <div class="mb-1">
+                        {{ $course->description }}
+                    </div>
+                    <a href="#" class="text-decoration-none text-muted">{{ $course->author->name }}</a> ·
+                    <span class="text-muted">{{ $course->created_at->isoformat('Do MMM YY') }}</span>
+                </div>
+                <div class="col-md-4 d-flex">
+                    <img src="{{ asset('images/social.png') }}" width="250" height="180">
                 </div>
             </div>
         @empty
-            <div class="alert alert-info text-center">
-                {{ __('app.alert.no-search-result') }}
+            <div class="alert alert-info">
+                {{ __('app.alert.category-without-courses') }}
             </div>
         @endforelse
     </div>
