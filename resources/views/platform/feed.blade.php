@@ -53,7 +53,7 @@
                     <span class="text-muted">{{ $course->created_at->isoformat('Do MMM YY') }}</span>
                 </div>
                 <div class="col-md-4 d-flex">
-                    <img src="{{ asset('images/social.png') }}" width="250" height="180">
+                    <img src="{{ asset('images/404.png') }}" width="250" height="180">
                 </div>
             </div>
         @empty
