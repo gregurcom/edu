@@ -18,7 +18,7 @@ class CourseResource extends JsonResource
             'category' => $this->category->name,
             'rate' => $this->averageRate(),
             'author' => $this->author->name,
-            'created_at' => $this->created_at,
+            'created_at' => $this->created_at->isoformat('Do MMM YY'),
         ];
     }
 }
