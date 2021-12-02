@@ -32,7 +32,7 @@ footer, nav {
     margin: 8px;
 }
 
-.navbar-toggler {
+.text-crystal {
     color: #69d2f1;
 }
 
@@ -54,7 +54,7 @@ footer, nav {
 
 @media screen and (max-width: 930px) {
     #homeIllustrate {
-        width: 300px;
+        width: 360px;
         height: 300px;
     }
 }
@@ -89,4 +89,8 @@ footer, nav {
 
 #switch-lang {
     padding-left: 11px;
+}
+
+a:hover {
+    color: #69d2f1;
 }

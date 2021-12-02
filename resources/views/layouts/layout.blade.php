@@ -35,32 +35,32 @@
                 <nav class="navbar navbar-expand-lg">
                     <div class="container-fluid">
                         <div class="align-content-center">
-                            <a href="{{ route('home') }}" class="{{ Route::is('home') ? 'text-info' : 'text-light' }} text-decoration-none h5 px-3">Mentor</a>
+                            <a href="{{ route('home') }}" class="{{ Route::is('home') ? 'text-crystal' : 'text-light' }} text-decoration-none h5 px-3">Mentor</a>
                         </div>
-                        <button class="navbar-toggler px-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <button class="navbar-toggler text-crystal px-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                             <i class="fas fa-list"></i>
                         </button>
                         <div class="collapse navbar-collapse align-content-center bg-dark" id="navbarNav">
                             <ul class="navbar-nav">
                                 <li class="nav-item">
                                     <a href="{{ route('platform.feed.index') }}"
-                                       class="{{ Route::is('platform.feed.index') ? 'text-info' : 'text-light' }} text-decoration-none h5 px-3">{{ __('app.title.feed') }}
+                                       class="{{ Route::is('platform.feed.index') ? 'text-crystal' : 'text-light' }} text-decoration-none h5 px-3">{{ __('app.title.feed') }}
                                     </a>
                                 </li>
                                 @auth
                                     <li class="nav-item">
                                         <a href="{{ route('platform.subscriptions.index') }}"
-                                           class="{{ Route::is('platform.subscriptions.index') ? 'text-info' : 'text-light' }} text-decoration-none h5 px-3">{{ __('app.title.subscriptions') }}
+                                           class="{{ Route::is('platform.subscriptions.index') ? 'text-crystal' : 'text-light' }} text-decoration-none h5 px-3">{{ __('app.title.subscriptions') }}
                                         </a>
                                     </li>
                                     <li class="nav-item">
                                         <a href="{{ route('platform.tech-support') }}"
-                                           class="{{ Route::is('platform.tech-support') ? 'text-info' : 'text-light' }} text-decoration-none h5 px-3">{{ __('app.title.tech-support') }}
+                                           class="{{ Route::is('platform.tech-support') ? 'text-crystal' : 'text-light' }} text-decoration-none h5 px-3">{{ __('app.title.tech-support') }}
                                         </a>
                                     </li>
                                     <li class="nav-item">
                                         <div class="dropdown">
-                                            <span class="{{ Route::is('dashboard') ? 'text-info' : 'text-light' }} dropdown-toggle h5 px-3" data-bs-toggle="dropdown" aria-expanded="false">
+                                            <span class="{{ Route::is('dashboard') ? 'text-crystal' : 'text-light' }} dropdown-toggle h5 px-3" data-bs-toggle="dropdown" aria-expanded="false">
                                                 {{ auth()->user()->name }}
                                             </span>
                                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
@@ -72,7 +72,7 @@
                                 @else
                                     <li class="nav-item">
                                         <a href="{{ route('auth.login') }}"
-                                           class="{{ Route::is('auth.login') ? 'text-info' : 'text-light' }} text-decoration-none h5 px-3">{{ __('auth.login') }}
+                                           class="{{ Route::is('auth.login') ? 'text-crystal' : 'text-light' }} text-decoration-none h5 px-3">{{ __('auth.login') }}
                                         </a>
                                     </li>
                                 @endauth

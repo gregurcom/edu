@@ -10,30 +10,31 @@
             <a href="{{ route('platform.lessons.create', $course->id) }}" class="btn btn-outline-dark">{{ __('app.button.create-lesson')  }}</a>
         @endcan
 
-        <div class="text-center mt-3">
-            <div class="row">
-                <div class="col-md-6" id="courseTitle">
-                    <h2 itemprop="name">{{ $course->title }}</h2>
-                </div>
-                <div class="col-md-6" id="subscribeButton">
-                    @auth
-                        <div class="px-4">
-                            @if (Auth::user()->isSubscribedOnCourse($course->id))
-                                <form action="/" method="POST">
-
-                                    <button type="submit" class="btn btn-outline-dark">{{ __('app.button.unsubscribe') }}</button>
-                                </form>
-                            @else
-                                <form action="/" method="POST">
-                                    @csrf
-
-                                    <button type="submit" class="btn btn-outline-dark">{{ __('app.button.subscribe') }}</button>
-                                </form>
-                            @endif
-                        </div>
-                    @else
-                        <a href="{{ route('auth.login') }}" class="btn btn-outline-dark">{{ __('app.button.subscribe') }}</a>
-                    @endauth
+        <div class="text-center">
+            <img src="{{ asset('images/social.png') }}" width="550" height="300">
+            <div class="mt-3 text-center">
+                <div class="row">
+                    <div class="col-md-6" id="courseTitle">
+                        <h2 itemprop="name">{{ $course->title }}</h2>
+                    </div>
+                    <div class="col-md-6" id="subscribeButton">
+                        @auth
+                            <div class="px-3">
+                                @if (Auth::user()->isSubscribedOnCourse($course->id))
+                                    <form action="/" method="POST">
+                                        <button type="submit" class="btn btn-outline-dark">{{ __('app.button.unsubscribe') }}</button>
+                                    </form>
+                                @else
+                                    <form action="/" method="POST">
+                                        @csrf
+                                        <button type="submit" class="btn btn-outline-dark">{{ __('app.button.subscribe') }}</button>
+                                    </form>
+                                @endif
+                            </div>
+                        @else
+                            <a href="{{ route('auth.login') }}" class="btn btn-outline-dark">{{ __('app.button.subscribe') }}</a>
+                        @endauth
+                    </div>
                 </div>
             </div>
             <form action="{{ route('platform.course.rate', $course->id) }}" method="GET" class="mt-3">
@@ -45,11 +46,8 @@
             </form>
         </div>
 
-        <div class="row">
+        <div class="row mt-4">
             <div class="col-md-6">
-                <h2 class="mt-5 mb-4">
-                    {{ __('app.title.lessons') }}: ({{ $course->lessons->count() }})
-                </h2>
                 @forelse ($course->lessons as $lesson)
                     <div class="mt-4">
                         <h4 class="lesson-title">
@@ -73,7 +71,7 @@
                     </div>
                 @endforelse
             </div>
-            <div class="col-md-6 mt-5 d-flex justify-content-center">
+            <div class="col-md-6 d-flex justify-content-center">
                 <div>
                     <h2>{{ __('app.title.about-course') }}:</h2>
                     <p>{{ $course->description }}</p>

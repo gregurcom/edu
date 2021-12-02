@@ -34,13 +34,14 @@
         @forelse ($courses as $course)
             <div class="row mb-4">
                 <div class="col-md-8">
-                    <a href="#" class="text-decoration-none text-dark">{{ $course->author->name }}</a> · {{ $course->created_at->format('d F') }}
-                    <div class="d-block mt-1">
-                        <a href="{{ route('platform.courses.show', $course->id) }}" class="text-decoration-none text-dark h3">{{ $course->title }}</a>
+                    <div class="d-block mb-2">
+                        <a href="{{ route('platform.courses.show', $course->id) }}" class="text-decoration-none text-dark h4">{{ $course->title }}</a>
                     </div>
-                    <div>
+                    <div class="mb-1">
                         {{ $course->description }}
                     </div>
+                    <a href="#" class="text-decoration-none text-muted">{{ $course->author->name }}</a> ·
+                    <span class="text-muted">{{ $course->created_at->isoformat('Do MMM YY') }}</span>
                 </div>
                 <div class="col-md-4 d-flex">
                     <img src="{{ asset('images/social.png') }}" width="250" height="180">
