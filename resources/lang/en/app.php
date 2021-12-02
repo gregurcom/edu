@@ -23,6 +23,7 @@ return [
         'lessons' => 'Lessons',
         'courses' => 'Courses',
         'categories' => 'Categories',
+        'feed' => 'Feed',
         'author' => 'Author',
         'attached-files' => 'Attached file|Attached files',
         'subscriptions' => 'Subscriptions',

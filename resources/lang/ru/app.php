@@ -23,6 +23,7 @@ return [
         'lessons' => 'Уроки',
         'courses' => 'Курсы',
         'categories' => 'Категории',
+        'feed' => 'Лента',
         'author' => 'Автор',
         'attached-files' => 'Приклепленный файл|Прикрепленные файлы',
         'subscriptions' => 'Подписки',
