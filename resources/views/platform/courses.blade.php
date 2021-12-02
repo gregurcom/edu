@@ -28,31 +28,22 @@
             </div>
         @enderror
 
-        <div class="text-center mb-5 mt-5">
-            <h2>
-                <a href="{{ route('platform.courses.list', $category->id) }}" class="text-dark text-decoration-none head-link">{{ $category->name }}</a>
-            </h2>
+        <div class="mb-5 mt-3 text-center">
+            <a href="{{ route('platform.courses.list', $category->id) }}" class="text-dark text-decoration-none head-link h1">{{ $category->name }}</a>
         </div>
         @forelse ($courses as $course)
-            <div class="mt-5">
-                <div class="mt-3">
-                    <div class="row">
-                        <div class="col-md-8">
-                            <a href="{{ route('platform.courses.show', $course->id) }}" class="text-decoration-none text-dark h3">{{ $course->title }}</a>
-                            <span class="h4 px-2">(<a href="#" class="text-decoration-none text-dark">{{ $course->author->name }}</a>)</span>
-                        </div>
-                        <div class="col-md-4 d-flex">
-                            <div class="px-3">
-                                @if ($course->rates->count('id') > 0)
-                                    <span>
-                                        @for ($i = 1; $i <= 5; $i++)
-                                            <i class="star fa fa-star{{ round($course->averageRate()) >= $i ? '' : '-o' }}"></i>
-                                        @endfor
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
+            <div class="row mb-4">
+                <div class="col-md-8">
+                    <a href="#" class="text-decoration-none text-dark">{{ $course->author->name }}</a> · {{ $course->created_at->format('d F') }}
+                    <div class="d-block mt-1">
+                        <a href="{{ route('platform.courses.show', $course->id) }}" class="text-decoration-none text-dark h3">{{ $course->title }}</a>
                     </div>
+                    <div>
+                        {{ $course->description }}
+                    </div>
+                </div>
+                <div class="col-md-4 d-flex">
+                    <img src="{{ asset('images/social.png') }}" width="250" height="180">
                 </div>
             </div>
         @empty
