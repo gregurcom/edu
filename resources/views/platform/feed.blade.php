@@ -10,7 +10,7 @@
             </div>
         @endif
 
-        <form action="{{ route('platform.course.search') }}" method="GET" class="mb-5">
+        <form action="{{ route('platform.course.search') }}" method="GET">
             <div class="row g-1 justify-content-end">
                 <div class="col-auto">
                     <input type="search" name="q" class="form-control border-dark search-input" placeholder="{{ __('app.input.course-search') }}...">
@@ -28,7 +28,7 @@
             </div>
         @enderror
 
-        <div class="mb-4">
+        <div class="mb-4 mt-2">
             <a href="{{ route('platform.categories.list') }}" class="btn btn-outline-dark">Categories</a>
         </div>
         @forelse ($courses as $course)
@@ -36,6 +36,15 @@
                 <div class="col-md-8">
                     <div class="d-block mb-2">
                         <a href="{{ route('platform.courses.show', $course->id) }}" class="text-decoration-none text-dark h4">{{ $course->title }}</a>
+                        <div class="px-3 d-inline">
+                            @if ($course->rates->count('id') > 0)
+                                <span>
+                                    @for ($i = 1; $i <= 5; $i++)
+                                        <i class="star fa fa-star{{ round($course->averageRate()) >= $i ? '' : '-o' }}"></i>
+                                    @endfor
+                                </span>
+                            @endif
+                        </div>
                     </div>
                     <div class="mb-1">
                         {{ $course->description }}

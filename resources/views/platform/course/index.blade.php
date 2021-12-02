@@ -21,12 +21,11 @@
                         @auth
                             <div class="px-3">
                                 @if (Auth::user()->isSubscribedOnCourse($course->id))
-                                    <form action="/" method="POST">
+                                    <form action="/" method="GET">
                                         <button type="submit" class="btn btn-outline-dark">{{ __('app.button.unsubscribe') }}</button>
                                     </form>
                                 @else
-                                    <form action="/" method="POST">
-                                        @csrf
+                                    <form action="/" method="GET">
                                         <button type="submit" class="btn btn-outline-dark">{{ __('app.button.subscribe') }}</button>
                                     </form>
                                 @endif
