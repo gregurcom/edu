@@ -593,6 +593,39 @@
                 ]
             }
         },
+        "/search": {
+            "get": {
+                "tags": [
+                    "Courses"
+                ],
+                "summary": "Get list of courses",
+                "description": "Return list of courses",
+                "operationId": "getSearchedCoursesList",
+                "parameters": [
+                    {
+                        "name": "q",
+                        "in": "query",
+                        "description": "Course title or description",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CourseResource"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/subscriptions": {
             "get": {
                 "tags": [
@@ -1225,6 +1258,21 @@
                         "description": "User password confirmation",
                         "type": "string",
                         "example": 12345678
+                    }
+                },
+                "type": "object"
+            },
+            "SearchRequest": {
+                "title": "Search Course request",
+                "required": [
+                    "q"
+                ],
+                "properties": {
+                    "q": {
+                        "title": "q",
+                        "description": "Course title or description",
+                        "type": "string",
+                        "example": "programming"
                     }
                 },
                 "type": "object"

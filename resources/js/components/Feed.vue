@@ -58,7 +58,7 @@
         methods: {
             submit() {
                 axios.get('api/v1/search?q=' + this.query).then(response => {
-                    this.courses = response.data.data
+                    this.courses = response.data
                     this.query = []
                 }).catch (error => {
                     console.log(error)
