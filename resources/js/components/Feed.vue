@@ -57,7 +57,7 @@
         },
         methods: {
             submit() {
-                axios.post('api/v1/search?q=' + this.query).then(response => {
+                axios.get('api/v1/search?q=' + this.query).then(response => {
                     this.courses = response.data.data
                     this.query = []
                 }).catch (error => {

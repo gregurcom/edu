@@ -4,11 +4,12 @@ declare(strict_types = 1);
 
 namespace App\Services;
 
+use App\Http\Resources\CourseResource;
 use App\Models\Category;
 use App\Models\Course;
 use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Pagination\LengthAwarePaginator;
-use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Cache;
 
 class CourseService
@@ -28,11 +29,11 @@ class CourseService
         return $courses;
     }
 
-    public function searchCourse(Request $request): array|Collection
+    public function searchCourse(Request $request): AnonymousResourceCollection
     {
-        return Course::where('title', 'like', '%' . $request->q . '%')
+        return CourseResource::collection(Course::where('title', 'like', '%' . $request->q . '%')
             ->orWhere('description', 'like', '%' . $request->q . '%')
             ->with(['rates', 'author'])
-            ->get();
+            ->get());
     }
 }
