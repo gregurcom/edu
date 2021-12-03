@@ -1,5 +1,18 @@
 <template>
     <div :class="{'loading': loading}">
+        <form @submit.prevent="submit">
+            <div class="row g-1 justify-content-end">
+                <div class="col-auto">
+                    <input type="search" name="q" class="form-control border-dark search-input" v-model="query" placeholder="Search...">
+                </div>
+                <div class="col-auto">
+                    <button type="submit" class="btn btn-outline-dark">
+                        <i class="fa fa-search"></i>
+                    </button>
+                </div>
+            </div>
+        </form>
+
         <div class="mb-4 mt-2">
             <a href="/categories" class="btn btn-outline-dark">Categories</a>
         </div>
@@ -32,6 +45,7 @@
         data() {
             return {
                 courses: [],
+                query: null,
                 loading: true,
             }
         },
@@ -41,5 +55,15 @@
                 this.loading = false
             })
         },
+        methods: {
+            submit() {
+                axios.post('api/v1/search?q=' + this.query).then(response => {
+                    this.courses = response.data.data
+                    this.query = []
+                }).catch (error => {
+                    console.log(error)
+                })
+            },
+        }
     }
 </script>
