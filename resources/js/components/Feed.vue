@@ -3,17 +3,15 @@
         <form @submit.prevent="submit">
             <div class="row g-1 justify-content-end">
                 <div class="col-auto">
-                    <input type="search" name="q" class="form-control border-dark search-input" v-model="query" placeholder="Search...">
-                </div>
-                <div class="col-auto">
-                    <button type="submit" class="btn btn-outline-dark">
+                    <div style="position: absolute; margin-left: 8px; margin-top: 7px;">
                         <i class="fa fa-search"></i>
-                    </button>
+                    </div>
+                    <input style="padding-left: 29px" type="search" name="q" class="form-control border-dark search-input" v-model="query" placeholder="Search...">
                 </div>
             </div>
         </form>
 
-        <div class="mb-4 mt-2">
+        <div class="mb-4 mt-4">
             <a href="/categories" class="btn btn-outline-dark">Categories</a>
         </div>
         <div class="row mb-4" v-for="course in courses">
