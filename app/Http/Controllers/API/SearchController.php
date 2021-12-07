@@ -39,6 +39,6 @@ class SearchController extends Controller
     {
         $courses = $courseService->searchCourse($request);
 
-        return response()->json($courses, Response::HTTP_OK);
+        return response()->json(['data' => $courses], Response::HTTP_OK);
     }
 }

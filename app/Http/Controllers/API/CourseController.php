@@ -33,7 +33,7 @@ class CourseController extends Controller
      */
     public function index(): AnonymousResourceCollection
     {
-        return CourseResource::collection(Course::paginate(15));
+        return CourseResource::collection(Course::paginate(10));
     }
 
     /**

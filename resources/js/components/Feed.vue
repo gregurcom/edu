@@ -14,7 +14,7 @@
         <div class="mb-4 mt-4">
             <a href="/categories" class="btn btn-outline-dark">Categories</a>
         </div>
-        <div class="row mb-4" v-for="course in courses">
+        <div class="row mb-4" v-for="course in courses.data">
             <div class="col-md-8">
                 <div class="d-block mb-2">
                     <a :href="`/courses/${course.id}`" class="text-decoration-none text-dark h4">{{ course.title }}</a>
@@ -32,14 +32,19 @@
                 <span class="text-muted">{{ course.created_at }}</span>
             </div>
             <div class="col-md-4 d-flex">
-                <img :src="'/images/404.png'" width="250" height="180">
+                <img :src="'/images/404.png'" width="250" height="150">
             </div>
         </div>
+        <pagination align="center" :data="courses" @pagination-change-page="list"></pagination>
     </div>
 </template>
 
 <script>
+    import pagination from 'laravel-vue-pagination'
     export default {
+        components: {
+            pagination
+        },
         data() {
             return {
                 courses: [],
@@ -47,13 +52,17 @@
                 loading: true,
             }
         },
-        mounted() {
-            axios.get('api/v1/courses').then(response => {
-                this.courses = response.data.data
-                this.loading = false
-            })
+        mounted(){
+            this.list()
         },
         methods: {
+            list(page = 1) {
+                axios.get(`/api/v1/courses?page=${page}`).then(response => {
+                    this.courses = response.data
+                    this.loading = false
+                    window.scrollTo(0,0);
+                })
+            },
             submit() {
                 axios.get('api/v1/search?q=' + this.query).then(response => {
                     this.courses = response.data
