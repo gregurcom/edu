@@ -1,7 +1,7 @@
 <template>
     <div :class="{'loading': loading}">
-        <span v-for="category in categories" class="px-3">
-            <a :href="`/categories/${category.id}/courses`" class="btn btn-outline-dark">{{ category.name }}</a>
+        <span v-for="category in categories" class="px-2">
+            <a :href="`/categories/${category.id}/courses`" class="btn btn-outline-dark mt-2">{{ category.name }}</a>
         </span>
     </div>
 </template>

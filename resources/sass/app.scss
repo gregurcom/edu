@@ -36,6 +36,37 @@ footer, nav {
     color: #69d2f1;
 }
 
+.head-link {
+    border-bottom: 3px solid rgba(105, 210, 241, 0.4);
+}
+
+.trix-button-group.trix-button-group--file-tools {
+    display:none;
+}
+
+.trix-content {
+    min-height: 300px !important;
+    overflow-y: auto;
+}
+
+#switch-lang {
+    padding-left: 11px;
+}
+
+a:hover {
+    color: #69d2f1;
+}
+
+#search {
+    position: absolute;
+    margin-left: 8px;
+    margin-top: 7px;
+}
+
+#search-input {
+    padding-left: 29px
+}
+
 @media screen and (max-width: 991px) {
     #homeIllustrate {
         width: 360px;
@@ -63,34 +94,52 @@ footer, nav {
     #courseTitle {
         text-align: end;
     }
+    
     #subscribeButton {
         text-align: start;
     }
+
     .lesson-title {
         margin-left: 30px;
     }
+
     .table-button {
         width: 100px;
     }
 }
 
-.head-link {
-    border-bottom: 3px solid rgba(105, 210, 241, 0.4);
+@media screen and (max-width: 550px) {
+    #category-image {
+        width: 400px;
+        height: 200px;
+    }
+
+    #homeIllustrate {
+        width: 300px;
+        height: 260px;
+    }
 }
 
-.trix-button-group.trix-button-group--file-tools {
-    display:none;
+@media screen and (max-width: 400px) {
+    #category-image {
+        width: 300px;
+        height: 150px;
+    }
+
+    #homeIllustrate {
+        width: 250px;
+        height: 190px;
+    }
 }
 
-.trix-content {
-    min-height: 300px !important;
-    overflow-y: auto;
-}
+@media screen and (max-width: 300px) {
+    #category-image {
+        width: 200px;
+        height: 100px;
+    }
 
-#switch-lang {
-    padding-left: 11px;
-}
-
-a:hover {
-    color: #69d2f1;
+    #homeIllustrate {
+        width: 200px;
+        height: 140px;
+    }
 }

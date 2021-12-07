@@ -3,10 +3,10 @@
         <form @submit.prevent="submit">
             <div class="row g-1 justify-content-end">
                 <div class="col-auto">
-                    <div style="position: absolute; margin-left: 8px; margin-top: 7px;">
+                    <div id="search">
                         <i class="fa fa-search"></i>
                     </div>
-                    <input style="padding-left: 29px" type="search" name="q" class="form-control border-dark search-input" v-model="query" placeholder="Search...">
+                    <input id="search-input" type="search" name="q" class="form-control border-dark search-input" v-model="query" placeholder="Search...">
                 </div>
             </div>
         </form>
