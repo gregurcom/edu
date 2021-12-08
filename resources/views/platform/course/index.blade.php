@@ -11,7 +11,7 @@
         @endcan
 
         <div class="text-center">
-            <img src="{{ asset('images/404.png') }}" width="550" height="300">
+            <img src="{{ asset('images/404.png') }}" width="550" height="300" id="course-image">
             <div class="mt-3 text-center">
                 <div class="row">
                     <div class="col-md-6" id="courseTitle">
