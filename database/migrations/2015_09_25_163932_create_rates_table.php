@@ -18,8 +18,8 @@ class CreateRatesTable extends Migration
         Schema::create('rates', function (Blueprint $table) {
             $table->id();
             $table->integer('rate');
-            $table->foreignId('user_id');
-            $table->foreignId('course_id');
+            $table->foreignId('user_id')->constrained();
+            $table->foreignId('course_id')->constrained();
             $table->timestamps();
         });
     }

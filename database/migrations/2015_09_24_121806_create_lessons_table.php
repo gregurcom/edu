@@ -19,8 +19,8 @@ class CreateLessonsTable extends Migration
             $table->id();
             $table->string('title');
             $table->text('information');
-            $table->foreignId('course_id');
-            $table->integer('status')->nullable();
+            $table->foreignId('course_id')->constrained();
+            $table->enum('status', [0, 1])->nullable();
             $table->timestamps();
         });
     }
