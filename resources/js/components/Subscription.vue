@@ -21,8 +21,8 @@
             </div>
         </template>
         <template v-else>
-            <div class="text-center">
-                <span class="alert alert-info">You have not subscriptions yet</span>
+            <div v-if="loading === false" class="text-center alert alert-info">
+                You have not subscriptions yet
             </div>
         </template>
     </div>
