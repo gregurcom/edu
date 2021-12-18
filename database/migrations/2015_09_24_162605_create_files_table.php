@@ -19,7 +19,7 @@ class CreateFilesTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('path');
-            $table->foreignId('lesson_id')->constrained();
+            $table->foreignId('lesson_id');
             $table->timestamps();
         });
     }

@@ -20,7 +20,7 @@ class CreateTasksTable extends Migration
             $table->string('title');
             $table->text('description')->nullable();
             $table->dateTime('end_time')->nullable();
-            $table->foreignId('user_id')->constrained();
+            $table->foreignId('user_id');
             $table->timestamps();
         });
     }
