@@ -4,7 +4,7 @@ return [
     'button' => [
         'subscribe' => 'Subscribe',
         'unsubscribe' => 'Unsubscribe',
-        'create-lesson' => 'Lesson create',
+        'create-lesson' => 'Create lesson',
         'create-course' => 'Create course',
         'update' => 'Update',
         'create' => 'Create',

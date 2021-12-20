@@ -143,3 +143,9 @@ a:hover {
         height: 140px;
     }
 }
+
+@media screen and (max-width: 767px) {
+    #course-description {
+        margin-top: 50px;
+    }
+}

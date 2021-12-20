@@ -6,10 +6,6 @@
 
 @section('content')
     <div class="container wrapper flex-grow-1 mt-3 mb-5" itemscope itemtype="http://schema.org/Course">
-        @can('view', $course)
-            <a href="{{ route('platform.lessons.create', $course->id) }}" class="btn btn-outline-dark">{{ __('app.button.create-lesson')  }}</a>
-        @endcan
-
         <div class="text-center">
             <img src="{{ asset('images/404.png') }}" width="550" height="300" id="course-image">
             <div class="mt-3 text-center">
@@ -47,6 +43,9 @@
 
         <div class="row mt-4">
             <div class="col-md-6">
+                @can('view', $course)
+                    <a href="{{ route('platform.lessons.create', $course->id) }}" class="btn btn-outline-dark lesson-title">{{ __('app.button.create-lesson')  }}</a>
+                @endcan
                 @forelse ($course->lessons as $lesson)
                     <div class="mt-4">
                         <h4 class="lesson-title">
@@ -71,7 +70,7 @@
                 @endforelse
             </div>
             <div class="col-md-6 d-flex justify-content-center">
-                <div>
+                <div id="course-description">
                     <h2>{{ __('app.title.about-course') }}:</h2>
                     <p>{{ $course->description }}</p>
                     <h4>{{ __('app.title.author') }}: {{ $course->author->name }}</h4>
