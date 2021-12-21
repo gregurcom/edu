@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div v-if="loading === false">
         <a href="/courses/create" class="btn btn-outline-dark">Create course</a>
         <a href="/tasks" class="btn btn-outline-dark">Tasks</a>
         <div class="mt-5 mb-5">
@@ -12,18 +12,31 @@
             </div>
         </div>
     </div>
+    <div v-else class="atom">
+        <atom-spinner
+            :animation-duration="1000"
+            :size="60"
+            :color="'#ff1d5e'"
+        />
+    </div>
 </template>
 
 <script>
+    import {AtomSpinner} from 'epic-spinners'
     export default {
+        components: {
+            AtomSpinner
+        },
         data() {
             return {
                 courses: [],
+                loading: true
             }
         },
         mounted() {
             axios.get('api/v1/dashboard').then(response => {
                 this.courses = response.data
+                this.loading = false
             })
         },
         methods: {

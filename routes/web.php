@@ -4,12 +4,10 @@ declare(strict_types = 1);
 
 use App\Http\Controllers\Auth\EmailVerificationController;
 use App\Http\Controllers\Auth\PasswordResetController;
-use App\Http\Controllers\Platform\FeedController;
 use App\Http\Controllers\Platform\LocaleController;
 use App\Http\Controllers\Auth\AccessController;
 use App\Http\Controllers\Auth\RegistrationController;
 use App\Http\Controllers\Platform\CourseController;
-use App\Http\Controllers\Platform\DashboardController;
 use App\Http\Controllers\Platform\FileController;
 use App\Http\Controllers\Platform\LessonController;
 use App\Http\Controllers\Platform\RateController;
@@ -30,7 +28,7 @@ use Illuminate\Support\Facades\Route;
 Route::view('/', 'home')->name('home');
 
 Route::get('language', LocaleController::class)->name('language.switch');
-Route::get('dashboard', DashboardController::class)->name('dashboard')->middleware('auth');
+Route::view('dashboard', 'platform.dashboard')->name('dashboard');
 
 Route::name('auth.')->group(function () {
     Route::middleware('guest')->group(function () {
@@ -46,7 +44,7 @@ Route::name('auth.')->group(function () {
 Route::name('platform.')->group(function () {
     Route::get('categories/{category}/courses', [CourseController::class, 'list'])->name('courses.list');
 
-    Route::get('feed', [FeedController::class, 'index'])->name('feed.index');
+    Route::view('feed', 'platform.feed')->name('feed.index');
 
     Route::view('categories', 'platform.categories')->name('categories.list');
     Route::view('subscriptions', 'platform.subscriptions')->name('subscriptions.index');

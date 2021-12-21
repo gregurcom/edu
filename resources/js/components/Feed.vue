@@ -1,5 +1,5 @@
 <template>
-    <div :class="{'loading': loading}">
+    <div v-if="loading === false">
         <form @submit.prevent="submit">
             <div class="row g-1 justify-content-end">
                 <div class="col-auto">
@@ -37,19 +37,28 @@
         </div>
         <pagination align="center" :data="courses" @pagination-change-page="list"></pagination>
     </div>
+    <div v-else class="atom">
+        <atom-spinner
+            :animation-duration="1000"
+            :size="60"
+            :color="'#ff1d5e'"
+        />
+    </div>
 </template>
 
 <script>
     import pagination from 'laravel-vue-pagination'
+    import {AtomSpinner} from 'epic-spinners'
     export default {
         components: {
-            pagination
+            pagination,
+            AtomSpinner
         },
         data() {
             return {
                 courses: [],
                 query: null,
-                loading: true,
+                loading: true
             }
         },
         mounted(){

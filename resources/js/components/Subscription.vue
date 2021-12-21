@@ -1,5 +1,5 @@
 <template>
-    <div :class="{'loading': loading}">
+    <div v-if="loading === false">
         <template v-if="courses.length">
             <div class="mt-4" v-for="course in courses">
                 <div class="mt-3">
@@ -26,10 +26,21 @@
             </div>
         </template>
     </div>
+    <div v-else class="atom">
+        <atom-spinner
+            :animation-duration="1000"
+            :size="60"
+            :color="'#ff1d5e'"
+        />
+    </div>
 </template>
 
 <script>
+    import {AtomSpinner} from 'epic-spinners'
     export default {
+        components: {
+            AtomSpinner
+        },
         data() {
             return {
                 courses: [],
