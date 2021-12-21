@@ -40,8 +40,8 @@
     <div v-else class="atom">
         <atom-spinner
             :animation-duration="1000"
-            :size="60"
-            :color="'#ff1d5e'"
+            :size="80"
+            :color="'#69d2f1'"
         />
     </div>
 </template>
