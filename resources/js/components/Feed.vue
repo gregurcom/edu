@@ -18,7 +18,7 @@
             <div class="col col-md-8 mb-4">
                 <div class="d-block mb-2">
                     <a :href="`/courses/${course.id}`" class="text-decoration-none text-dark h4">{{ course.title }}</a>
-                    <div class="px-3 d-inline">
+                    <div class="stars">
                         <span v-for="i in 5">
                             <span v-if="Math.round(course.rate) >= i"><i class="star fa fa-star"></i></span>
                             <span v-else><i class="star fa fa-star-o"></i></span>

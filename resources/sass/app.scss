@@ -106,6 +106,11 @@ a:hover {
     .table-button {
         width: 100px;
     }
+
+    .stars {
+        display: inline;
+        margin-left: 20px;
+    }
 }
 
 @media screen and (max-width: 550px) {
@@ -148,12 +153,18 @@ a:hover {
     #course-description {
         margin-top: 50px;
     }
+
     .description {
         display: none;
     }
+
     .feed-image {
         width: 150px;
         height: 100px;
+    }
+
+    .stars {
+        margin-top: 10px;
     }
 }
 
