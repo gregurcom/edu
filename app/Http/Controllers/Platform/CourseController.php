@@ -69,8 +69,9 @@ class CourseController extends Controller
 
     public function search(SearchRequest $request, CourseService $courseService): View
     {
-        $courses = $courseService->searchCourse($request);
+        $courses = $courseService->searchCourseOnCategory($request);
+        $category = Category::find($request->categoryId);
 
-        return view('platform.course.search', compact('courses'));
+        return view('platform.courses', compact(['courses', 'category']));
     }
 }

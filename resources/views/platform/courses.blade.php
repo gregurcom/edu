@@ -16,6 +16,7 @@
                     <div id="search">
                         <i class="fa fa-search"></i>
                     </div>
+                    <input type="hidden" name="categoryId" value="{{ $category->id }}">
                     <input id="search-input" type="search" name="q" class="form-control border-dark search-input" placeholder="Search...">
                 </div>
             </div>

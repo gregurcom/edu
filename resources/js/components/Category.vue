@@ -1,6 +1,6 @@
 <template>
     <div v-if="loading === false">
-        <div class="text-center">
+        <div class="text-center mb-3">
             <img :src="'/images/smile.png'" width="600" height="300" id="course-image">
         </div>
         <span v-for="category in categories" class="px-2">
