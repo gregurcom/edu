@@ -31,10 +31,10 @@
         </div>
         @forelse ($courses as $course)
             <div class="row mb-4">
-                <div class="col-md-8">
+                <div class="col col-md-8">
                     <div class="mb-2">
                         <a href="{{ route('platform.courses.show', $course->id) }}" class="text-decoration-none text-dark h4">{{ $course->title }}</a>
-                        <div class="px-3 d-inline">
+                        <div class="stars">
                             @if ($course->rates->count('id') > 0)
                                 <span>
                                     @for ($i = 1; $i <= 5; $i++)
@@ -44,14 +44,14 @@
                             @endif
                         </div>
                     </div>
-                    <div class="mb-1">
+                    <div class="mb-1 description">
                         {{ $course->description }}
                     </div>
                     <a href="#" class="text-decoration-none text-muted">{{ $course->author->name }}</a> ·
                     <span class="text-muted">{{ $course->created_at->isoformat('Do MMM YY') }}</span>
                 </div>
-                <div class="col-md-4 d-flex">
-                    <img src="{{ asset('images/404.png') }}" width="250" height="180">
+                <div class="col col-md-4 d-flex justify-content-center">
+                    <img src="{{ asset('images/404.png') }}" class="feed-image" width="250" height="180">
                 </div>
             </div>
         @empty

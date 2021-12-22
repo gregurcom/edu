@@ -174,3 +174,15 @@ a:hover {
     left: 50%;
     transform: translate(-50%, -50%);
 }
+
+.customPagination > li > a {
+    color: black;
+}
+
+.customPagination > li.active > a,
+.customPagination > li > a:hover
+{
+    color: white;
+    border: 1px solid #292b2c !important;
+    background-color: #292b2c !important;
+}

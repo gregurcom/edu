@@ -35,7 +35,7 @@
                 <img :src="'/images/404.png'" class="feed-image" width="250" height="150">
             </div>
         </div>
-        <pagination align="center" :data="courses" @pagination-change-page="list"></pagination>
+        <pagination class="customPagination" align="center" :data="courses" @pagination-change-page="list"></pagination>
     </div>
     <div v-else class="atom">
         <atom-spinner
