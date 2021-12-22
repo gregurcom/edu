@@ -14,28 +14,35 @@
         <div class="mb-4 mt-4">
             <a href="/categories" class="btn btn-outline-dark">Categories</a>
         </div>
-        <div class="row mb-4" v-for="course in courses.data">
-            <div class="col col-md-8 mb-4">
-                <div class="d-block mb-2">
-                    <a :href="`/courses/${course.id}`" class="text-decoration-none text-dark h4">{{ course.title }}</a>
-                    <div class="stars">
-                        <span v-for="i in 5">
-                            <span v-if="Math.round(course.rate) >= i"><i class="star fa fa-star"></i></span>
-                            <span v-else><i class="star fa fa-star-o"></i></span>
-                        </span>
+        <template v-if="courses.data.length">
+            <div class="row mb-4" v-for="course in courses.data">
+                <div class="col col-md-8 mb-4">
+                    <div class="d-block mb-2">
+                        <a :href="`/courses/${course.id}`" class="text-decoration-none text-dark h4">{{ course.title }}</a>
+                        <div class="stars">
+                            <span v-for="i in 5">
+                                <span v-if="Math.round(course.rate) >= i"><i class="star fa fa-star"></i></span>
+                                <span v-else><i class="star fa fa-star-o"></i></span>
+                            </span>
+                        </div>
                     </div>
+                    <div class="mb-1 description">
+                        {{ course.description }}
+                    </div>
+                    <a href="#" class="text-decoration-none text-muted">{{ course.author }}</a> ·
+                    <span class="text-muted">{{ course.created_at }}</span>
                 </div>
-                <div class="mb-1 description">
-                    {{ course.description }}
+                <div class="col col-md-4 d-flex justify-content-center">
+                    <img :src="'/images/404.png'" class="feed-image" width="250" height="150">
                 </div>
-                <a href="#" class="text-decoration-none text-muted">{{ course.author }}</a> ·
-                <span class="text-muted">{{ course.created_at }}</span>
             </div>
-            <div class="col col-md-4 d-flex justify-content-center">
-                <img :src="'/images/404.png'" class="feed-image" width="250" height="150">
+            <pagination class="customPagination" align="center" :data="courses" @pagination-change-page="list"></pagination>
+        </template>
+        <template v-else>
+            <div class="alert alert-info">
+                No courses were found
             </div>
-        </div>
-        <pagination class="customPagination" align="center" :data="courses" @pagination-change-page="list"></pagination>
+        </template>
     </div>
     <div v-else class="atom">
         <atom-spinner
