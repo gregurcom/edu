@@ -49,22 +49,22 @@
                                 </li>
                                 @auth
                                     <li class="nav-item">
-                                        <a href="{{ route('platform.subscriptions.index') }}"
-                                           class="{{ Route::is('platform.subscriptions.index') ? 'text-crystal' : 'text-light' }} text-decoration-none h5 px-3">{{ __('app.title.subscriptions') }}
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="{{ route('platform.tech-support') }}"
-                                           class="{{ Route::is('platform.tech-support') ? 'text-crystal' : 'text-light' }} text-decoration-none h5 px-3">{{ __('app.title.tech-support') }}
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
                                         <div class="dropdown">
                                             <span class="{{ Route::is('dashboard') ? 'text-crystal' : 'text-light' }} dropdown-toggle h5 px-3" data-bs-toggle="dropdown" aria-expanded="false">
                                                 {{ auth()->user()->name }}
                                             </span>
                                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                                                 <li class="nav-item"><a class="dropdown-item" href="{{ route('dashboard') }}">{{ __('app.title.dashboard') }}</a></li>
+                                                <li class="nav-item">
+                                                    <a href="{{ route('platform.subscriptions.index') }}"
+                                                       class="dropdown-item">{{ __('app.title.subscriptions') }}
+                                                    </a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a href="{{ route('platform.tech-support') }}"
+                                                       class="dropdown-item">{{ __('app.title.tech-support') }}
+                                                    </a>
+                                                </li>
                                                 <li class="nav-item"><a class="dropdown-item" href="{{ route('auth.logout') }}">{{ __('app.button.logout') }}</a></li>
                                             </ul>
                                         </div>

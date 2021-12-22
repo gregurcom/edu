@@ -15,7 +15,7 @@
             <a href="/categories" class="btn btn-outline-dark">Categories</a>
         </div>
         <div class="row mb-4" v-for="course in courses.data">
-            <div class="col-md-8">
+            <div class="col col-md-8 mb-4">
                 <div class="d-block mb-2">
                     <a :href="`/courses/${course.id}`" class="text-decoration-none text-dark h4">{{ course.title }}</a>
                     <div class="px-3 d-inline">
@@ -25,14 +25,14 @@
                         </span>
                     </div>
                 </div>
-                <div class="mb-1">
+                <div class="mb-1 description">
                     {{ course.description }}
                 </div>
                 <a href="#" class="text-decoration-none text-muted">{{ course.author }}</a> ·
                 <span class="text-muted">{{ course.created_at }}</span>
             </div>
-            <div class="col-md-4 d-flex">
-                <img :src="'/images/404.png'" width="250" height="150">
+            <div class="col col-md-4 d-flex justify-content-center">
+                <img :src="'/images/404.png'" class="feed-image" width="250" height="150">
             </div>
         </div>
         <pagination align="center" :data="courses" @pagination-change-page="list"></pagination>
