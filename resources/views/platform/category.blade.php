@@ -48,6 +48,7 @@
                     <div class="mb-1 description">
                         {{ $course->description }}
                     </div>
+                    <img src="{{ asset('images/' . $course->author->avatar) }}" width="25" height="20">
                     <a href="#" class="text-decoration-none text-muted">{{ $course->author->name }}</a> ·
                     <span class="text-muted">{{ $course->created_at->isoformat('Do MMM YY') }}</span>
                 </div>

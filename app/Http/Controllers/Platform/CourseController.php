@@ -72,6 +72,6 @@ class CourseController extends Controller
         $courses = $courseService->searchCourseOnCategory($request);
         $category = Category::find($request->categoryId);
 
-        return view('platform.courses', compact(['courses', 'category']));
+        return view('platform.category', compact(['courses', 'category']));
     }
 }
