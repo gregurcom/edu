@@ -19,7 +19,7 @@
                     @enderror
 
                     <div class="input-group mt-1">
-                        <input type="datetime-local" name="end_time" class="form-control" value="{{ $task->end_time->format('Y-m-d\TH:i') }}">
+                        <input type="datetime-local" name="end_time" class="form-control" value="{{ $task->end_time ? $task->end_time->format('Y-m-d\TH:i') : '' }}">
                         <button class="btn btn-outline-info" type="button">End Time (optional)</button>
                     </div>
                     @error('end_time')

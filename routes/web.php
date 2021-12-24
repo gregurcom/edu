@@ -11,6 +11,7 @@ use App\Http\Controllers\Platform\CourseController;
 use App\Http\Controllers\Platform\FileController;
 use App\Http\Controllers\Platform\LessonController;
 use App\Http\Controllers\Platform\RateController;
+use App\Http\Controllers\Platform\TaskController;
 use App\Http\Controllers\Platform\TechSupportController;
 use Illuminate\Support\Facades\Route;
 
@@ -50,6 +51,10 @@ Route::name('platform.')->group(function () {
     Route::view('subscriptions', 'platform.subscriptions')->name('subscriptions.index');
 
     Route::view('tasks', 'platform.task.index')->name('tasks');
+    Route::get('tasks/{task}/edit', [TaskController::class, 'edit'])->name('tasks.edit')
+        ->can('edit', 'task');
+    Route::put('tasks/{task}/update', [TaskController::class, 'update'])->name('tasks.update')
+        ->can('update', 'task');
 
     Route::resource('courses', CourseController::class)->except('index');
     Route::resource('lessons', LessonController::class)->except(['index', 'create']);
