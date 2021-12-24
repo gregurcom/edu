@@ -17,7 +17,7 @@ class CourseResource extends JsonResource
             'lessons' => LessonResource::collection($this->lessons),
             'category' => $this->category->name,
             'rate' => $this->averageRate(),
-            'author' => $this->author->name,
+            'author' => $this->author,
             'created_at' => $this->created_at->isoformat('Do MMM YY'),
         ];
     }

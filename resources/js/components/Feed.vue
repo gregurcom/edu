@@ -29,7 +29,8 @@
                     <div class="mb-1 description">
                         {{ course.description }}
                     </div>
-                    <a href="#" class="text-decoration-none text-muted">{{ course.author }}</a> ·
+                    <img :src="`/images/${course.author.avatar}`" class="feed-image" width="32" height="25">
+                    <a href="#" class="text-decoration-none text-muted">{{ course.author.name }}</a> ·
                     <span class="text-muted">{{ course.created_at }}</span>
                 </div>
                 <div class="col col-md-4 d-flex justify-content-center">
