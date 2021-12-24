@@ -14,6 +14,7 @@ class CourseResource extends JsonResource
             'id' => $this->id,
             'title' => $this->title,
             'description' => $this->description,
+            'image' => $this->image,
             'lessons' => LessonResource::collection($this->lessons),
             'category' => $this->category->name,
             'rate' => $this->averageRate(),

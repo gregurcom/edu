@@ -5,11 +5,13 @@ declare(strict_types = 1);
 namespace App\Services;
 
 use App\Http\Requests\SearchRequest;
+use App\Http\Requests\StoreCourseRequest;
 use App\Http\Resources\CourseResource;
 use App\Models\Category;
 use App\Models\Course;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
 
 class CourseService
@@ -27,6 +29,19 @@ class CourseService
         }
 
         return $courses;
+    }
+
+    public function storeCourse(StoreCourseRequest $request): Course
+    {
+        if ($request->hasFile('image')){
+            $request->validate([
+                'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            ]);
+            $imageName = $request->image->hashName();
+            $request->image->move(public_path('images'), $imageName);
+        }
+
+        return Course::create(array_merge(['user_id' => Auth::id(), 'image' => $imageName], $request->validated()));
     }
 
     public function searchCourse(SearchRequest $request): AnonymousResourceCollection

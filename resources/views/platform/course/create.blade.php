@@ -6,7 +6,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-4 offset-md-4">
-                <form action="{{ route('platform.courses.store') }}" method="POST">
+                <form action="{{ route('platform.courses.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
 
                     <input type="text" name="title" class="form-control" placeholder="{{ __('app.input.title') }}">
@@ -18,6 +18,13 @@
 
                     <textarea name="description" class="form-control mt-2" placeholder="{{ __('app.input.description') }}" rows="5"></textarea>
                     @error('description')
+                        <div class="alert alert-danger mt-1">
+                            {{ $message }}
+                        </div>
+                    @enderror
+
+                    <input type="file" name="image" class="form-control mt-2">
+                    @error('image')
                         <div class="alert alert-danger mt-1">
                             {{ $message }}
                         </div>
