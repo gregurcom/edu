@@ -69,7 +69,7 @@ a:hover {
 
 @media screen and (max-width: 991px) {
     #homeIllustrate {
-        width: 360px;
+        width: 350px;
     }
 
     .nav-item {
@@ -83,10 +83,31 @@ a:hover {
     }
 }
 
-@media screen and (max-width: 930px) {
+@media screen and (max-width: 1177px) {
     #homeIllustrate {
-        width: 360px;
-        height: 300px;
+        width: 300px;
+        height: 250px;
+    }
+}
+
+@media screen and (max-width: 934px) {
+    #homeIllustrate {
+        width: 270px;
+        height: 230px;
+    }
+}
+
+@media screen and (max-width: 842px) {
+    #homeIllustrate {
+        width: 250px;
+        height: 210px;
+    }
+}
+
+@media screen and (max-width: 784px) {
+    #homeIllustrate {
+        width: 220px;
+        height: 180px;
     }
 }
 
