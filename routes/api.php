@@ -7,7 +7,6 @@ use App\Http\Controllers\API\CategoryController;
 use App\Http\Controllers\API\CourseController;
 use App\Http\Controllers\API\DashboardController;
 use App\Http\Controllers\API\LessonController;
-use App\Http\Controllers\API\SearchController;
 use App\Http\Controllers\API\SubscriptionController;
 use App\Http\Controllers\API\TaskController;
 use Illuminate\Support\Facades\Route;
@@ -31,7 +30,7 @@ Route::get('categories/{category}', [CategoryController::class, 'show'])->name('
 
 Route::get('courses', [CourseController::class, 'index'])->name('courses.index');
 Route::get('courses/{course}', [CourseController::class, 'show'])->name('courses.show');
-Route::get('search', [SearchController::class, 'index'])->name('courses.search');
+Route::get('courses/search', [CourseController::class, 'search'])->name('courses.search');
 
 Route::get('lessons/{lesson}', [LessonController::class, 'show'])->name('lessons.show');
 

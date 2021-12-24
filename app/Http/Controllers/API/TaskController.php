@@ -8,8 +8,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\TaskRequest;
 use App\Http\Resources\TaskResource;
 use App\Models\Task;
+use App\Services\TaskService;
 use Illuminate\Support\Facades\Auth;
-use Gate;
 use Illuminate\Http\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -34,10 +34,9 @@ class TaskController extends Controller
      *      ),
      *     )
      */
-    public function index(): JsonResponse
+    public function index(TaskService $taskService): JsonResponse
     {
-        $tasks = Auth::user()->tasks()->orderByRaw('-end_time DESC')->get();
-        $taskResource = TaskResource::collection($tasks);
+        $taskResource = TaskResource::collection($taskService->get());
 
         return response()->json($taskResource, Response::HTTP_OK);
     }

@@ -30,8 +30,7 @@ class SubscriptionController extends Controller
      */
     public function index(): JsonResponse
     {
-        $courses = Auth::user()->subscriptions()->with(['author', 'rates'])->get();
-        $courses = CourseResource::collection($courses);
+        $courses = CourseResource::collection(Auth::user()->subscriptions()->with(['author', 'rates'])->get());
 
         return response()->json($courses, Response::HTTP_OK);
     }

@@ -39,7 +39,7 @@
             <pagination class="customPagination" align="center" :data="courses" @pagination-change-page="list"></pagination>
         </template>
         <template v-else>
-            <div class="alert alert-info">
+            <div class="alert alert-info text-center">
                 No courses were found
             </div>
         </template>
@@ -80,7 +80,7 @@
                 })
             },
             submit() {
-                axios.get('api/v1/search?q=' + this.query).then(response => {
+                axios.get('api/v1/courses/search?q=' + this.query).then(response => {
                     this.courses = response.data
                     this.query = []
                 }).catch (error => {
