@@ -11,6 +11,7 @@ use App\Http\Controllers\Platform\CourseController;
 use App\Http\Controllers\Platform\FileController;
 use App\Http\Controllers\Platform\LessonController;
 use App\Http\Controllers\Platform\RateController;
+use App\Http\Controllers\Platform\SubscriptionController;
 use App\Http\Controllers\Platform\TaskController;
 use App\Http\Controllers\Platform\TechSupportController;
 use Illuminate\Support\Facades\Route;
@@ -46,6 +47,11 @@ Route::name('platform.')->group(function () {
     Route::get('categories/{category}/courses', [CourseController::class, 'list'])->name('courses.list');
 
     Route::view('feed', 'platform.feed')->name('feed.index');
+
+    Route::name('subscriptions.')->group(function () {
+        Route::post('subscriptions/{course}', [SubscriptionController::class, 'store'])->name('store');
+        Route::delete('subscriptions/{course}', [SubscriptionController::class, 'destroy'])->name('destroy');
+    });
 
     Route::view('categories', 'platform.categories')->name('categories.list');
     Route::view('subscriptions', 'platform.subscriptions')->name('subscriptions.index');

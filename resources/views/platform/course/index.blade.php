@@ -17,11 +17,16 @@
                         @auth
                             <div class="px-3">
                                 @if (Auth::user()->isSubscribedOnCourse($course->id))
-                                    <form action="/" method="GET">
+                                    <form action="{{ route('platform.subscriptions.destroy', $course->id) }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+
                                         <button type="submit" class="btn btn-outline-dark">{{ __('app.button.unsubscribe') }}</button>
                                     </form>
                                 @else
-                                    <form action="/" method="GET">
+                                    <form action="{{ route('platform.subscriptions.store', $course->id) }}" method="POST">
+                                        @csrf
+
                                         <button type="submit" class="btn btn-outline-dark">{{ __('app.button.subscribe') }}</button>
                                     </form>
                                 @endif
