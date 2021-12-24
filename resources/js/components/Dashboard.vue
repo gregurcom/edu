@@ -4,12 +4,17 @@
         <a href="/tasks" class="btn btn-outline-dark">Tasks</a>
         <div class="mt-5 mb-5">
             <h2>Your courses:</h2>
-            <div class="mt-3" v-for="course in courses">
-                <h4><a :href="`courses/${course.id}`" class="text-decoration-none text-dark">{{ course.title }}</a></h4>
-                <p>{{ course.description }}</p>
-                <button type="submit" @click="deleteCourse(course.id)" class="btn btn-outline-danger">Delete</button>
-                <a :href="`courses/${course.id}/edit`" class="btn btn-outline-primary">Edit</a>
-            </div>
+            <template v-if="courses.length">
+                <div class="mt-3" v-for="course in courses">
+                    <h4><a :href="`courses/${course.id}`" class="text-decoration-none text-dark">{{ course.title }}</a></h4>
+                    <p>{{ course.description }}</p>
+                    <button type="submit" @click="deleteCourse(course.id)" class="btn btn-outline-danger">Delete</button>
+                    <a :href="`courses/${course.id}/edit`" class="btn btn-outline-primary">Edit</a>
+                </div>
+            </template>
+            <template v-else>
+                <div class="alert alert-info text-center">No courses yet</div>
+            </template>
         </div>
     </div>
     <div v-else class="atom">

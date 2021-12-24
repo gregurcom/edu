@@ -48,8 +48,8 @@
                 @endcan
                 @forelse ($course->lessons as $lesson)
                     <div class="mt-4">
-                        <h4 class="lesson-title">
-                            <a href="{{ route('platform.lessons.show', $lesson->id) }}" class="text-decoration-none text-dark head-link">{{ $lesson->title }}</a>
+                        <h4>
+                            <a href="{{ route('platform.lessons.show', $lesson->id) }}" class="text-decoration-none text-dark">{{ $lesson->title }}</a>
                         </h4>
                         @can('view', $course)
                             <div class="d-flex lesson-title mt-3">

@@ -21,7 +21,7 @@
             </div>
         </template>
         <template v-else>
-            <div v-if="loading === false" class="text-center alert alert-info">
+            <div v-if="loading === false" class="text-center alert alert-info text-center">
                 You have not subscriptions yet
             </div>
         </template>
