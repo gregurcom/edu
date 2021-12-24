@@ -1,13 +1,20 @@
 <template>
-    <div>
-        <div class="mb-5" v-for="task in tasks">
-            <h3 class="d-inline"><a href="#" class="head-link text-decoration-none text-black">{{ task.title }}</a></h3>
-            <span class="text-secondary px-2">{{ task.end_time }}</span>
-            <p class="mt-2">{{ task.description }}</p>
+    <div v-if="loading === false">
+        <template v-if="tasks.length">
+            <div class="mb-5" v-for="task in tasks">
+                <h3 class="d-inline"><a href="#" class="head-link text-decoration-none text-black">{{ task.title }}</a></h3>
+                <span class="text-secondary px-2">{{ task.end_time }}</span>
+                <p class="mt-2">{{ task.description }}</p>
 
-            <button type="submit" class="btn btn-outline-danger" @click="deleteTask(task.id)">Delete</button>
-            <a :href="`/tasks/${task.id}/edit`" class="btn btn-outline-info">Edit</a>
-        </div>
+                <button type="submit" class="btn btn-outline-danger" @click="deleteTask(task.id)">Delete</button>
+                <a :href="`/tasks/${task.id}/edit`" class="btn btn-outline-info">Edit</a>
+            </div>
+        </template>
+        <template v-else>
+            <div class="text-center alert alert-info text-center">
+                You have not tasks yet
+            </div>
+        </template>
 
         <form @submit.prevent="submit" class="mt-5">
             <input type="text" name="title" class="form-control" placeholder="Task" v-model="fields.title">
@@ -21,19 +28,32 @@
             </div>
         </form>
     </div>
+    <div v-else class="atom">
+        <atom-spinner
+            :animation-duration="1000"
+            :size="80"
+            :color="'#69d2f1'"
+        />
+    </div>
 </template>
 
 <script>
+    import {AtomSpinner} from 'epic-spinners'
     export default {
+        components: {
+            AtomSpinner
+        },
         data() {
             return {
                 tasks: [],
                 fields: {},
+                loading: true,
             }
         },
         mounted() {
             axios.get('api/v1/tasks').then(response => {
                 this.tasks = response.data
+                this.loading = false
             })
         },
         methods: {
