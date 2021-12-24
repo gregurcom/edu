@@ -14,7 +14,7 @@
 
     <link rel="shortcut icon" href="{{ asset('images/favicon.ico') }}" type="image/x-icon">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/loading.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/media.css') }}" rel="stylesheet">
     @env('production')
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-NQBJ9919BD"></script>
         <script>

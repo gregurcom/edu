@@ -21,7 +21,7 @@ class CourseController extends Controller
     {
         $courses = $courseService->getCourses($category);
 
-        return view('platform.courses', compact(['courses', 'category']));
+        return view('platform.category', compact(['courses', 'category']));
     }
 
     public function show(Course $course): View
