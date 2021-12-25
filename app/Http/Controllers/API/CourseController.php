@@ -31,9 +31,9 @@ class CourseController extends Controller
      *       ),
      * )
      */
-    public function index(): AnonymousResourceCollection
+    public function index(CourseService $courseService): AnonymousResourceCollection
     {
-        return CourseResource::collection(Course::paginate(10));
+        return CourseResource::collection($courseService->getFeed());
     }
 
     /**
