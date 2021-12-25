@@ -34,7 +34,7 @@
                     <span class="text-muted">{{ course.created_at }}</span>
                 </div>
                 <div class="col col-md-4 d-flex justify-content-center">
-                    <img :src="`/images/${course.image}`" class="feed-image" width="250" height="150">
+                    <img :src="`/images/${course.image}`" class="feed-image" width="250" height="150" :alt="`${course.title}`">
                 </div>
             </div>
             <pagination class="customPagination" align="center" :data="courses" @pagination-change-page="list"></pagination>

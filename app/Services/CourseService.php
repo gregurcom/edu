@@ -39,6 +39,8 @@ class CourseService
             ]);
             $imageName = $request->image->hashName();
             $request->image->move(public_path('images'), $imageName);
+        } else {
+            $imageName = config('app.article-image');
         }
 
         return Course::create(array_merge(['user_id' => Auth::id(), 'image' => $imageName], $request->validated()));
