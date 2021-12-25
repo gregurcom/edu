@@ -13,7 +13,6 @@ use App\Models\Course;
 use App\Services\CourseService;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Support\Facades\Auth;
 
 class CourseController extends Controller
 {
@@ -45,7 +44,6 @@ class CourseController extends Controller
 
     public function edit(Course $course): View
     {
-        $this->authorize('view', $course);
         $categories = Category::get();
 
         return view('platform.course.edit', compact(['course', 'categories']));
@@ -53,7 +51,6 @@ class CourseController extends Controller
 
     public function update(Course $course, UpdateCourseRequest $request): RedirectResponse
     {
-        $this->authorize('update', $course);
         $course->update($request->validated());
 
         return redirect()->route('dashboard')->with('status', __('app.alert.edit-course'));
@@ -61,7 +58,6 @@ class CourseController extends Controller
 
     public function destroy(Course $course): RedirectResponse
     {
-        $this->authorize('destroy', $course);
         $course->delete();
 
         return back()->with('status', __('app.alert.delete-course'));

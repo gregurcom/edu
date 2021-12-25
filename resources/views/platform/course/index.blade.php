@@ -7,7 +7,7 @@
 @section('content')
     <div class="container wrapper flex-grow-1 mt-3 mb-5" itemscope itemtype="http://schema.org/Course">
         <div class="text-center">
-            <img src="{{ asset('images/404.png') }}" width="550" height="300" id="course-image">
+            <img src="{{ asset('images/' . $course->image) }}" width="550" height="300" id="course-image">
             <div class="mt-3 text-center">
                 <div class="row">
                     <div class="col-md-6" id="courseTitle">
@@ -49,7 +49,7 @@
         <div class="row mt-4">
             <div class="col-md-6">
                 @can('view', $course)
-                    <a href="{{ route('platform.lessons.create', $course->id) }}" class="btn btn-outline-dark lesson-title">{{ __('app.button.create-lesson')  }}</a>
+                    <a href="{{ route('platform.lessons.create', $course->id) }}" class="btn btn-outline-dark mb-2">{{ __('app.button.create-lesson')  }}</a>
                 @endcan
                 @forelse ($course->lessons as $lesson)
                     <div class="mt-4">
@@ -57,9 +57,9 @@
                             <a href="{{ route('platform.lessons.show', $lesson->id) }}" class="text-decoration-none text-dark">{{ $lesson->title }}</a>
                         </h4>
                         @can('view', $course)
-                            <div class="d-flex lesson-title mt-3">
+                            <div class="mt-2">
                                 <a href="{{ route('platform.lessons.edit', $lesson->id) }}" class="btn btn-outline-primary">{{ __('app.button.edit') }}</a>
-                                <form action="{{ route('platform.lessons.destroy', $lesson->id) }}" method="POST" class="px-2">
+                                <form action="{{ route('platform.lessons.destroy', $lesson->id) }}" method="POST" class="px-2 d-inline">
                                     @csrf
                                     @method('DELETE')
 
@@ -69,7 +69,7 @@
                         @endcan
                     </div>
                 @empty
-                    <div class="alert alert-info text-center">
+                    <div class="alert alert-info text-center m-0">
                         {{ __('app.alert.no-lessons') }}
                     </div>
                 @endforelse

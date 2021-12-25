@@ -12,7 +12,7 @@ class CoursePolicy
 {
     use HandlesAuthorization;
 
-    public function view(User $user, Course $course): bool
+    public function edit(User $user, Course $course): bool
     {
         return $user->id === $course->user_id;
     }
