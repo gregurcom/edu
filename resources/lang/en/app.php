@@ -70,5 +70,7 @@ return [
         'auth-fail' => 'The provided credentials do not match our records',
         'tech-support' => 'You have successfully sent your message to tech support',
         'email-verification' => 'We have sent you a confirmation email to your mail',
+        'attempts-exhausted' => 'Your attempts was exhausted. Try in :minute minute|
+            Your attempts was exhausted. Try in :minute minutes',
     ],
 ];

@@ -14,13 +14,13 @@ class AttemptService
     {
         return Attempt::where('email', $request->email)
             ->where('ip_address', $request->getClientIp())
-            ->where('created_at', '>=', now()->subMinutes(2))
+            ->where('created_at', '>=', now()->subMinutes(config('attempts.timeout')))
             ->get();
     }
 
     public function exhaustedAttempts(int $attempts, AccessRequest $request): bool
     {
-        if ($attempts < 3) {
+        if ($attempts < config('attempts.failure')) {
             Attempt::create([
                 'email' => $request->email,
                 'ip_address' => $request->getClientIp(),

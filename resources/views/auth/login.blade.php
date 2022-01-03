@@ -7,7 +7,7 @@
         <div class="row">
             <div class="col-md-4 offset-md-4">
                 @if (session('status'))
-                    <div class="alert alert-dark">
+                    <div class="alert alert-dark text-center">
                         {{ session('status') }}
                     </div>
                 @endif

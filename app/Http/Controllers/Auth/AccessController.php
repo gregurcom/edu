@@ -34,8 +34,9 @@ class AccessController extends Controller
                 'email' => __('app.alert.auth-fail'),
             ]);
         }
+        $timeout = config('attempts.timeout') - now()->diffInMinutes($this->attemptService->get($request)->last()->created_at);
 
-        return back()->with('status', 'Your attempts was exhausted');
+        return back()->with('status', trans_choice('app.alert.attempts-exhausted', $timeout, ['minute' => $timeout]));
     }
 
     public function logout(Request $request): RedirectResponse
