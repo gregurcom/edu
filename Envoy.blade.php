@@ -8,6 +8,7 @@
     link-storage
     app:generate-sitemap
     app:generate-open-api
+    queue
 @endstory
 
 @task('update-code')
@@ -50,4 +51,9 @@
 @task('app:generate-open-api')
     cd /var/www/mentor-IT11Z
     php artisan l5-swagger:generate
+@endtask
+
+@task('queue')
+    cd /var/www/mentor-IT11Z
+    php artisan queue:restart
 @endtask
