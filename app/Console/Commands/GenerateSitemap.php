@@ -29,10 +29,10 @@ class GenerateSitemap extends Command
         Sitemap::create()
             ->add(Url::create('/'))
             ->add(Url::create('/categories'))
+            ->add(Url::create('/feed'))
             ->add(Url::create('/courses'))
-            ->add(Url::create('/lessons'))
             ->add(Url::create('/login'))
-            ->add(Url::create('/register'))
+            ->add(Url::create('/registration'))
             ->writeToFile(public_path('sitemap.xml'));
     }
 }
