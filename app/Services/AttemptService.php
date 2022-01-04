@@ -18,17 +18,19 @@ class AttemptService
             ->get();
     }
 
-    public function exhaustedAttempts(int $attempts, AccessRequest $request): bool
+    public function store(AccessRequest $request): void
     {
-        if ($attempts < config('attempts.failure')) {
-            Attempt::create([
-                'email' => $request->email,
-                'ip_address' => $request->getClientIp(),
-            ]);
+        Attempt::create([
+            'email' => $request->email,
+            'ip_address' => $request->getClientIp(),
+        ]);
+    }
 
-            return true;
-        }
-
-        return false;
+    public function remove(AccessRequest $request): void
+    {
+        Attempt::where('email', $request->email)
+            ->where('ip_address', $request->getClientIp())
+            ->where('created_at', '>=', now()->subMinutes(config('attempts.timeout')))
+            ->delete();
     }
 }
