@@ -90,4 +90,9 @@ class User extends Authenticatable implements MustVerifyEmail, CanResetPassword
 
         return false;
     }
+
+    public function isAdmin(): bool
+    {
+        return $this->role === User::ADMIN;
+    }
 }
