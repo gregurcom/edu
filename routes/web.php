@@ -4,6 +4,7 @@ declare(strict_types = 1);
 
 use App\Http\Controllers\Auth\EmailVerificationController;
 use App\Http\Controllers\Auth\PasswordResetController;
+use App\Http\Controllers\Auth\SettingController;
 use App\Http\Controllers\Platform\LocaleController;
 use App\Http\Controllers\Auth\AccessController;
 use App\Http\Controllers\Auth\RegistrationController;
@@ -34,6 +35,7 @@ Route::name('auth.')->group(function () {
         Route::post('registration', [RegistrationController::class, 'save'])->name('registration.save');
     });
     Route::get('logout', [AccessController::class, 'logout'])->name('logout');
+    Route::get('settings', [SettingController::class, 'index'])->name('settings');
 });
 
 Route::name('verification.')->group(function () {

@@ -1,5 +1,6 @@
 <template>
     <div v-if="loading === false">
+        <a href="/settings" class="btn btn-outline-dark">Settings</a>
         <a href="/courses/create" class="btn btn-outline-dark">Create course</a>
         <a href="/tasks" class="btn btn-outline-dark">Tasks</a>
         <div class="mt-5 mb-5">
