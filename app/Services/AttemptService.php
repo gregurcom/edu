@@ -14,7 +14,7 @@ class AttemptService
     {
         return Attempt::where('email', $request->email)
             ->where('ip_address', $request->getClientIp())
-            ->where('created_at', '>=', now()->subMinutes(config('attempts.timeout')))
+            ->where('created_at', '>', now()->subMinutes(config('attempts.timeout')))
             ->get();
     }
 
@@ -29,8 +29,6 @@ class AttemptService
     public function remove(AccessRequest $request): void
     {
         Attempt::where('email', $request->email)
-            ->where('ip_address', $request->getClientIp())
-            ->where('created_at', '>=', now()->subMinutes(config('attempts.timeout')))
-            ->delete();
+            ->where('ip_address', $request->getClientIp())->delete();
     }
 }
