@@ -34,13 +34,16 @@ Route::name('auth.')->group(function () {
         Route::get('registration', [RegistrationController::class, 'registration'])->name('registration');
         Route::post('registration', [RegistrationController::class, 'save'])->name('registration.save');
     });
-    Route::get('logout', [AccessController::class, 'logout'])->name('logout');
 
-    Route::name('settings')->group(function () {
-        Route::get('settings', [SettingController::class, 'index']);
-        Route::post('settings/modify-password', [SettingController::class, 'modifyPassword'])->name('.modify-password');
-        Route::post('settings/modify-name', [SettingController::class, 'modifyName'])->name('.modify-name');
-        Route::post('settings/modify-avatar', [SettingController::class, 'modifyAvatar'])->name('.modify-avatar');
+    Route::middleware('auth')->group(function () {
+        Route::get('logout', [AccessController::class, 'logout'])->name('logout');
+
+        Route::name('settings')->group(function () {
+            Route::get('settings', [SettingController::class, 'index']);
+            Route::post('settings/modify-password', [SettingController::class, 'modifyPassword'])->name('.modify-password');
+            Route::post('settings/modify-name', [SettingController::class, 'modifyName'])->name('.modify-name');
+            Route::post('settings/modify-avatar', [SettingController::class, 'modifyAvatar'])->name('.modify-avatar');
+        });
     });
 });
 
