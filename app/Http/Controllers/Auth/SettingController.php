@@ -20,9 +20,9 @@ class SettingController extends Controller
 
     public function modifyPassword(SetPasswordRequest $request): RedirectResponse
     {
-        Auth::user()->update(['password' => $request->password]);
+        Auth::user()->update(['password' => \Hash::make($request->password)]);
 
-        return back();
+        return back()->with('status', 'You have successfully modified the password');
     }
 
     public function modifyName(Request $request): RedirectResponse
@@ -32,7 +32,7 @@ class SettingController extends Controller
         ]);
         Auth::user()->update(['name' => $request->name]);
 
-        return back();
+        return back()->with('status', 'You have successfully modified the name');
     }
 
     public function modifyAvatar(Request $request): RedirectResponse
@@ -45,6 +45,6 @@ class SettingController extends Controller
 
         Auth::user()->update(['avatar' => $imageName]);
 
-        return back();
+        return back()->with('status', 'You have successfully modified the avatar');
     }
 }
