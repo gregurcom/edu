@@ -1,10 +1,10 @@
 <template>
     <div v-if="loading === false">
-        <a href="/settings" class="btn btn-outline-dark">Settings</a>
-        <a href="/courses/create" class="btn btn-outline-dark">Create course</a>
-        <a href="/tasks" class="btn btn-outline-dark">Tasks</a>
+        <a href="/settings" class="btn btn-outline-dark mt-2">Settings</a>
+        <a href="/courses/create" class="btn btn-outline-dark mt-2">Create course</a>
+        <a href="/tasks" class="btn btn-outline-dark mt-2">Tasks</a>
         <router-link v-if="user.can.accessAdminPanel">
-            <a href="/admin-panel" class="btn btn-outline-dark">Admin Panel</a>
+            <a href="/admin-panel" class="btn btn-outline-dark mt-2">Admin Panel</a>
         </router-link>
         <div class="mt-5 mb-5">
             <h2>Your courses:</h2>
