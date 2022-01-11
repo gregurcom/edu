@@ -15,4 +15,9 @@ class UserPolicy
     {
         return $user->email == 'mikhailgregurco@gmail.com';
     }
+
+    public function accessAdminPanel(User $user): bool
+    {
+        return $user->role === User::ADMIN;
+    }
 }
