@@ -1,24 +1,29 @@
 <template>
     <div v-if="loading === false">
-        <template v-if="courses.length">
-            <div class="mt-4" v-for="course in courses">
-                <div class="mt-3">
-                    <div class="row">
-                        <div class="col-md-7">
-                            <a :href="`/courses/${course.id}`" class="text-decoration-none text-dark h3">{{ course.title }}</a>
-                            <span class="h4 px-2">({{ course.author.name }})</span>
-                        </div>
-                        <div class="col-md-5 d-flex">
-                            <div class="px-3">
-                                <span v-for="i in 5">
-                                    <span v-if="Math.round(course.rate) >= i"><i class="star fa fa-star"></i></span>
-                                    <span v-else><i class="star fa fa-star-o"></i></span>
-                                </span>
-                            </div>
+        <template v-if="courses.data.length">
+            <div class="row mb-4" v-for="course in courses.data">
+                <div class="col col-md-8 mb-4">
+                    <div class="d-block mb-2">
+                        <a :href="`/courses/${course.id}`" class="text-decoration-none text-dark h4">{{ course.title }}</a>
+                        <div class="stars">
+                            <span v-for="i in 5">
+                                <span v-if="Math.round(course.rate) >= i"><i class="star fa fa-star"></i></span>
+                                <span v-else><i class="star fa fa-star-o"></i></span>
+                            </span>
                         </div>
                     </div>
+                    <div class="mb-1 description">
+                        {{ course.description }}
+                    </div>
+                    <img :src="`/images/${course.author.avatar}`" width="25" height="20">
+                    <a href="#" class="text-decoration-none text-muted">{{ course.author.name }}</a> ·
+                    <span class="text-muted">{{ course.created_at }}</span>
+                </div>
+                <div class="col col-md-4 d-flex justify-content-center">
+                    <img :src="`/images/${course.image}`" class="feed-image" width="250" height="150" :alt="`${course.title}`">
                 </div>
             </div>
+            <pagination class="customPagination" align="center" :data="courses" @pagination-change-page="list"></pagination>
         </template>
         <template v-else>
             <div v-if="loading === false" class="text-center alert alert-info text-center">
@@ -36,9 +41,11 @@
 </template>
 
 <script>
+    import pagination from 'laravel-vue-pagination'
     import {AtomSpinner} from 'epic-spinners'
     export default {
         components: {
+            pagination,
             AtomSpinner
         },
         data() {
@@ -47,11 +54,17 @@
                 loading: true,
             }
         },
-        mounted() {
-            axios.get('api/v1/subscriptions').then(response => {
-                this.courses = response.data
-                this.loading = false
-            });
+        mounted(){
+            this.list()
+        },
+        methods: {
+            list(page = 1) {
+                axios.get(`/api/v1/subscriptions?page=${page}`).then(response => {
+                    this.courses = response.data
+                    this.loading = false
+                    window.scrollTo(0, 0);
+                })
+            }
         }
     }
 </script>

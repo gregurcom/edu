@@ -9,6 +9,7 @@ use App\Http\Resources\CourseResource;
 use App\Models\Course;
 use App\Models\CourseUser;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -28,11 +29,9 @@ class SubscriptionController extends Controller
      *       ),
      * )
      */
-    public function index(): JsonResponse
+    public function index(): AnonymousResourceCollection
     {
-        $courses = CourseResource::collection(Auth::user()->subscriptions()->with(['author', 'rates'])->get());
-
-        return response()->json($courses, Response::HTTP_OK);
+        return CourseResource::collection(Auth::user()->subscriptions()->with(['author', 'rates'])->paginate(5));
     }
 
     /**
