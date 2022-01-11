@@ -2,7 +2,6 @@
 
 declare(strict_types = 1);
 
-use App\Http\Controllers\API\Admin\AdminController;
 use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\API\CategoryController;
 use App\Http\Controllers\API\CourseController;
@@ -37,9 +36,6 @@ Route::get('lessons/{lesson}', [LessonController::class, 'show'])->name('lessons
 
 Route::middleware('auth:api')->group(function () {
     Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
-    Route::get('admin-panel', [AdminController::class, 'index'])
-        ->name('admin-panel.index')
-        ->middleware('app.admin');
 
     Route::name('courses.')->group(function () {
         Route::post('courses', [CourseController::class, 'store'])->name('store');

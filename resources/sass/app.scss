@@ -86,6 +86,10 @@ a:hover {
     background-color: #292b2c !important;
 }
 
+table {
+    margin-left: 27px;
+}
+
 td, th {
     width: 300px;
     height: 40px;
@@ -101,6 +105,6 @@ tr:hover {
     background-color: #f7f7f7;
 }
 
-.index {
+.index, .lessons {
     width: 80px;
 }

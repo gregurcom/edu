@@ -54,11 +54,6 @@ class RouteServiceProvider extends ServiceProvider
                 ->namespace($this->namespace)
                 ->name('platform.')
                 ->group(base_path('routes/platform.php'));
-
-            Route::middleware('app.admin')
-                ->namespace($this->namespace)
-                ->name('admin.')
-                ->group(base_path('routes/admin.php'));
         });
 
         Route::pattern('id', '[0-9]+');
