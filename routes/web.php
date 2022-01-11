@@ -22,7 +22,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::view('/', 'home')->name('home');
-
+Route::view('admin-panel', 'platform.admin.admin-panel')->middleware('app.admin');
 Route::get('language', LocaleController::class)->name('language.switch');
 Route::view('dashboard', 'platform.dashboard')->name('dashboard');
 

@@ -85,3 +85,22 @@ a:hover {
     border: 1px solid #292b2c !important;
     background-color: #292b2c !important;
 }
+
+td, th {
+    width: 300px;
+    height: 40px;
+    text-align: center;
+}
+
+table .btn {
+    border: none;
+}
+
+tr:hover {
+    cursor: pointer;
+    background-color: #f7f7f7;
+}
+
+.index {
+    width: 80px;
+}

@@ -14,16 +14,16 @@ class CoursePolicy
 
     public function edit(User $user, Course $course): bool
     {
-        return $user->id === $course->user_id;
+        return $user->id === $course->user_id || $user->role === User::ADMIN;
     }
 
     public function update(User $user, Course $course): bool
     {
-        return $user->id === $course->user_id;
+        return $user->id === $course->user_id || $user->role === User::ADMIN;
     }
 
     public function destroy(User $user, Course $course): bool
     {
-        return $user->id === $course->user_id;
+        return $user->id === $course->user_id || $user->role === User::ADMIN;
     }
 }

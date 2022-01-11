@@ -79,7 +79,7 @@
                     <h2>{{ __('app.title.about-course') }}:</h2>
                     <p>{{ $course->description }}</p>
                     <h4>{{ __('app.title.author') }}: {{ $course->author->name }}</h4>
-                    <h4>{{ __('app.title.subscriptions') }}: {{ $course->users()->count() }}</h4>
+                    <h4>{{ __('app.title.subscriptions') }}: {{ $course->subscribers()->count() }}</h4>
                     <div itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">
                         <h4>{{ __('app.title.average-rating') }}: <span itemprop="ratingValue">{{ round($course->averageRate()) }}</span></h4>
                     </div>

@@ -17,6 +17,7 @@ class UserResource extends JsonResource
             'email' => $this->email,
             'role' => $this->role,
             'avatar' => $this->avatar,
+            'courses' => CourseResource::collection($this->courses),
             'can' => $this->permissions(),
             'created_at' => $this->created_at,
         ];
