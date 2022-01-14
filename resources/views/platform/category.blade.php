@@ -1,6 +1,6 @@
 @extends('layouts.layout')
 
-@section('title', 'Mentor - courses')
+@section('title', 'Mentor - ' . $category->name)
 
 @section('content')
     <div class="container wrapper flex-grow-1 mt-5 mb-3">
@@ -48,12 +48,12 @@
                     <div class="mb-1 description">
                         {{ $course->description }}
                     </div>
-                    <img src="{{ asset('images/' . $course->author->avatar) }}" width="25" height="20">
+                    <img src="{{ asset('images/' . $course->author->avatar) }}" width="25" height="20" alt="{{ $course->author->name }}">
                     <a href="#" class="text-decoration-none text-muted">{{ $course->author->name }}</a> ·
                     <span class="text-muted">{{ $course->created_at->isoformat('Do MMM YY') }}</span>
                 </div>
                 <div class="col col-md-4 d-flex justify-content-center">
-                    <img src="{{ asset('images/404.png') }}" class="feed-image" width="250" height="180">
+                    <img src="{{ asset('images/404.png') }}" class="feed-image" width="250" height="180" alt="{{ $course->title }}">
                 </div>
             </div>
         @empty

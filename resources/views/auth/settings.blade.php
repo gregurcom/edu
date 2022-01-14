@@ -11,7 +11,7 @@
                 </div>
             @endif
             <div class="col-md-6 text-center">
-                <img src="{{ asset('images/' . Auth::user()->avatar) }}" width="150" height="200" class="mb-3">
+                <img src="{{ asset('images/' . Auth::user()->avatar) }}" width="150" height="200" class="mb-3" alt="{{ Auth::user()->name }}">
                 @error('image')
                     <div class="alert alert-danger mt-1">
                         {{ $message }}

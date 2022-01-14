@@ -7,7 +7,7 @@
 @section('content')
     <div class="container wrapper flex-grow-1 mt-3 mb-5" itemscope itemtype="http://schema.org/Course">
         <div class="text-center">
-            <img src="{{ asset('images/' . $course->image) }}" width="550" height="300" id="course-image">
+            <img src="{{ asset('images/' . $course->image) }}" width="550" height="300" id="course-image" alt="{{ $course->title }}">
             <div class="mt-3 text-center">
                 <div class="row">
                     <div class="col-md-6" id="courseTitle">

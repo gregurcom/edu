@@ -1,7 +1,7 @@
 <template>
     <div v-if="loading === false">
         <div class="text-center mb-3">
-            <img :src="'/images/smile.png'" width="600" height="300" id="course-image">
+            <img :src="'/images/smile.png'" width="600" height="300" id="course-image" alt="category image">
         </div>
         <span v-for="category in categories" class="px-2">
             <a :href="`/categories/${category.id}/courses`" class="btn btn-outline-dark mt-2">{{ category.name }}</a>
