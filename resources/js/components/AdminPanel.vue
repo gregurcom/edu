@@ -29,7 +29,7 @@
                         </tr>
                     </template>
                 </table>
-                <pagination class="customPagination mt-4" style="margin-bottom: -25px" align="center" :data="courses" @pagination-change-page="list"></pagination>
+                <pagination class="customPagination mt-4" id="panel-pagination" align="center" :data="courses" @pagination-change-page="list"></pagination>
             </template>
             <template v-else>
                 <div class="alert alert-info text-center">No courses yet</div>

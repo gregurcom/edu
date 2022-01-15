@@ -18,9 +18,9 @@ class AdminController extends Controller
         $courses = Course::where('title', 'like', '%' . $request->q . '%')->with('author')->get();
         $user = User::where('name', 'like', '%' . $request->q . '%')->first();
         if ($user) {
-            $user = $user->courses()->with('author')->get();
+            $userCourses = $user->courses()->with('author')->get();
 
-            $courses = $courses->merge($user)->paginate(10);
+            $courses = $courses->merge($userCourses)->paginate(10);
         }
 
         return CourseResource::collection($courses);
