@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\SearchRequest;
 use App\Http\Requests\StoreCourseRequest;
 use App\Http\Resources\CourseResource;
+use App\Http\Resources\FeedResource;
 use App\Models\Course;
 use App\Services\CourseService;
 use Symfony\Component\HttpFoundation\Response;
@@ -33,7 +34,7 @@ class CourseController extends Controller
      */
     public function index(CourseService $courseService): AnonymousResourceCollection
     {
-        return CourseResource::collection($courseService->getFeed());
+        return FeedResource::collection($courseService->getFeed());
     }
 
     /**

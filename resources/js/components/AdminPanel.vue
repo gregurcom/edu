@@ -66,7 +66,7 @@ export default {
     methods: {
         list(page = 1) {
             if (this.query == null || this.query == '') {
-                axios.get(`/api/v1/courses?page=${page}`).then(response => {
+                axios.get(`/api/v1/admin-panel?page=${page}`).then(response => {
                     this.courses = response.data
                     this.loading = false
                     window.scrollTo(0,0);

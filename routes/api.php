@@ -38,6 +38,7 @@ Route::get('lessons/{lesson}', [LessonController::class, 'show'])->name('lessons
 Route::middleware('auth:api')->group(function () {
     Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
 
+    Route::get('admin-panel', [AdminController::class, 'index'])->name('admin-panel.index');
     Route::get('admin-panel/search', [AdminController::class, 'search'])->name('admin-panel.search');
 
     Route::name('courses.')->group(function () {
