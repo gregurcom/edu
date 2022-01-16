@@ -63,7 +63,7 @@
                 });
             },
             submit() {
-                axios.post('api/v1/tasks', this.fields).then(response => {
+                axios.post('api/v1/tasks', this.fields).then(() => {
                     this.fields = {}
                     this.fetchTasks()
                 }).catch (error => {
@@ -71,7 +71,7 @@
                 })
             },
             deleteTask(id) {
-                axios.delete('api/v1/tasks/' + id).then(response => {
+                axios.delete('api/v1/tasks/' + id).then(() => {
                     this.fetchTasks()
                 })
             },

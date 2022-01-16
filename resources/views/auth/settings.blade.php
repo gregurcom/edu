@@ -17,20 +17,20 @@
                         {{ $message }}
                     </div>
                 @enderror
-                <form action="{{ route('auth.settings.modify-avatar') }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('auth.settings.modify-avatar') }}" method="POST" enctype="multipart/form-data" class="d-flex justify-content-center">
                     @csrf
 
-                    <input type="file" class="w-25 d-inline form-control" name="image">
-                    <button type="submit" class="btn btn-outline-dark">Modify</button>
+                    <input type="file" class="w-25 form-control" name="image">
+                    <button type="submit" class="btn btn-outline-dark btn-modify">Modify</button>
                 </form>
             </div>
             <div class="col-md-6">
                 <div class="settings-data">
-                    <form action="{{ route('auth.settings.modify-name') }}" method="POST">
+                    <form action="{{ route('auth.settings.modify-name') }}" method="POST" class="d-flex justify-content-start">
                         @csrf
 
                         <input type="text" name="name" value="{{ Auth::user()->name }}" class="form-control w-25 d-inline">
-                        <button type="submit" class="btn btn-outline-dark">Modify</button>
+                        <button type="submit" class="btn btn-outline-dark btn-modify">Modify</button>
                     </form>
                     <form action="{{ route('auth.settings.modify-password') }}" method="POST" class="mt-2">
                         @csrf
