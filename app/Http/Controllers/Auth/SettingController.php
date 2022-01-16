@@ -28,7 +28,7 @@ class SettingController extends Controller
     public function modifyName(Request $request): RedirectResponse
     {
         $request->validate([
-            'name' => 'required'
+            'name' => 'required|string|max:255'
         ]);
         Auth::user()->update(['name' => $request->name]);
 
