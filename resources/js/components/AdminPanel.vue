@@ -2,32 +2,40 @@
     <div v-if="loading === false">
         <div class="mt-5 mb-5">
             <form @submit.prevent="submit" id="search-form">
-                <div id="search">
-                    <i class="fa fa-search"></i>
+                <div class="row g-1 justify-content-end">
+                    <div class="col-auto">
+                        <div id="search">
+                            <i class="fa fa-search"></i>
+                        </div>
+                        <input id="search-input" type="search" name="q" class="form-control" v-model="query" placeholder="Search...">
+                    </div>
                 </div>
-                <input id="search-input" type="search" name="q" class="form-control border-dark" v-model="query" placeholder="Search...">
             </form>
             <template v-if="courses.data.length">
                 <table>
-                    <tr>
-                        <th class="index">#</th>
-                        <th>Course</th>
-                        <th>Author</th>
-                        <th class="lessons">Lessons</th>
-                        <th>Actions</th>
-                    </tr>
-                    <template v-for="(course, index) in courses.data">
+                    <thead>
                         <tr>
-                            <td class="index">{{ index + 1 }}</td>
-                            <td>{{ course.title }}</td>
-                            <td>{{ course.author.name }}</td>
-                            <td class="lessons">{{ course.lessons.length }}</td>
-                            <td>
-                                <button type="submit" @click="deleteCourse(course.id)" class="btn btn-outline-danger">Delete</button>
-                                <a :href="`courses/${course.id}/edit`" class="btn btn-outline-primary">Edit</a>
-                            </td>
+                            <th class="index">#</th>
+                            <th>Course</th>
+                            <th>Author</th>
+                            <th class="lessons">Lessons</th>
+                            <th>Actions</th>
                         </tr>
-                    </template>
+                    </thead>
+                    <tbody>
+                        <template v-for="(course, index) in courses.data">
+                            <tr>
+                                <td class="index">{{ index + 1 }}</td>
+                                <td>{{ course.title }}</td>
+                                <td>{{ course.author.name }}</td>
+                                <td class="lessons">{{ course.lessons.length }}</td>
+                                <td>
+                                    <button type="submit" @click="deleteCourse(course.id)" class="btn btn-outline-danger">Delete</button>
+                                    <a :href="`courses/${course.id}/edit`" class="btn btn-outline-primary">Edit</a>
+                                </td>
+                            </tr>
+                        </template>
+                    </tbody>
                 </table>
                 <pagination class="customPagination mt-4" id="panel-pagination" align="center" :data="courses" @pagination-change-page="list"></pagination>
             </template>
