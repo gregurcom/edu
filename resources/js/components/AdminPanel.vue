@@ -81,7 +81,7 @@ export default {
         },
         deleteCourse(id) {
             axios.delete('api/v1/courses/' + id).then(() => {
-                this.list()
+                this.list(this.courses.meta.current_page)
             })
         },
         submit() {
