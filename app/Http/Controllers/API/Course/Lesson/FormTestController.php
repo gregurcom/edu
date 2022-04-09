@@ -57,8 +57,10 @@ class FormTestController extends Controller
         return response()->json(['message' => 'No questions'], Response::HTTP_BAD_REQUEST);
     }
 
-    public function delete()
+    public function destroy(Test $test): JsonResponse
     {
+        $test->delete();
 
+        return response()->json(['message' => 'Test was destroyed'], Response::HTTP_OK);
     }
 }

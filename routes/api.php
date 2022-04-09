@@ -57,6 +57,7 @@ Route::middleware('auth:api')->group(function () {
 
         Route::get('courses/{course}/tests', [FormTestController::class, 'show'])->name('tests.show');
         Route::post('courses/{course}/tests', [FormTestController::class, 'store'])->name('tests.store');
+        Route::delete('courses/tests/{test}', [FormTestController::class, 'destroy'])->name('tests.destroy');
     });
 
     Route::name('lessons.')->group(function () {
