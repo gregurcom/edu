@@ -5,9 +5,10 @@ declare(strict_types=1);
 use App\Http\Controllers\API\Admin\AdminController;
 use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\API\CategoryController;
-use App\Http\Controllers\API\CourseController;
+use App\Http\Controllers\API\Course\Lesson\FormTestController;
+use App\Http\Controllers\API\Course\CourseController;
 use App\Http\Controllers\API\DashboardController;
-use App\Http\Controllers\API\LessonController;
+use App\Http\Controllers\API\Course\Lesson\LessonController;
 use App\Http\Controllers\API\SubscriptionController;
 use App\Http\Controllers\API\TaskController;
 use Illuminate\Support\Facades\Route;
@@ -53,6 +54,8 @@ Route::middleware('auth:api')->group(function () {
         Route::delete('courses/{course}', [CourseController::class, 'destroy'])
             ->name('destroy')
             ->can('destroy', 'course');
+
+        Route::get('courses/{course}/tests', [FormTestController::class, 'show'])->name('tests');
     });
 
     Route::name('lessons.')->group(function () {

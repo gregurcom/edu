@@ -82,6 +82,11 @@ final class User extends Authenticatable implements MustVerifyEmail, CanResetPas
         return $this->hasMany(Task::class);
     }
 
+    public function responses(): HasMany
+    {
+        return $this->hasMany(Response::class);
+    }
+
     public function isSubscribedOnCourse(int $courseId): bool
     {
         foreach ($this->subscriptions as $subscription) {

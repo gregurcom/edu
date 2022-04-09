@@ -66,6 +66,11 @@ final class Course extends Model
         return $this->hasMany(Rate::class);
     }
 
+    public function tests(): HasMany
+    {
+        return $this->hasMany(Test::class);
+    }
+
     public function averageRate(): float
     {
         $countRates = $this->rates->count();

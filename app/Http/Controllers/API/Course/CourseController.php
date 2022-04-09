@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Http\Controllers\API;
+namespace App\Http\Controllers\API\Course;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\SearchRequest;
