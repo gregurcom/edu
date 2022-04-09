@@ -24,6 +24,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// TODO restructuring
 Route::post('register', [AuthController::class, 'register'])->name('register');
 Route::post('login', [AuthController::class, 'login'])->name('login');
 
@@ -55,9 +56,10 @@ Route::middleware('auth:api')->group(function () {
             ->name('destroy')
             ->can('destroy', 'course');
 
-        Route::get('courses/{course}/tests', [FormTestController::class, 'show'])->name('tests.show');
+        Route::get('courses/{course}/tests', [FormTestController::class, 'index'])->name('tests.index');
         Route::post('courses/{course}/tests', [FormTestController::class, 'store'])->name('tests.store');
-        Route::delete('courses/tests/{test}', [FormTestController::class, 'destroy'])->name('tests.destroy');
+        Route::get('tests/{test}', [FormTestController::class, 'show'])->name('tests.show');
+        Route::delete('tests/{test}', [FormTestController::class, 'destroy'])->name('tests.destroy');
     });
 
     Route::name('lessons.')->group(function () {

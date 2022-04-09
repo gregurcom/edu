@@ -16,7 +16,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 final class FormTestController extends Controller
 {
-    public function show(Course $course): JsonResponse
+    public function index(Course $course): JsonResponse
     {
         return response()->json([
             'tests' => [
@@ -25,10 +25,14 @@ final class FormTestController extends Controller
         ], Response::HTTP_OK);
     }
 
+    public function show(Test $test): JsonResponse
+    {
+        return response()->json(['test' => TestResource::make($test)], Response::HTTP_OK);
+    }
+
     public function store(Course $course, TestRequest $request, TestService $testService): JsonResponse
     {
         DB::beginTransaction();
-
         try {
             $test = $testService->store($course, $request);
         } catch (\Exception $e) {
