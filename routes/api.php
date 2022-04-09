@@ -7,6 +7,7 @@ use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\API\CategoryController;
 use App\Http\Controllers\API\Course\Lesson\FormTestController;
 use App\Http\Controllers\API\Course\CourseController;
+use App\Http\Controllers\API\Course\Lesson\ResponseController;
 use App\Http\Controllers\API\DashboardController;
 use App\Http\Controllers\API\Course\Lesson\LessonController;
 use App\Http\Controllers\API\SubscriptionController;
@@ -60,6 +61,14 @@ Route::middleware('auth:api')->group(function () {
         Route::post('courses/{course}/tests', [FormTestController::class, 'store'])->name('tests.store');
         Route::get('tests/{test}', [FormTestController::class, 'show'])->name('tests.show');
         Route::delete('tests/{test}', [FormTestController::class, 'destroy'])->name('tests.destroy');
+
+        Route::get('questions/{question}/responses', [ResponseController::class, 'index'])
+            ->name('questions.index');
+        Route::post('questions/{question}/responses', [ResponseController::class, 'store'])
+            ->name('questions.store');
+
+        Route::put('responses/{response}', [ResponseController::class, 'update'])->name('questions.update');
+        Route::delete('responses/{response}', [ResponseController::class, 'destroy'])->name('questions.destroy');
     });
 
     Route::name('lessons.')->group(function () {
