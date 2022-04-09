@@ -15,7 +15,7 @@ final class StoreFileRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'files' => 'max:2048|nullable',
+            'files' => 'nullable|max:2048',
         ];
     }
 }

@@ -17,7 +17,7 @@ final class SetPasswordRequest extends FormRequest
     {
         return [
             'old_password' => ['required', 'string', 'min:6', new CheckPassword()],
-            'password' => 'required|string|min:6|confirmed',
+            'password' => 'required|string|confirmed|min:6|max:255',
         ];
     }
 }

@@ -14,8 +14,11 @@ class LessonService
 {
     public function sendLessonCreateNotification(Lesson $lesson): void
     {
-        foreach ($lesson->course->users as $user) {
-            dispatch(new SendLessonEmailJob($user->email, $lesson, $lesson->course->title));
+        $users = $lesson->course->users;
+        if ($users) {
+            foreach ($users as $user) {
+                dispatch(new SendLessonEmailJob($user->email, $lesson, $lesson->course->title));
+            }
         }
     }
 
