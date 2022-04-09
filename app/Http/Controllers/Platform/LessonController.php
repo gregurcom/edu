@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace App\Http\Controllers\Platform;
 
@@ -15,7 +15,7 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\DB;
 
-class LessonController extends Controller
+final class LessonController extends Controller
 {
     public function show(Lesson $lesson): View
     {

@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace App\Services;
 
@@ -83,8 +83,8 @@ class CourseService
 
     public function searchCourse(SearchRequest $request): AnonymousResourceCollection
     {
-        return CourseResource::collection(Course::where('title', 'like', '%' . $request->q . '%')
-            ->orWhere('description', 'like', '%' . $request->q . '%')
+        return CourseResource::collection(Course::where('title', 'like', '%' . $request->searchValue . '%')
+            ->orWhere('description', 'like', '%' . $request->searchValue . '%')
             ->with(['rates', 'author'])
             ->get());
     }
@@ -94,8 +94,8 @@ class CourseService
         return CourseResource::collection(
             Course::where('category_id', $request->categoryId)
                 ->where(function ($query) use ($request) {
-                    return $query->where('title', 'like', '%' . $request->q . '%')
-                        ->orWhere('description', 'like', '%' . $request->q . '%');
+                    return $query->where('title', 'like', '%' . $request->searchValue . '%')
+                        ->orWhere('description', 'like', '%' . $request->searchValue . '%');
                 })
                 ->with(['rates', 'author'])
                 ->paginate(10)

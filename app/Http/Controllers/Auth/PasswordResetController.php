@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace App\Http\Controllers\Auth;
 
@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Http\Request;
 
-class PasswordResetController extends Controller
+final class PasswordResetController extends Controller
 {
     public function forgotPassword(): View
     {

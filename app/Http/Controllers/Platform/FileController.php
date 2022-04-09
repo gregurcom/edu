@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace App\Http\Controllers\Platform;
 
@@ -9,7 +9,7 @@ use App\Models\File;
 use Illuminate\Support\Facades\Storage;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 
-class FileController extends Controller
+final class FileController extends Controller
 {
     public function __invoke(File $file): StreamedResponse
     {

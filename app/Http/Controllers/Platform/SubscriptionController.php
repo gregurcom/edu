@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace App\Http\Controllers\Platform;
 
@@ -10,7 +10,7 @@ use App\Models\CourseUser;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 
-class SubscriptionController extends Controller
+final class SubscriptionController extends Controller
 {
     public function store(Course $course): RedirectResponse
     {

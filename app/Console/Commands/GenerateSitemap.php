@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace App\Console\Commands;
 
@@ -8,7 +8,7 @@ use Illuminate\Console\Command;
 use Spatie\Sitemap\Tags\Url;
 use Spatie\Sitemap\Sitemap;
 
-class GenerateSitemap extends Command
+final class GenerateSitemap extends Command
 {
     /**
      * The name and signature of the console command.

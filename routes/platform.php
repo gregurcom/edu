@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 use App\Http\Controllers\Platform\CourseController;
 use App\Http\Controllers\Platform\FileController;

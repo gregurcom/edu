@@ -1,13 +1,15 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Str;
 use Tonysm\RichTextLaravel\Models\Traits\HasRichText;
 
@@ -18,10 +20,10 @@ use Tonysm\RichTextLaravel\Models\Traits\HasRichText;
  * @property string $title
  * @property string $information
  * @property int $course_id
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \App\Models\Course $course
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\File[] $files
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
+ * @property-read Course $course
+ * @property-read Collection|File[] $files
  * @property-read int|null $files_count
  * @method static \Database\Factories\LessonFactory factory(...$parameters)
  * @method static \Illuminate\Database\Eloquent\Builder|Lesson newModelQuery()
@@ -35,7 +37,7 @@ use Tonysm\RichTextLaravel\Models\Traits\HasRichText;
  * @method static \Illuminate\Database\Eloquent\Builder|Lesson whereUpdatedAt($value)
  * @mixin \Eloquent
  */
-class Lesson extends Model
+final class Lesson extends Model
 {
     use HasFactory, HasRichText;
 

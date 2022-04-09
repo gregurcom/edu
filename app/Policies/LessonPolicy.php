@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace App\Policies;
 
@@ -8,7 +8,7 @@ use App\Models\Lesson;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class LessonPolicy
+final class LessonPolicy
 {
     use HandlesAuthorization;
 

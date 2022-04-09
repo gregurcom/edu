@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace App\Http\Controllers\Platform;
 
@@ -12,7 +12,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class RateController extends Controller
+final class RateController extends Controller
 {
     public function __invoke(Course $course, Request $request, RateService $rateService): RedirectResponse
     {

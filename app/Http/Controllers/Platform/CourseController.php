@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace App\Http\Controllers\Platform;
 
@@ -14,7 +14,7 @@ use App\Services\CourseService;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 
-class CourseController extends Controller
+final class CourseController extends Controller
 {
     public function list(Category $category, CourseService $courseService): View
     {

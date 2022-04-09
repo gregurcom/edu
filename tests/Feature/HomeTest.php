@@ -1,12 +1,12 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace Tests\Feature;
 
 use Tests\TestCase;
 
-class HomeTest extends TestCase
+final class HomeTest extends TestCase
 {
     public function test_home(): void
     {

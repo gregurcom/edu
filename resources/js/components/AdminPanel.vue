@@ -7,7 +7,7 @@
                         <div id="search">
                             <i class="fa fa-search"></i>
                         </div>
-                        <input id="search-input" type="search" name="q" class="form-control" v-model="query" placeholder="Search...">
+                        <input id="search-input" type="search" name="searchValue" class="form-control" v-model="query" placeholder="Search...">
                     </div>
                 </div>
             </form>
@@ -80,7 +80,7 @@ export default {
                     window.scrollTo(0,0);
                 })
             } else {
-                axios.get('api/v1/admin-panel/search?q=' + this.query + '&page=' + page).then(response => {
+                axios.get('api/v1/admin-panel/search?searchValue=' + this.query + '&page=' + page).then(response => {
                     this.courses = response.data
                     this.loading = false
                     window.scrollTo(0,0);

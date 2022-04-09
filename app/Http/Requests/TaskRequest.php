@@ -1,12 +1,18 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Date;
 
-class TaskRequest extends FormRequest
+/**
+ * @property string $title
+ * @property string $description
+ * @property Date $end_time
+*/
+final class TaskRequest extends FormRequest
 {
     public function rules(): array
     {

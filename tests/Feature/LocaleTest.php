@@ -1,12 +1,12 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace Tests\Feature;
 
 use Tests\TestCase;
 
-class LocaleTest extends TestCase
+final class LocaleTest extends TestCase
 {
     public function test_locale_ru(): void
     {

@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace Database\Seeders;
 
@@ -8,7 +8,7 @@ use App\Models\Course;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 
-class CourseSeeder extends Seeder
+final class CourseSeeder extends Seeder
 {
     public function run(): void
     {

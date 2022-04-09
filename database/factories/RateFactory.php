@@ -1,13 +1,13 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace Database\Factories;
 
 use App\Models\Rate;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class RateFactory extends Factory
+final class RateFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.

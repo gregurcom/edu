@@ -1,13 +1,17 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace App\Http\Requests;
 
 use App\Rules\CheckPassword;
 use Illuminate\Foundation\Http\FormRequest;
 
-class SetPasswordRequest extends FormRequest
+/**
+ * @property string $old_password
+ * @property string $password
+*/
+final class SetPasswordRequest extends FormRequest
 {
     public function rules(): array
     {

@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace App\Http\Controllers\Platform;
 
@@ -10,7 +10,7 @@ use App\Models\Task;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 
-class TaskController extends Controller
+final class TaskController extends Controller
 {
     public function edit(Task $task): View
     {

@@ -17,11 +17,11 @@
                         <i class="fa fa-search"></i>
                     </div>
                     <input type="hidden" name="categoryId" value="{{ $category->id }}">
-                    <input id="search-input" type="search" name="q" class="form-control border-dark search-input" placeholder="Search...">
+                    <input id="search-input" type="search" name="searchValue" class="form-control border-dark search-input" placeholder="Search...">
                 </div>
             </div>
         </form>
-        @error('q')
+        @error('searchValue')
             <div class="alert alert-danger mt-1">
                 {{ $message }}
             </div>

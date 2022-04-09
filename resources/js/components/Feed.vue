@@ -6,7 +6,7 @@
                     <div id="search">
                         <i class="fa fa-search"></i>
                     </div>
-                    <input id="search-input" type="search" name="q" class="form-control border-dark search-input" v-model="query" placeholder="Search...">
+                    <input id="search-input" type="search" name="searchValue" class="form-control border-dark search-input" v-model="query" placeholder="Search...">
                 </div>
             </div>
         </form>
@@ -81,7 +81,7 @@
                 })
             },
             submit() {
-                axios.get('api/v1/courses/search?q=' + this.query).then(response => {
+                axios.get('api/v1/courses/search?searchValue=' + this.query).then(response => {
                     this.courses = response.data
                     this.query = []
                 }).catch (error => {
