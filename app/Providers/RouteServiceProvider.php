@@ -54,6 +54,31 @@ class RouteServiceProvider extends ServiceProvider
                 ->namespace($this->namespace)
                 ->name('platform.')
                 ->group(base_path('routes/platform.php'));
+
+            Route::prefix('api/v1/')
+                ->middleware('api')
+                ->namespace($this->namespace)
+                ->group(base_path('routes/v1/auth.php'));
+
+            Route::prefix('api/v1/')
+                ->middleware('api')
+                ->namespace($this->namespace)
+                ->group(base_path('routes/v1/course.php'));
+
+            Route::prefix('api/v1/')
+                ->middleware(['api', 'auth:api'])
+                ->namespace($this->namespace)
+                ->group(base_path('routes/v1/form-test.php'));
+
+            Route::prefix('api/v1/')
+                ->middleware(['api', 'auth:api'])
+                ->namespace($this->namespace)
+                ->group(base_path('routes/v1/subscription.php'));
+
+            Route::prefix('api/v1/')
+                ->middleware(['api', 'auth:api'])
+                ->namespace($this->namespace)
+                ->group(base_path('routes/v1/task.php'));
         });
 
         Route::pattern('id', '[0-9]+');
