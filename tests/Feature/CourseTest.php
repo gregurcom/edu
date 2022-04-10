@@ -19,7 +19,7 @@ final class CourseTest extends TestCase
         $category = Category::factory()->create();
         $course = Course::factory()->create(['user_id' => $user->id, 'category_id' => $category->id]);
 
-        $response = $this->get('courses/' . $course->slug);
+        $response = $this->get('courses/' . $course->id);
 
         $response->assertStatus(200)->assertSee($course->title);
     }

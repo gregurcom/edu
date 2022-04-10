@@ -76,7 +76,7 @@ final class AuthController extends Controller
             return response()->json(['token' => Auth::user()->createToken(Auth::user()->name)->accessToken], Response::HTTP_OK);
         }
 
-        return response()->json('Credentials not match', Response::HTTP_NO_CONTENT);
+        return response()->json('Unauthorized', Response::HTTP_UNAUTHORIZED);
     }
 
     /**
