@@ -4,14 +4,25 @@ declare(strict_types=1);
 
 namespace App\Services;
 
+use App\Http\DTO\LessonDto;
 use App\Http\Requests\StoreFileRequest;
 use App\Jobs\SendLessonEmailJob;
 use App\Models\File;
 use App\Models\Lesson;
 use Illuminate\Support\Facades\Storage;
 
-class LessonService
+final class LessonService
 {
+    public function store(LessonDto $dto): Lesson
+    {
+        return Lesson::create([
+            'title' => $dto->title,
+            'information' => $dto->information,
+            'course_id' => $dto->course_id,
+            'status' => $dto->status,
+        ]);
+    }
+
     public function sendLessonCreateNotification(Lesson $lesson): void
     {
         $users = $lesson->course->users;

@@ -7,7 +7,7 @@ namespace App\Services;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Auth;
 
-class TaskService
+final class TaskService
 {
     public function get(): Collection
     {

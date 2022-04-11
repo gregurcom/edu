@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Controllers\Platform;
 
 use App\Http\Controllers\Controller;
+use App\Http\DTO\Factories\CreateLessonDtoFactory;
 use App\Http\Requests\StoreFileRequest;
 use App\Http\Requests\StoreLessonRequest;
 use App\Http\Requests\UpdateLessonRequest;
@@ -17,6 +18,8 @@ use Illuminate\Support\Facades\DB;
 
 final class LessonController extends Controller
 {
+    public function __construct(private CreateLessonDtoFactory $createLessonDtoFactory) {}
+
     public function show(Lesson $lesson): View
     {
         $readDuration = $lesson->getReadDuration();
@@ -32,12 +35,13 @@ final class LessonController extends Controller
     public function store(StoreLessonRequest $lessonRequest, StoreFileRequest $fileRequest, LessonService $lessonService): RedirectResponse
     {
         DB::transaction(function () use ($lessonRequest, $fileRequest, $lessonService) {
-            $lesson = Lesson::create($lessonRequest->validated());
+            $dto = $this->createLessonDtoFactory->createFromRequest($lessonRequest);
+            $lesson = $lessonService->store($dto);
 
             if ($fileRequest->hasFile('files')) {
                 $lessonService->storeAttachedFiles($lesson, $fileRequest);
             }
-            if ($lessonRequest->status == 1) {
+            if ($dto->status == 1) {
                 // send emails to subscribers with a link to lesson
                 $lessonService->sendLessonCreateNotification($lesson);
             }

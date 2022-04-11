@@ -16,7 +16,7 @@ use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
 
-class CourseService
+final class CourseService
 {
     public function getFeed(): LengthAwarePaginator
     {

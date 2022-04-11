@@ -9,7 +9,7 @@ use App\Models\Rate;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class RateService
+final class RateService
 {
     public function updateRating(Course $course, Request $request): void
     {

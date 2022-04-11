@@ -8,7 +8,7 @@ use App\Http\Requests\AccessRequest;
 use App\Models\Attempt;
 use Illuminate\Database\Eloquent\Collection;
 
-class AttemptService
+final class AttemptService
 {
     public function get(AccessRequest $request): Collection
     {
