@@ -2,16 +2,12 @@
 
 declare(strict_types=1);
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\User;
 
 use App\Rules\CheckPassword;
 use Illuminate\Foundation\Http\FormRequest;
 
-/**
- * @property string $old_password
- * @property string $password
-*/
-final class SetPasswordRequest extends FormRequest
+final class UpdatePasswordRequest extends FormRequest
 {
     public function rules(): array
     {

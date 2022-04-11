@@ -9,5 +9,5 @@ final class LessonDto
     public string $title;
     public string $information;
     public int $course_id;
-    public string $status;
+    public ?string $status;
 }

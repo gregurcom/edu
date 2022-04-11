@@ -5,13 +5,13 @@ declare(strict_types=1);
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Http\DTO\Factories\CreateUserDtoFactory;
 use App\Http\Requests\RegistrationRequest;
-use App\Models\User;
+use App\Services\UserService;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
 
 final class RegistrationController extends Controller
 {
@@ -20,15 +20,13 @@ final class RegistrationController extends Controller
         return view('auth.registration');
     }
 
-    public function save(RegistrationRequest $request): RedirectResponse
+    public function save(RegistrationRequest $request, UserService $userService): RedirectResponse
     {
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-        ]);
+        $dto = app(CreateUserDtoFactory::class)->createFromRequest($request);
 
+        $user = $userService->store($dto);
         Auth::login($user);
+
         event(new Registered($user));
 
         return redirect()->route('dashboard')->with('status', __('app.alert.email-verification'));

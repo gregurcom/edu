@@ -40,9 +40,9 @@ Route::name('auth.')->group(function () {
 
         Route::name('settings')->group(function () {
             Route::get('settings', [SettingController::class, 'index']);
-            Route::post('settings/modify-password', [SettingController::class, 'modifyPassword'])->name('.modify-password');
-            Route::post('settings/modify-name', [SettingController::class, 'modifyName'])->name('.modify-name');
-            Route::post('settings/modify-avatar', [SettingController::class, 'modifyAvatar'])->name('.modify-avatar');
+            Route::post('settings/update-password', [SettingController::class, 'updatePassword'])->name('.update-password');
+            Route::post('settings/update-name', [SettingController::class, 'updateName'])->name('.update-name');
+            Route::post('settings/update-avatar', [SettingController::class, 'updateAvatar'])->name('.update-avatar');
         });
     });
 });

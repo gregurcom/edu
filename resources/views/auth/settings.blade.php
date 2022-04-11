@@ -17,7 +17,7 @@
                         {{ $message }}
                     </div>
                 @enderror
-                <form action="{{ route('auth.settings.modify-avatar') }}" method="POST" enctype="multipart/form-data" class="d-flex justify-content-center">
+                <form action="{{ route('auth.settings.update-avatar') }}" method="POST" enctype="multipart/form-data" class="d-flex justify-content-center">
                     @csrf
 
                     <input type="file" class="w-25 form-control" name="image">
@@ -26,7 +26,7 @@
             </div>
             <div class="col-md-6">
                 <div class="settings-data">
-                    <form action="{{ route('auth.settings.modify-name') }}" method="POST">
+                    <form action="{{ route('auth.settings.update-name') }}" method="POST">
                         @csrf
 
                         <div class="d-flex justify-content-start form-modify-name">
@@ -39,7 +39,7 @@
                             </div>
                         @enderror
                     </form>
-                    <form action="{{ route('auth.settings.modify-password') }}" method="POST" class="mt-2">
+                    <form action="{{ route('auth.settings.update-password') }}" method="POST" class="mt-2">
                         @csrf
 
                         <input type="password" name="old_password" class="form-control mt-1 w-50 d-inline" placeholder="Old password...">
