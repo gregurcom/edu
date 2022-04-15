@@ -22,4 +22,13 @@ final class RateService
                 'rate' => $request->rate,
             ]);
     }
+
+    public function getExistingSameRating(Course $course, Request $request): Rate|null
+    {
+        return $course->rates()
+            ->where('user_id', Auth::id())
+            ->where('course_id', $course->id)
+            ->where('rate', $request->rate)
+            ->first();
+    }
 }

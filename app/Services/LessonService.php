@@ -9,6 +9,8 @@ use App\Http\Requests\StoreFileRequest;
 use App\Jobs\SendLessonEmailJob;
 use App\Models\File;
 use App\Models\Lesson;
+use Illuminate\Support\Facades\DB;
+use Symfony\Component\Console\Exception\RuntimeException;
 use Illuminate\Support\Facades\Storage;
 
 final class LessonService
@@ -35,16 +37,25 @@ final class LessonService
 
     public function storeAttachedFiles(Lesson $lesson, StoreFileRequest $fileRequest): void
     {
-        foreach ($fileRequest->file('files') as $file) {
-            $course = str_replace(' ', '', $lesson->course->title);
-            $name = $file->getClientOriginalName();
-            $path = $file->storeAs($course, $name, 's3');
+        try {
+            DB::beginTransaction();
 
-            File::create([
-                'name' => $name,
-                'path' => Storage::disk('s3')->url($path),
-                'lesson_id' => $lesson->id,
-            ]);
+            foreach ($fileRequest->file('files') as $file) {
+                $course = str_replace(' ', '', $lesson->course->title);
+                $name = $file->getClientOriginalName();
+                $path = $file->storeAs($course, $name, 's3');
+
+                File::create([
+                    'name' => $name,
+                    'path' => Storage::disk('s3')->url($path),
+                    'lesson_id' => $lesson->id,
+                ]);
+            }
+
+            DB::commit();
+        } catch (\Throwable $throwable) {
+            DB::rollBack();
+            throw new RuntimeException($throwable->getMessage());
         }
     }
 }

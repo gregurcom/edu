@@ -11,10 +11,13 @@ use App\Models\Category;
 use App\Models\Course;
 use App\Models\CourseUser;
 use App\Models\Rate;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\DB;
+use Symfony\Component\Console\Exception\RuntimeException;
 
 final class CourseService
 {
@@ -66,19 +69,27 @@ final class CourseService
         return $courses;
     }
 
-    public function storeCourse(StoreCourseRequest $request): Course
+    public function storeCourse(StoreCourseRequest $request): void
     {
-        if ($request->hasFile('image')){
-            $request->validate([
-                'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            ]);
-            $imageName = $request->image->hashName();
-            $request->image->move(public_path('images'), $imageName);
-        } else {
-            $imageName = config('app.article-image');
-        }
+        try {
+            DB::beginTransaction();
 
-        return Course::create(array_merge(['user_id' => Auth::id(), 'image' => $imageName], $request->validated()));
+            if ($request->hasFile('image')){
+                $request->validate([
+                    'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+                ]);
+                $imageName = $request->image->hashName();
+                $request->image->move(public_path('images'), $imageName);
+            } else {
+                $imageName = config('app.article-image');
+            }
+            Course::create(array_merge(['user_id' => Auth::id(), 'image' => $imageName], $request->validated()));
+
+            DB::commit();
+        } catch (\Throwable $throwable) {
+            DB::rollBack();
+            throw new RuntimeException($throwable->getMessage());
+        }
     }
 
     public function searchCourse(SearchRequest $request): AnonymousResourceCollection
