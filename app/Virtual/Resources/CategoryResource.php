@@ -20,7 +20,7 @@ class CategoryResource
      *     description="Data wrapper"
      * )
      *
-     * @var Category[]
+     * @var Category
      */
     private Category $data;
 }

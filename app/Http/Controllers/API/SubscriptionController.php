@@ -28,6 +28,7 @@ final class SubscriptionController extends Controller
      *          description="Successful operation",
      *       ),
      * )
+     * @return AnonymousResourceCollection<string, mixed>
      */
     public function index(): AnonymousResourceCollection
     {

@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Auth;
 
 final class TaskService
 {
-    public function get(): Collection
+    public function get(): Collection|null
     {
         return Auth::user()->tasks()->orderByRaw('-end_time DESC')->get();
     }

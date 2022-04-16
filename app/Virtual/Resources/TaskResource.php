@@ -20,7 +20,7 @@ class TaskResource
      *     description="Data wrapper"
      * )
      *
-     * @var Task[]
+     * @var Task
      */
     private Task $data;
 }

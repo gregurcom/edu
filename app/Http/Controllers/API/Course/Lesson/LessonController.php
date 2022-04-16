@@ -114,9 +114,9 @@ final class LessonController extends Controller
      */
     public function store(StoreLessonRequest $lessonRequest, StoreFileRequest $fileRequest, LessonService $lessonService): JsonResponse
     {
-        DB::beginTransaction();
-
         try {
+            DB::beginTransaction();
+
             $lesson = Lesson::create($lessonRequest->validated());
 
             if ($fileRequest->hasFile('files')) {
@@ -128,7 +128,7 @@ final class LessonController extends Controller
             }
 
             DB::commit();
-        } catch (\Exception $e) {
+        } catch (\Throwable $e) {
             DB::rollBack();
 
             return response()->json($e->getMessage(), Response::HTTP_INTERNAL_SERVER_ERROR);

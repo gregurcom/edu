@@ -14,6 +14,7 @@ class AdminCourseResource extends JsonResource
         parent::__construct($model);
     }
 
+    /** @return array<string, string|array<string, string>> */
     public function toArray($request): array
     {
         return [

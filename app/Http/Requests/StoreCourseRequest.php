@@ -13,6 +13,7 @@ use Illuminate\Foundation\Http\FormRequest;
 */
 final class StoreCourseRequest extends FormRequest
 {
+    /** @return array<string, string> */
     public function rules(): array
     {
         return [

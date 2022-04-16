@@ -6,6 +6,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rules\In;
 
 /**
  * @property string $title
@@ -15,6 +16,7 @@ use Illuminate\Foundation\Http\FormRequest;
 */
 final class StoreLessonRequest extends FormRequest
 {
+    /** @return array<string, In|string> */
     public function rules(): array
     {
         return [

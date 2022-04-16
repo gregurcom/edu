@@ -37,6 +37,7 @@ final class Course extends Model
 
     protected $guarded = [];
 
+    /** @var array<string, string> */
     protected $casts = [
         'created_at' => 'datetime:Y-m-d H:i:s',
     ];

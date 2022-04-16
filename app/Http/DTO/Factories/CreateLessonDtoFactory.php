@@ -14,6 +14,10 @@ final class CreateLessonDtoFactory
         return self::createFromArray($request->validated());
     }
 
+    /**
+     * @param array<string, string> $data
+     * @return LessonDto<mixed>
+     */
     private function createFromArray(array $data): LessonDto
     {
         $dto = new LessonDto();

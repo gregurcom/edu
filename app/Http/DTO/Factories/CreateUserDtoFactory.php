@@ -14,6 +14,10 @@ final class CreateUserDtoFactory
         return $this->createFromArray($request->validated());
     }
 
+    /**
+     * @param array<string, string> $data
+     * @return UserDto<mixed>
+     */
     private function createFromArray(array $data): UserDto
     {
         $dto = new UserDto();

@@ -57,7 +57,7 @@ class Lesson
      *      example=1
      * )
      *
-     * @var integer-
+     * @var integer
      */
     public int $course_id;
 

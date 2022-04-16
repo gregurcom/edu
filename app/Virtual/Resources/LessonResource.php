@@ -20,7 +20,7 @@ class LessonResource
      *     description="Data wrapper"
      * )
      *
-     * @var Lesson[]
+     * @var Lesson
      */
     private Lesson $data;
 }

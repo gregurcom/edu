@@ -11,6 +11,7 @@ use Illuminate\Foundation\Http\FormRequest;
 */
 final class CreateLessonRequest extends FormRequest
 {
+    /** @return array<string, string> */
     public function rules(): array
     {
         return [

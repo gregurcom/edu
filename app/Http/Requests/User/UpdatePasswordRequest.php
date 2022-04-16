@@ -9,6 +9,7 @@ use Illuminate\Foundation\Http\FormRequest;
 
 final class UpdatePasswordRequest extends FormRequest
 {
+    /** @return array<string, array<int, CheckPassword|string>|string> */
     public function rules(): array
     {
         return [

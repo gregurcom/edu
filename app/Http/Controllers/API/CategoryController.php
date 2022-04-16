@@ -24,6 +24,7 @@ final class CategoryController extends Controller
      *          @OA\JsonContent(ref="#/components/schemas/CategoryResource")
      *       ),
      * )
+     * @return AnonymousResourceCollection<string, mixed>
      */
     public function index(): AnonymousResourceCollection
     {

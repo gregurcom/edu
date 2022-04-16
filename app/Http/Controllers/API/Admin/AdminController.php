@@ -13,11 +13,13 @@ use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 final class AdminController extends Controller
 {
+    /** @return AnonymousResourceCollection<string, mixed> */
     public function index(): AnonymousResourceCollection
     {
         return AdminCourseResource::collection(Course::with(['author', 'lessons'])->paginate(10));
     }
 
+    /** @return AnonymousResourceCollection<string, mixed> */
     public function search(Request $request): AnonymousResourceCollection
     {
         $courses = Course::where('title', 'like', '%' . $request->q . '%')

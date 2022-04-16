@@ -11,7 +11,6 @@ use App\Models\Category;
 use App\Models\Course;
 use App\Models\CourseUser;
 use App\Models\Rate;
-use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\Auth;
@@ -31,17 +30,19 @@ final class CourseService
 
         if (auth('api')->user()) {
             // check rates
-            $rates = Rate::where('user_id', auth('api')->user()->id)->where('rate', '>', 3)->get();
-            if ($rates) {
+            $rates = Rate::where('user_id', auth('api')->user()?->id)
+                ->where('rate', '>', 3)
+                ->get();
+            if ($rates !== null) {
                 foreach ($rates as $rate) {
-                    array_unshift($categories, $rate->course->category->id);
+                    array_unshift($categories, $rate->course->category?->id);
                 }
             }
             // check subscriptions
-            $subscriptions = CourseUser::where('user_id', auth('api')->user()->id)->get();
-            if ($subscriptions) {
+            $subscriptions = CourseUser::where('user_id', auth('api')->user()?->id)->get();
+            if ($subscriptions !== null) {
                 foreach ($subscriptions as $subscription) {
-                    array_unshift($categories, $subscription->course->category->id);
+                    array_unshift($categories, $subscription->course?->category?->id);
                 }
             }
         }
@@ -92,6 +93,7 @@ final class CourseService
         }
     }
 
+    /** @return AnonymousResourceCollection<string, mixed> */
     public function searchCourse(SearchRequest $request): AnonymousResourceCollection
     {
         return CourseResource::collection(Course::where('title', 'like', '%' . $request->searchValue . '%')
@@ -100,6 +102,7 @@ final class CourseService
             ->get());
     }
 
+    /** @return AnonymousResourceCollection<string, mixed> */
     public function searchCourseOnCategory(SearchRequest $request): AnonymousResourceCollection
     {
         return CourseResource::collection(

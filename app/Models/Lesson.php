@@ -43,6 +43,7 @@ final class Lesson extends Model
 
     protected $guarded = [];
 
+    /** @var array<int, string> */
     protected array $richTextFields = [];
 
     public function course(): BelongsTo

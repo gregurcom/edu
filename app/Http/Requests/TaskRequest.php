@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Date;
 */
 final class TaskRequest extends FormRequest
 {
+    /** @return array<string, string> */
     public function rules(): array
     {
         return [

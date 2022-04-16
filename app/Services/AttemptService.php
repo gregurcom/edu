@@ -29,6 +29,7 @@ final class AttemptService
     public function remove(AccessRequest $request): void
     {
         Attempt::where('email', $request->email)
-            ->where('ip_address', $request->getClientIp())->delete();
+            ->where('ip_address', $request->getClientIp())
+            ->delete();
     }
 }

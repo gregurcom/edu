@@ -41,7 +41,7 @@ final class AccessController extends Controller
         }
         $timeout = config('attempts.timeout') - now()->diffInMinutes($this->attemptService->get($request)->last()->created_at);
 
-        return back()->with('status', trans_choice('app.alert.attempts-exhausted', $timeout, ['minute' => $timeout]));
+        return back()->with('status', trans_choice('app.alert.attempts-exhausted', (int)$timeout, ['minute' => $timeout]));
     }
 
     public function logout(Request $request): RedirectResponse

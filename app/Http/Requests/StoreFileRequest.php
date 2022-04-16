@@ -12,6 +12,7 @@ use Illuminate\Http\UploadedFile;
 */
 final class StoreFileRequest extends FormRequest
 {
+    /** @return array<string, string> */
     public function rules(): array
     {
         return [

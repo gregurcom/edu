@@ -12,6 +12,7 @@ use Illuminate\Foundation\Http\FormRequest;
 */
 final class ResponseRequest extends FormRequest
 {
+    /** @return array<string, string> */
     public function rules(): array
     {
         return [

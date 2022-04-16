@@ -20,7 +20,7 @@ class CourseResource
      *     description="Data wrapper"
      * )
      *
-     * @var Course[]
+     * @var Course
      */
     private Course $data;
 }

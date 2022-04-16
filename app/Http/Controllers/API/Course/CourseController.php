@@ -31,6 +31,7 @@ final class CourseController extends Controller
      *          @OA\JsonContent(ref="#/components/schemas/CourseResource")
      *       ),
      * )
+     * @return AnonymousResourceCollection<string, mixed>
      */
     public function index(CourseService $courseService): AnonymousResourceCollection
     {

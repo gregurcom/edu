@@ -8,6 +8,7 @@ use Illuminate\Foundation\Http\FormRequest;
 
 final class UpdateAvatarRequest extends FormRequest
 {
+    /** @return array<string, string> */
     public function rules(): array
     {
         return [

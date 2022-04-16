@@ -14,6 +14,7 @@ class FeedResource extends JsonResource
         parent::__construct($model);
     }
 
+    /** @return array<string, string> */
     public function toArray($request): array
     {
         return [
