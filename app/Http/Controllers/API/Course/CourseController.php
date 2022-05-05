@@ -13,7 +13,6 @@ use App\Models\Course;
 use App\Services\CourseService;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Support\Facades\Auth;
 
 final class CourseController extends Controller
@@ -31,11 +30,10 @@ final class CourseController extends Controller
      *          @OA\JsonContent(ref="#/components/schemas/CourseResource")
      *       ),
      * )
-     * @return AnonymousResourceCollection<string, mixed>
      */
-    public function index(CourseService $courseService): AnonymousResourceCollection
+    public function index(CourseService $courseService): JsonResponse
     {
-        return FeedResource::collection($courseService->getFeed());
+        return response()->json(FeedResource::collection($courseService->getFeed()), Response::HTTP_OK);
     }
 
     /**
@@ -65,9 +63,9 @@ final class CourseController extends Controller
      *      ),
      * )
      */
-    public function show(Course $course): CourseResource
+    public function show(Course $course): JsonResponse
     {
-        return new CourseResource($course);
+        return response()->json(new CourseResource($course), Response::HTTP_OK);
     }
 
     /**
@@ -150,9 +148,9 @@ final class CourseController extends Controller
      */
     public function update(Course $course, StoreCourseRequest $request): JsonResponse
     {
-        $course->update($request->validated());
+        $course = $course->update($request->validated());
 
-        return response()->json($course, Response::HTTP_ACCEPTED);
+        return response()->json($course, Response::HTTP_OK);
     }
 
     /**
@@ -191,11 +189,11 @@ final class CourseController extends Controller
      *      )
      * )
      */
-    public function destroy(Course $course): JsonResponse
+    public function destroy(Course $course): Response
     {
         $course->delete();
 
-        return response()->json(null, Response::HTTP_NO_CONTENT);
+        return response()->noContent();
     }
 
     public function search(SearchRequest $request, CourseService $courseService): JsonResponse

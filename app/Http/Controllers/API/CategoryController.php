@@ -7,7 +7,8 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\CategoryResource;
 use App\Models\Category;
-use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
+use Illuminate\Http\JsonResponse;
+use Symfony\Component\HttpFoundation\Response;
 
 final class CategoryController extends Controller
 {
@@ -24,11 +25,10 @@ final class CategoryController extends Controller
      *          @OA\JsonContent(ref="#/components/schemas/CategoryResource")
      *       ),
      * )
-     * @return AnonymousResourceCollection<string, mixed>
      */
-    public function index(): AnonymousResourceCollection
+    public function index(): JsonResponse
     {
-        return CategoryResource::collection(Category::all());
+        return response()->json(CategoryResource::collection(Category::all()), Response::HTTP_OK);
     }
 
     /**
@@ -58,8 +58,8 @@ final class CategoryController extends Controller
      *      ),
      * )
      */
-    public function show(Category $category): CategoryResource
+    public function show(Category $category): JsonResponse
     {
-        return new CategoryResource($category);
+        return response()->json(new CategoryResource($category), Response::HTTP_OK);
     }
 }

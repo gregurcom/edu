@@ -31,16 +31,15 @@ final class ResponseController extends Controller
 
     public function update(Response $response, ResponseRequest $request): JsonResponse
     {
-        $data = $request->validated();
-        $response->update($data);
+        $response = $response->update($request->validated());
 
         return response()->json(['response' => $response], HttpResponse::HTTP_OK);
     }
 
-    public function destroy(Response $response): JsonResponse
+    public function destroy(Response $response): HttpResponse
     {
         $response->delete();
 
-        return response()->json(['message' => 'Response was destroyed'], HttpResponse::HTTP_OK);
+        return response()->noContent();
     }
 }

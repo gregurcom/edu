@@ -18,11 +18,10 @@ final class FormTestController extends Controller
 {
     public function index(Course $course): JsonResponse
     {
-        return response()->json([
-            'tests' => [
-                $course->tests()->with('questions.responses')->get()
-            ]
-        ], Response::HTTP_OK);
+        return response()->json(
+            ['tests' => [$course->tests()->with('questions.responses')->get()]],
+            Response::HTTP_OK
+        );
     }
 
     public function show(Test $test): JsonResponse
@@ -46,10 +45,10 @@ final class FormTestController extends Controller
         return response()->json(['test' => TestResource::make($test)], Response::HTTP_CREATED);
     }
 
-    public function destroy(Test $test): JsonResponse
+    public function destroy(Test $test): Response
     {
         $test->delete();
 
-        return response()->json(['message' => 'Test was destroyed'], Response::HTTP_OK);
+        return response()->noContent();
     }
 }

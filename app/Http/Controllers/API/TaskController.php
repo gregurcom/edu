@@ -36,9 +36,9 @@ final class TaskController extends Controller
      */
     public function index(TaskService $taskService): JsonResponse
     {
-        $taskResource = TaskResource::collection($taskService->get());
+        $tasks = TaskResource::collection($taskService->get());
 
-        return response()->json($taskResource, Response::HTTP_OK);
+        return response()->json($tasks, Response::HTTP_OK);
     }
 
     /**
@@ -121,9 +121,9 @@ final class TaskController extends Controller
      */
     public function update(TaskRequest $request, Task $task): JsonResponse
     {
-        $task->update($request->validated());
+        $task = $task->update($request->validated());
 
-        return response()->json($task, Response::HTTP_ACCEPTED);
+        return response()->json($task, Response::HTTP_OK);
     }
 
     /**
@@ -162,10 +162,10 @@ final class TaskController extends Controller
      *      )
      * )
      */
-    public function destroy(Task $task): JsonResponse
+    public function destroy(Task $task): Response
     {
         $task->delete();
 
-        return response()->json(null, Response::HTTP_NO_CONTENT);
+        return response()->noContent();
     }
 }

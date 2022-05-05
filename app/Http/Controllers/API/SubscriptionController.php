@@ -9,7 +9,6 @@ use App\Http\Resources\CourseResource;
 use App\Models\Course;
 use App\Models\CourseUser;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -28,11 +27,12 @@ final class SubscriptionController extends Controller
      *          description="Successful operation",
      *       ),
      * )
-     * @return AnonymousResourceCollection<string, mixed>
      */
-    public function index(): AnonymousResourceCollection
+    public function index(): JsonResponse
     {
-        return CourseResource::collection(Auth::user()->subscriptions()->with(['author', 'rates'])->paginate(5));
+        $subscriptions = Auth::user()->subscriptions()->with(['author', 'rates'])->paginate(5);
+
+        return response()->json(CourseResource::collection($subscriptions), Response::HTTP_OK);
     }
 
     /**
@@ -103,10 +103,10 @@ final class SubscriptionController extends Controller
      *      )
      * )
      */
-    public function destroy(Course $course): JsonResponse
+    public function destroy(Course $course): Response
     {
         CourseUser::where('user_id', Auth::id())->where('course_id', $course->id)->delete();
 
-        return response()->json(null, Response::HTTP_NO_CONTENT);
+        return response()->noContent();
     }
 }

@@ -183,9 +183,9 @@ final class LessonController extends Controller
      */
     public function update(Lesson $lesson, UpdateLessonRequest $request): JsonResponse
     {
-        $lesson->update($request->validated());
+        $lesson = $lesson->update($request->validated());
 
-        return response()->json($lesson, Response::HTTP_ACCEPTED);
+        return response()->json($lesson, Response::HTTP_OK);
     }
 
     /**
@@ -224,10 +224,10 @@ final class LessonController extends Controller
      *      )
      * )
      */
-    public function destroy(Lesson $lesson): JsonResponse
+    public function destroy(Lesson $lesson): Response
     {
         $lesson->delete();
 
-        return response()->json(null, Response::HTTP_NO_CONTENT);
+        return response()->noContent();
     }
 }
