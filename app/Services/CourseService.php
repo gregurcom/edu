@@ -22,37 +22,7 @@ final class CourseService
 {
     public function getFeed(): LengthAwarePaginator
     {
-        $categories = [];
-
-        foreach (Category::get('id') as $category) {
-            $categories[] = $category->id;
-        }
-
-        if (auth('api')->user()) {
-            // check rates
-            $rates = Rate::where('user_id', auth('api')->user()?->id)
-                ->where('rate', '>', 3)
-                ->get();
-            if ($rates !== null) {
-                foreach ($rates as $rate) {
-                    array_unshift($categories, $rate->course->category?->id);
-                }
-            }
-            // check subscriptions
-            $subscriptions = CourseUser::where('user_id', auth('api')->user()?->id)->get();
-            if ($subscriptions !== null) {
-                foreach ($subscriptions as $subscription) {
-                    array_unshift($categories, $subscription->course?->category?->id);
-                }
-            }
-        }
-
-        $courses = collect();
-        foreach (array_unique($categories) as $category) {
-            $courses = $courses->concat(Course::where('category_id', $category)->with(['rates', 'author'])->get());
-        }
-
-        return $courses->paginate(10);
+        return Course::paginate(10);
     }
 
     public function getCourses(Category $category): LengthAwarePaginator

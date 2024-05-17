@@ -27,8 +27,6 @@ final class RegistrationController extends Controller
         $user = $userService->store($dto);
         Auth::login($user);
 
-        event(new Registered($user));
-
         return redirect()->route('dashboard')->with('status', __('app.alert.email-verification'));
     }
 }

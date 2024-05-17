@@ -48,7 +48,7 @@ Route::name('auth.')->group(function () {
 });
 
 Route::name('verification.')->group(function () {
-    Route::middleware(['auth', 'app.email-verification'])->group(function () {
+    Route::middleware(['auth'])->group(function () {
         Route::get('verify-email', [EmailVerificationController::class, 'show'])->name('notice');
         Route::post('verify-email/request', [EmailVerificationController::class, 'request'])->name('request');
 
@@ -66,8 +66,4 @@ Route::name('password.')->group(function () {
         Route::get('reset-password/{token}', [PasswordResetController::class, 'resetForm'])->name('reset');
         Route::put('reset-password', [PasswordResetController::class, 'update'])->name('update');
     });
-});
-
-Route::group(['prefix' => 'admin'], function () {
-    Voyager::routes();
 });

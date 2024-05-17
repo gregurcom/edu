@@ -30,7 +30,7 @@
         },
         mounted() {
             axios.get('api/v1/categories').then(response => {
-                this.categories = response.data.data
+                this.categories = response.data
                 this.loading = false
             })
         },

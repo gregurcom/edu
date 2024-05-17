@@ -23,11 +23,9 @@ Route::get('categories/{category}', [CategoryController::class, 'show'])->name('
 
 Route::get('lessons/{lesson}', [LessonController::class, 'show'])->name('lessons.show');
 
-Route::middleware('auth:api')->group(function () {
     Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
 
     Route::get('admin-panel', [AdminController::class, 'index'])->name('admin-panel.index')
         ->middleware('app.admin');
     Route::get('admin-panel/search', [AdminController::class, 'search'])->name('admin-panel.search')
         ->middleware('app.admin');
-});

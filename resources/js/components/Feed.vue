@@ -14,8 +14,8 @@
         <div class="mb-4 mt-4">
             <a href="/categories" class="btn btn-outline-dark">Categories</a>
         </div>
-        <template v-if="courses.data.length">
-            <div class="row mb-4" v-for="course in courses.data">
+        <template>
+            <div class="row mb-4" v-for="course in courses">
                 <div class="col col-md-8 mb-4">
                     <div class="d-block mb-2">
                         <a :href="`/courses/${course.id}`" class="text-decoration-none text-dark h4">{{ course.title }}</a>
@@ -38,11 +38,6 @@
                 </div>
             </div>
             <pagination class="customPagination" align="center" :data="courses" @pagination-change-page="list"></pagination>
-        </template>
-        <template v-else>
-            <div class="alert alert-info text-center">
-                No courses were found
-            </div>
         </template>
     </div>
     <div v-else class="atom">
@@ -75,7 +70,12 @@
         methods: {
             list(page = 1) {
                 axios.get(`/api/v1/courses?page=${page}`).then(response => {
-                    this.courses = response.data
+                    const object = response.data.reduce((acc, curr) => {
+                        acc[curr.id] = curr;
+                        return acc;
+                    }, {});
+                    console.log(object)
+                    this.courses = object
                     this.loading = false
                     window.scrollTo(0,0);
                 })
