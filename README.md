@@ -1,12 +1,7 @@
-## Mentor
-
-Mentor is a platform where anyone can share their knowledge
-http://207.154.241.76/
-
-![GitHub Logo](public/images/home.png)
+## Edu
 
 ## Install application
-1. Clone app ``git clone https://github.com/gregurcom/mentor.git``
+1. Clone app ``git clone https://github.com/gregurcom/edu.git``
 2. Install all dependence
 
 ``composer install``
